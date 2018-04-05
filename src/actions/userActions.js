@@ -25,34 +25,47 @@ export const fetchUser = () => {
   }
 }
 
-export const loginUser = (loginParams) => {
-  return (dispatch) => {
-    let options = {
-      method: "POST",
-      headers: {
-        "Content-Type":"application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify(loginParams)
-    }
-    fetch("http://localhost:3000/login", options)
-    .then((res) => res.json())
-    .then((json) => {
-
-      localStorage.setItem("jwt", json.token)
-      let payload = json.user
-
-      dispatch({
-        type: 'LOGIN_USER',
-        payload
-      })
-    })
+export const loginUser = () => {
+  return {
+      type: 'LOGIN_USER'
   }
 }
 
-export const logout = () => {
-  return (dispatch) => {
-    dispatch({type: 'LOGOUT_USER'})
-    localStorage.removeItem('jwt')
+export const logoutUser = () => {
+  return {
+      type: 'LOGOUT_USER'
   }
 }
+
+
+// export const loginUser = (loginParams) => {
+//   return (dispatch) => {
+//     let options = {
+//       method: "POST",
+//       headers: {
+//         "Content-Type":"application/json",
+//         Accept: "application/json"
+//       },
+//       body: JSON.stringify(loginParams)
+//     }
+//     fetch("http://localhost:3000/login", options)
+//     .then((res) => res.json())
+//     .then((json) => {
+//
+//       localStorage.setItem("jwt", json.token)
+//       let payload = json.user
+//
+//       dispatch({
+//         type: 'LOGIN_USER',
+//         payload
+//       })
+//     })
+//   }
+// }
+
+// export const logout = () => {
+//   return (dispatch) => {
+//     dispatch({type: 'LOGOUT_USER'})
+//     localStorage.removeItem('jwt')
+//   }
+// }

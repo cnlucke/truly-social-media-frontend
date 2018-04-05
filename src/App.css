@@ -1,28 +1,94 @@
-.App {
-  text-align: center;
+#root {
+  background-color: #4f5c64;
+  height: 100vh;
+}
+/*------------------------------NAVBAR----------------------------------------*/
+#nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 50px;
+  background-color: #8898A2;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+li {
+  float: left;
+}
+
+#logout {
+  float: right;
+}
+
+li a {
+  display: block;
   color: white;
+  text-align: center;
+  padding: 17px 20px;
+  text-decoration: none;
 }
 
-.App-title {
-  font-size: 1.5em;
+#home {
+  font-size: 24px;
+  padding-top: 10px;
+  padding-left: 0px
 }
 
-.App-intro {
-  font-size: large;
+.nav-link {
+  color: white;
+  float: left;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* Change the link color on hover */
+li a:hover {
+  background-color: #657681;
+  text-decoration: underline
+}
+
+.active {
+    background-color: #657681;
+}
+
+/*------------------------------LANDING--------------------------------------*/
+
+#landing-title {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 80px;
+}
+
+.landing-button {
+  height: 70px;
+  width: 150px;
+  margin: 30px;
+  margin-top: 50px;
+  font-size: 30px;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+#landing-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+button a {
+  text-decoration: none;
+  color: #7b8d93;
+}
+
+/*------------------------------SEARCH----------------------------------------*/
+
+#search{
+  width: 300px;
+  height: 40px;
+  border-radius: 18px;
+  margin: auto;
+  display: inherit;
 }
