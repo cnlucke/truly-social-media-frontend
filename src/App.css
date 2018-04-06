@@ -1,7 +1,9 @@
 #root {
   background-color: #4f5c64;
-  height: 100vh;
+  min-height: 100vh;
+  min-width: 900px;
 }
+
 /*------------------------------NAVBAR----------------------------------------*/
 #nav {
   list-style-type: none;
@@ -52,7 +54,7 @@ li a:hover {
 }
 
 .active {
-    background-color: #657681;
+  background-color: #657681;
 }
 
 /*------------------------------LANDING--------------------------------------*/
@@ -88,7 +90,169 @@ button a {
 #search{
   width: 300px;
   height: 40px;
-  border-radius: 18px;
+  border-radius: 10px;
   margin: auto;
   display: inherit;
+  padding-left: 5px;
+  border: none;
+}
+
+.result {
+  margin: auto;
+  color: gray;
+  height: 30px;
+  width: 280px;
+  background-color: white;
+  padding-left: 10px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+#first {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.content {
+  display: -webkit-inline-box;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.result-img {
+  width: 20px;
+  height: 20px;
+}
+
+.title {
+  margin-left: 5px;
+}
+/*------------------------------LOGINFORM------------------------------------*/
+
+#form {
+  margin: auto;
+  margin-top: 20px;
+  width: 200px;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 5px;
+}
+
+#login-form {
+  margin-top: 100px;
+}
+
+#signup-form {
+  margin-top: 20px;
+}
+
+form {
+  width: 300px;
+  border-radius: 5px;
+  background-color: #8898A2;
+  padding: 20px;
+}
+
+input[type=submit], input[type=email], input[type=password], input[type=text] {
+  margin: 8px 0;
+  border: none;
+  width: 100%;
+}
+
+input[type=email], input[type=password], input[type=text] {
+  padding-left: 10px;
+}
+
+input[type=submit]:hover {
+  background-color: #b8c1c7;
+  color: white;
+}
+
+input {
+  width: 100%;
+  height: 40px;
+  margin: 5px;
+  border-radius: 18px;
+}
+
+.form-submit {
+  font-weight: bold;
+  font-size: 18px;
+  color: #5a6972
+}
+
+/*------------------------------MEDIA MODAL-----------------------------------*/
+
+/* The Modal (background) */
+.modal {
+  /* display: none; /* Hidden by default */ */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+#movie-modal {
+  width: 350px;
+  height: auto;
+  margin: auto;
+  margin-top: 50px;
+  position: relative;
+  z-index: 1;
+  min-height: 400px;
+}
+
+#modal-background {
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: .4;
+  width: 100%;
+  height: 100%;
+}
+/* Modal Content/Box */
+.modal-content {
+  /* background-color: #fefefe; */
+  margin: 0 auto; /* 15% from the top and centered */
+  margin-top: 20px;
+  /* margin-bottom: 40px; */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 250px; /* Could be more or less, depending on screen size */
+  height: 250px;
+  position: relative;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.media-content > h5 {
+  font-size: 20px;
+  text-align: center;
+  margin: 5px;
+}
+
+.media-content > p {
+  font-size: 12px;
+  text-align: center;
+  margin: 5px;
 }

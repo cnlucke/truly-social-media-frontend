@@ -9,7 +9,6 @@ const NavBar = (props) => {
     props.setCurrentList(e.target.name)
   }
 
-  console.log("props.currentList:", props)
   return (
     <ul id="nav">
       <li><Link to="/"
@@ -52,7 +51,7 @@ const NavBar = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    isLoggedIn: state.lists.isLoggedIn,
+    isLoggedIn: state.users.isLoggedIn,
     currentList: state.lists.currentList
   }
 }

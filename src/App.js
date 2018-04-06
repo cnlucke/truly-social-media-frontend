@@ -16,12 +16,8 @@ class App extends Component {
         <Route exact path="/" render={() => (
           this.props.isLoggedIn ? (<UserContainer/>) : (<LandingContainer/>)
         )} />
-        <Route exact path="/signup" render={() => (
-          this.props.isLoggedIn ? (<UserContainer/>) : (<LandingContainer/>)
-        )} />
-        <Route exact path="/login" render={() => (
-          this.props.isLoggedIn ? (<UserContainer/>) : (<LandingContainer/>)
-        )} />
+        <Route exact path="/login" component={UserContainer} />
+        <Route exact path="/signup" component={UserContainer} />
         <Route exact path="/profile" render={() => (
           this.props.isLoggedIn ? (<UserContainer/>) : (<LandingContainer/>)
         )} />

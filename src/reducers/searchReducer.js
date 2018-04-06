@@ -1,11 +1,18 @@
 export default function searchReducer(
   state = {
-    searchTerm: '',
+    searchResults: [],
+    genres: [],
+    mediaChoice: null,
   },
   action
 ) {
   switch (action.type) {
-    case 'UPDATE_SEARCH_TERM':
+    case 'SET_GENRES':
+      return {...state, genres: action.payload}
+    case 'LOAD_RESULTS':
+      return {...state, searchResults: action.payload}
+    case 'SHOW_MEDIA_CHOICE':
+      return {...state, mediaChoice: action.payload}
     default:
       return state;
   }

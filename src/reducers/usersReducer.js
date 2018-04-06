@@ -1,7 +1,7 @@
 export default function usersReducer(
   state = {
-    user: {},
-    isLoggedIn: false,
+    currentUser: { first_name: "Cristy" },
+    isLoggedIn: true,
   },
   action
 ) {
