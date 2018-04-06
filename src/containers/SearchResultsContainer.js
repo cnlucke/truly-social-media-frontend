@@ -3,8 +3,8 @@ import {connect} from 'react-redux'
 import SearchResult from '../components/SearchResult'
 
 const SearchResultsContainer = (props) => {
-  const results = props.searchResults.map((result, index) => {
-    return <SearchResult {...result} key={result.id} id={(index === 0) ? 'first' : (index === props.searchResults.length - 1) ? 'last' : undefined }/>
+  const results = props.searchResults.map((item, index) => {
+    return <SearchResult item={item} key={item.id} id={(index === 0) ? 'first' : (index === props.searchResults.length - 1) ? 'last' : undefined }/>
   })
   return(
     <div id="search-results-container">

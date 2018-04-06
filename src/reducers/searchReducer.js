@@ -13,6 +13,8 @@ export default function searchReducer(
       return {...state, searchResults: action.payload}
     case 'SHOW_MEDIA_CHOICE':
       return {...state, mediaChoice: action.payload}
+    case 'CLEAR_RESULTS':
+      return {...state, searchResults: []}
     default:
       return state;
   }

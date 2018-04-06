@@ -29,7 +29,6 @@ export const fetchSearchResults = (searchTerm, genres) => {
             } else {
               movie.backdrop_url = null
             }
-
           })
           dispatch({
             type: 'LOAD_RESULTS',
@@ -80,6 +79,14 @@ export const setSearchChoice = (item) => {
     dispatch({
       type: 'SHOW_MEDIA_CHOICE',
       payload: item
+    })
+  }
+}
+
+export const clearResults = () => {
+  return (dispatch) => {
+    dispatch({
+      type: 'CLEAR_RESULTS'
     })
   }
 }

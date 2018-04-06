@@ -16,15 +16,11 @@ const rootReducer = combineReducers({users: usersReducer, lists: listsReducer, s
 const store = createStore(rootReducer, compose(applyMiddleware(thunk),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
 
-
-console.log(store.getState())
-
 ReactDOM.render(
   <Provider store={store}>
     <Router>
       <Route path="/" component={App} />
     </Router>
   </Provider>
-
   ,document.getElementById("root")
 );

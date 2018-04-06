@@ -2,11 +2,14 @@ import React from 'react';
 import { connect } from "react-redux";
 import { setCurrentList } from '../actions/listActions'
 import { logoutUser } from '../actions/userActions'
+import { hideMediaChoice } from '../actions/mediaActions'
 import { Link } from 'react-router-dom'
 
 const NavBar = (props) => {
-  const handleOnClick = (e) => {
-    props.setCurrentList(e.target.name)
+
+  const handleOnClick = (list) => {
+    props.setCurrentList(list)
+    props.hideMediaChoice()
   }
 
   return (
@@ -15,36 +18,48 @@ const NavBar = (props) => {
                 id="home"
                 name="home"
                 className={"nav-link " + (props.currentList === 'home' ? 'active' : null)}
-                onClick={handleOnClick}>truly social media</Link></li>
-      {(!localStorage.getItem('jwt')) ?
-        <span>
-          <li><Link to="/next"
-                    name="next"
-                    className={"nav-link " + (props.currentList === 'next' ? 'active' : null)}
-                    onClick={handleOnClick}>next</Link></li>
-          <li><Link to="/watching"
-                    name="watching"
-                    className={"nav-link " + (props.currentList === 'watching' ? 'active' : null)}
-                    onClick={handleOnClick}>watching</Link></li>
-          <li><Link to="/seen"
-                    name="seen"
-                    className={"nav-link " + (props.currentList === 'seen' ? 'active' : null)}
-                    onClick={handleOnClick}>seen</Link></li>
-          <li><Link to="/recommended"
-                    name="recommended"
-                    className={"nav-link " + (props.currentList === 'recommended' ? 'active' : null)}
-                    onClick={handleOnClick}>recommended</Link></li>
-          <li><Link to="/friends"
-                    name="friends"
-                    className={"nav-link " + (props.currentList === 'friends' ? 'active' : null)}
-                    onClick={handleOnClick}>friends</Link></li>
-          <li id="logout"><Link to="/"
-                                name="logout"
-                                className="nav-link"
-                                onClick={props.logoutUser}>logout</Link></li>
-        </span>
-        : null
-      }
+                onClick={() => handleOnClick('home')}>truly social media</Link></li>
+        {(props.isLoggedIn) ?
+          <span>
+            <li><Link to="/next"
+                      name="next"
+                      className={"nav-link nav-lists " + (props.currentList === 'next' ? 'active' : null)}
+                      onClick={() => handleOnClick('next')}>
+                      <i className="fas fa-step-forward fa-lg" color='black'></i> next
+                  </Link></li>
+            <li><Link to="/watching"
+                      name="watching"
+                      className={"nav-link nav-lists " + (props.currentList === 'watching' ? 'active' : null)}
+                      onClick={() => handleOnClick('watching')}>
+                      <i className="fas fa-eye fa-lg" color='black'></i> watching
+                    </Link></li>
+            <li><Link to="/seen"
+                      name="seen"
+                      className={"nav-link nav-lists " + (props.currentList === 'seen' ? 'active' : null)}
+                      onClick={() => handleOnClick('seen')}>
+                      <i className="fas fa-step-backward fa-lg" color='black'></i> seen
+                    </Link></li>
+            <li><Link to="/recommended"
+                      name="recommended"
+                      className={"nav-link nav-recommended " + (props.currentList === 'recommended' ? 'active' : null)}
+                      onClick={() => handleOnClick('recommended')}>
+                      <i className="fas fa-thumbs-up fa-lg" color="black"></i> recommended
+                    </Link></li>
+            <li><Link to="/friends"
+                      name="friends"
+                      className={"nav-link nav-lists " + (props.currentList === 'friends' ? 'active' : null)}
+                      onClick={() => handleOnClick('friends')}>
+                      <i className="fas fa-users fa-lg" color='black'></i> friends
+                    </Link></li>
+            <li id="logout"><Link to="/"
+                                  name="logout"
+                                  className="nav-link" id="logout"
+                                  onClick={props.logoutUser}>
+                                  <i className="fas fa-sign-out-alt fa-lg" color="black"></i> logout
+                                </Link></li>
+          </span>
+          : null
+        }
     </ul>
   )
 }
@@ -52,8 +67,8 @@ const NavBar = (props) => {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.users.isLoggedIn,
-    currentList: state.lists.currentList
+    currentList: state.lists.currentList,
   }
 }
 
-export default connect(mapStateToProps, { setCurrentList, logoutUser })(NavBar)
+export default connect(mapStateToProps, { setCurrentList, logoutUser, hideMediaChoice })(NavBar)

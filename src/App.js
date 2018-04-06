@@ -9,7 +9,6 @@ import { connect } from "react-redux";
 
 class App extends Component {
   render() {
-    console.log("App props:", this.props.isLoggedIn)
     return (
       <div>
         <NavBar/>

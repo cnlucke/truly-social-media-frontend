@@ -7,11 +7,12 @@ import Search from '../components/Search'
 import { withRouter } from 'react-router'
 
 const UserContainer = (props) => {
-  console.log("UserContainer props:", props)
+  const welcomeMsg = (props.currentUser.first_name === 'demo') ? 'Welcome!'
+                      : `Welcome, ${props.currentUser.first_name}!`
   if (props.isLoggedIn && props.currentUser && !props.showMedia) {
     return (
       <div id="landing-container">
-        <h5>{`Welcome, ${props.currentUser.first_name}!`}</h5>
+        <h5>{welcomeMsg}</h5>
         <h1 id="landing-title">What Do You Want to Look For Today?</h1>
         <Search />
       </div>

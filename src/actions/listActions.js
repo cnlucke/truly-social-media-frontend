@@ -4,3 +4,10 @@ export const setCurrentList = (listType) => {
     payload: listType,
   }
 }
+
+export const addToList = (list, item) => {
+  return {
+    type: 'ADD_ITEM_TO_LIST',
+    payload: { list, item }
+  }
+}

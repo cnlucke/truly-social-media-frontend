@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { fetchSearchResults, fetchGenres } from '../actions/searchActions'
+import { fetchSearchResults, fetchGenres, clearResults } from '../actions/searchActions'
 import SearchResultsContainer from '../containers/SearchResultsContainer'
 
 class Search extends React.Component {
@@ -10,6 +10,10 @@ class Search extends React.Component {
 
   componentDidMount() {
     this.props.fetchGenres()
+  }
+
+  componentWillUnmount() {
+    this.props.clearResults()
   }
 
   handleOnChange = (e) => {
@@ -34,4 +38,4 @@ class Search extends React.Component {
 export default connect((state) => ({
   searchTerm: state.search.searchTerm,
   genres: state.search.genres
-}), { fetchSearchResults, fetchGenres })(Search)
+}), { fetchSearchResults, fetchGenres, clearResults })(Search)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const Next = (props) => {
+const NextList = (props) => {
   return (
     <div id="next-list">
       <ul>Next List</ul>
@@ -9,4 +9,4 @@ const Next = (props) => {
   )
 }
 
-export default connect(null, null)(Next)
+export default connect(null, null)(NextList)

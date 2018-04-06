@@ -31,6 +31,12 @@ export const loginUser = () => {
   }
 }
 
+export const demo = () => {
+  return {
+      type: 'DEMO'
+  }
+}
+
 export const logoutUser = () => {
   return {
       type: 'LOGOUT_USER'

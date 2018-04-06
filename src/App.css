@@ -39,7 +39,20 @@ li a {
 #home {
   font-size: 24px;
   padding-top: 10px;
-  padding-left: 0px
+  padding-left: 5px;
+  padding-right: 0px;
+}
+
+.nav-lists {
+  width: 50px;
+  margin-left: 30px;
+  padding-top: 6px;
+}
+
+.nav-recommended {
+  width: 85px;
+  margin-left: 30px;
+  padding-top: 6px;
 }
 
 .nav-link {
@@ -47,6 +60,12 @@ li a {
   float: left;
 }
 
+#logout {
+  float: right;
+  width: 60px;
+  padding: 0px;
+  padding-top: 3px;
+}
 /* Change the link color on hover */
 li a:hover {
   background-color: #657681;
@@ -59,10 +78,19 @@ li a:hover {
 
 /*------------------------------LANDING--------------------------------------*/
 
+#landing-container < h5 {
+  padding-left: 20px;
+}
+
 #landing-title {
   text-align: center;
   margin-top: 100px;
   margin-bottom: 80px;
+}
+
+.landing-buttons {
+  display: flex;
+  justify-content: center;
 }
 
 .landing-button {
@@ -70,14 +98,16 @@ li a:hover {
   width: 150px;
   margin: 30px;
   margin-top: 50px;
+  margin-bottom: 0px;
   font-size: 30px;
   font-weight: bold;
-  border-radius: 6px;
+  border-radius: 15px;
 }
 
-#landing-buttons {
-  display: flex;
-  justify-content: center;
+#demo-button {
+  height: 50px;
+  width: 125px;
+  border-radius: 40px;
 }
 
 button a {
@@ -205,6 +235,14 @@ input {
   position: relative;
   z-index: 1;
   min-height: 400px;
+  display: flex;
+  overflow: visible;
+  padding: 5px;
+}
+
+#movie-poster > img {
+  width: 100%;
+  height: 300px;
 }
 
 #modal-background {
@@ -217,6 +255,7 @@ input {
   width: 100%;
   height: 100%;
 }
+
 /* Modal Content/Box */
 .modal-content {
   /* background-color: #fefefe; */
@@ -230,19 +269,9 @@ input {
   position: relative;
 }
 
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+.media-content {
+  float: left;
+  padding-right: 5px;
 }
 
 .media-content > h5 {
@@ -253,6 +282,37 @@ input {
 
 .media-content > p {
   font-size: 12px;
-  text-align: center;
+  text-align: left;
   margin: 5px;
+  color:  #b8c1c6;
+}
+
+#button-container {
+  display: grid;
+}
+
+.add-buttons {
+  background-color: #8898A2;
+  border-radius: 3px;
+  margin: 1px;
+}
+/* The Close Button */
+#close {
+  color: #384247;
+  font-size: 12px;
+  font-weight: bold;
+  display: block;
+  margin: 0 auto;
+  background-color: #b8c1c7;
+  position: absolute;
+  right: -3px;
+  top: -3px;
+  border-radius: 10px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

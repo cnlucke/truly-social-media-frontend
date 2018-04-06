@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { showMediaChoice } from '../actions/mediaActions'
 
-const ListItem = (props) => {
+const SearchResult = (props) => {
   const title = props.item.title || props.item.name
 
   const handleChoice = () => {
@@ -10,11 +10,11 @@ const ListItem = (props) => {
   }
 
   return (
-      <div className="list-item" onClick={handleChoice} id={props.id}>
-        <a className="list-item-link">
+      <div className="result" onClick={handleChoice} id={props.id}>
+        <a className="result-link">
           <div className="content">
             <img src={(props.item.poster_url) ? props.item.poster_url : require('../default.jpeg')}
-              className='list-item-img' alt="movie poster"/>
+              className='result-img' alt="movie poster"/>
             <div  className="title"
                   style={{textAlign: 'left'}}>
                   {(props.item.date) ?
@@ -27,4 +27,4 @@ const ListItem = (props) => {
   )
 }
 
-export default connect(null, {showMediaChoice})(ListItem)
+export default connect(null, {showMediaChoice})(SearchResult)
