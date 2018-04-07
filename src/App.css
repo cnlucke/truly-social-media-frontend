@@ -316,3 +316,41 @@ input {
   text-decoration: none;
   cursor: pointer;
 }
+
+/*----------------------------------LISTS-------------------------------------*/
+
+.item {
+  margin: auto;
+  color: gray;
+  min-height: 70px;
+  width: 400px;
+  background-color: #e3e6e8;
+  padding-left: 5px;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+}
+
+#overview {
+  font-size: 9px;
+  width: 335px;
+  padding: 5px;
+  padding-bottom: 0px;
+}
+
+#item-text {
+
+}
+
+.item-img {
+  width: 60px;
+  min-height: 60px;
+}
+
+.item-content {
+  display: -webkit-inline-box;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: #e3e6e8;
+}
