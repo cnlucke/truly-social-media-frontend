@@ -5,31 +5,47 @@ import SignUpForm from '../components/SignUpForm'
 import MediaModal from '../components/MediaModal'
 import Search from '../components/Search'
 import { withRouter } from 'react-router'
+import { getUser } from '../actions/userActions'
 
-const UserContainer = (props) => {
-  const welcomeMsg = (props.currentUser.first_name === 'demo') ? 'Welcome!'
-                      : `Welcome, ${props.currentUser.first_name}!`
-  if (props.isLoggedIn && props.currentUser && !props.showMedia) {
-    return (
-      <div id="landing-container">
-        <h5>{welcomeMsg}</h5>
-        <h1 id="landing-title">What Do You Want to Look For Today?</h1>
-        <Search />
-      </div>
-    )
-  } else if (props.showMedia){
-    return (
-            <MediaModal />
-            )
-  } else {
-    const path = props.location.pathname.slice(1)
-    return (
-      <div id="form">
-        {(path === 'login' ? (<LoginForm />)
-          : (path === 'signup') ? (<SignUpForm />)
-          : null )}
+class UserContainer extends React.Component {
+  componentDidMount() {
+    if (localStorage.getItem('token')) {
+      this.props.getUser(localStorage.getItem('token'), this.props.history)
+    }
+  }
+
+  buildWelcomeMsg = () => {
+    if (this.props.currentUser) {
+      return (this.props.currentUser.email === 'demo@example.com') ? 'Welcome to the Demo!'
+                          : `Welcome, ${this.props.currentUser.first_name}!`
+    } else {
+      return "Welcome!"
+    }
+  }
+
+  render() {
+    if (this.props.isLoggedIn && this.props.currentUser && !this.props.showMedia) {
+      return (
+        <div id="landing-container">
+          <h5>{this.buildWelcomeMsg()}</h5>
+          <h1 id="landing-title">What Do You Want to Look For Today?</h1>
+          <Search />
         </div>
       )
+    } else if (this.props.showMedia){
+      return (
+              <MediaModal />
+              )
+    } else {
+      const path = this.props.location.pathname.slice(1)
+      return (
+        <div id="form">
+          {(path === 'login' ? (<LoginForm />)
+            : (path === 'signup') ? (<SignUpForm />)
+            : null )}
+          </div>
+        )
+      }
     }
   }
 
@@ -41,4 +57,4 @@ const UserContainer = (props) => {
     }
   }
 
-  export default connect(mapStateToProps, null)(withRouter(UserContainer))
+  export default connect(mapStateToProps, { getUser })(withRouter(UserContainer))

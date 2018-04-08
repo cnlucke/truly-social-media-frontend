@@ -11,7 +11,6 @@ export default function listsReducer(
 ) {
   switch (action.type) {
     case 'SET_CURRENT_LIST':
-    console.log("setting current list to:", action.payload)
       return {...state, currentList: action.payload}
     case 'ADD_ITEM_TO_LIST':
       if (!state[action.payload.list].includes(action.payload.item)) {
@@ -19,6 +18,8 @@ export default function listsReducer(
       } else {
         return {...state};
       }
+    case 'REMOVE_ITEM_FROM_LIST':
+      return {...state, [action.payload.list]: state[action.payload.list].filter(item => item !== action.payload.item)}
     default:
       return {...state};
   }

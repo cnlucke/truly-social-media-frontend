@@ -2,12 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { hideMediaChoice } from '../actions/mediaActions'
 import { addToList } from '../actions/listActions'
+import { withRouter } from 'react-router-dom'
 
 const MediaModal = (props) => {
   const url = (props.mediaChoice.poster_url) ? props.mediaChoice.poster_url : require('../default.jpeg')
 
   const handleClick = (list) => {
-    props.addToList(list, props.mediaChoice)
+    props.addToList(list, props.mediaChoice, props.history)
   }
 
   if (props.showMedia) {
@@ -45,7 +46,7 @@ export default connect(state => ({
   mediaChoice: state.media.mediaChoice,
   showMedia: state.media.showMedia,
   list: state.lists.currentList
-}), { hideMediaChoice, addToList })(MediaModal)
+}), { hideMediaChoice, addToList })(withRouter(MediaModal))
 
 
  //       <img src={url} className="movie-poster" alt="movie poster"/>

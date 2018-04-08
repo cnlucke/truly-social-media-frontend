@@ -1,23 +1,47 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { loginUser } from '../actions/userActions'
+import { logIn } from '../actions/userActions'
+import { withRouter } from 'react-router-dom'
 
-const LoginForm = (props) => {
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    props.loginUser()
+class LoginForm extends React.Component {
+  state = {
+    email: '',
+    password: '',
+    showError: false,
+    error: '',
   }
-  
-  return (
-    <div id="login-form">
-      <form onSubmit={handleSubmit} >
-        <input type="email" className="login-input" placeholder="enter email address" autoComplete='email'/>
-        <input type="password" className="login-input" placeholder="enter password" autoComplete='new-password'/>
-        <input type="password" className="login-input" placeholder="confirm password" autoComplete='new-password'/>
-        <input className="form-submit" type="submit" value="log in" />
-      </form>
-    </div>
-  )
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.logIn(this.state.email, this.state.password, this.props.history)
+  }
+
+  handleOnChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  render() {
+    return (
+      <div id="login-form">
+        <form onSubmit={this.handleSubmit} >
+          <input  type="email"
+                  name='email'
+                  className="login-input"
+                  placeholder="enter email address"
+                  autoComplete='email'
+                  onChange={this.handleOnChange}/>
+                {(this.state.showError) ? this.state.error : null}
+          <input  type="password"
+                  name='password'
+                  className="login-input"
+                  placeholder="enter password"
+                  autoComplete='new-password'
+                  onChange={this.handleOnChange}/>
+          <input className="form-submit" type="submit" value="log in" />
+        </form>
+      </div>
+    )
+  }
 }
 
-export default connect(null, { loginUser })(LoginForm)
+export default connect(null, { logIn })(withRouter(LoginForm))

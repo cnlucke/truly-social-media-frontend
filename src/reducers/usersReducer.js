@@ -1,7 +1,8 @@
 export default function usersReducer(
   state = {
-    currentUser: { first_name: "Cristy" },
+    currentUser: {},
     isLoggedIn: false,
+    currentUserLists: [],
   },
   action
 ) {
@@ -9,9 +10,7 @@ export default function usersReducer(
     case 'LOGOUT_USER':
       return {...state, isLoggedIn: false, currentUser: {} }
     case 'LOGIN_USER':
-      return {...state, isLoggedIn: true, currentUser: { first_name: 'Cristy'}}
-    case 'DEMO':
-      return {...state, isLoggedIn: true, currentUser: { first_name: 'demo'}}
+      return {...state, isLoggedIn: true, currentUser: action.payload.user, currentUserLists: action.payload.lists }
     default:
       return state;
   }

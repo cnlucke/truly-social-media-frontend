@@ -12,27 +12,9 @@ export const fetchSearchResults = (searchTerm, genres) => {
 
           //sort by popularity first
           items.results.sort((a,b) => b.popularity - a.popularity)
-          // replace genres?
-          items.results.forEach((movie) => {
-            const date = movie.release_date || movie.first_air_date
-            const title = movie.title || movie.name
-            movie.date = formatDateString(date);
-            movie.title = title;
-            movie.genres = transformGenres(movie.genre_ids, genres)
-            if (movie.poster_path) {
-              movie.poster_url = `${BASE_URL + movie.poster_path}`
-            } else {
-              movie.poster_url = null
-            }
-            if (movie.backdrop_path) {
-              movie.backdrop_url = `${BASE_URL + movie.backdrop_path}`
-            } else {
-              movie.backdrop_url = null
-            }
-          })
           dispatch({
             type: 'LOAD_RESULTS',
-            payload: items.results,
+            payload: transformMovies(items.results, genres),
           })
         }
       )
@@ -42,6 +24,28 @@ export const fetchSearchResults = (searchTerm, genres) => {
         payload: [] })
     }
   }
+}
+
+const transformMovies = (movies, genres) => {
+  return movies.map((movie) => {
+    const date = movie.release_date || movie.first_air_date
+    const title = movie.title || movie.name
+    movie.date = formatDateString(date);
+    movie.title = title;
+    movie.api_id = movie.id
+    movie.genres = transformGenres(movie.genre_ids, genres)
+    if (movie.poster_path) {
+      movie.poster_url = `${BASE_URL + movie.poster_path}`
+    } else {
+      movie.poster_url = null
+    }
+    if (movie.backdrop_path) {
+      movie.backdrop_url = `${BASE_URL + movie.backdrop_path}`
+    } else {
+      movie.backdrop_url = null
+    }
+    return movie
+  })
 }
 
 const transformGenres = (genre_ids, genres) => {

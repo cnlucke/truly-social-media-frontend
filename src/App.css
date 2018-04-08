@@ -213,9 +213,7 @@ input {
 
 /*------------------------------MEDIA MODAL-----------------------------------*/
 
-/* The Modal (background) */
 .modal {
-  /* display: none; /* Hidden by default */ */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
@@ -319,6 +317,10 @@ input {
 
 /*----------------------------------LISTS-------------------------------------*/
 
+#list-items-container {
+  margin-top: 5px;
+}
+
 .item {
   margin: auto;
   color: gray;
@@ -329,22 +331,29 @@ input {
   border-style: solid;
   border-width: 1px;
   overflow: hidden;
+  margin-top: 4px;
+  border-radius: 5px;
 }
 
 #overview {
   font-size: 9px;
-  width: 335px;
+  width: 310px;
   padding: 5px;
   padding-bottom: 0px;
 }
 
-#item-text {
-
+.list-item-remove {
+  border-radius: 10px;
+  margin-left: 5px;
+  color: #4F5C63;
+  font-weight: bold;
+  font-size: 8px;
+  z-index: 1;
 }
 
 .item-img {
-  width: 60px;
-  min-height: 60px;
+  width: 80px;
+  min-height: 110px;
 }
 
 .item-content {
