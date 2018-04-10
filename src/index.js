@@ -8,10 +8,11 @@ import listsReducer from './reducers/listsReducer'
 import usersReducer from './reducers/usersReducer'
 import searchReducer from './reducers/searchReducer'
 import itemsReducer from './reducers/itemsReducer'
+import commentsReducer from './reducers/commentsReducer'
 import thunk from 'redux-thunk'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-const rootReducer = combineReducers({users: usersReducer, lists: listsReducer, search: searchReducer, items: itemsReducer})
+const rootReducer = combineReducers({users: usersReducer, lists: listsReducer, search: searchReducer, items: itemsReducer, comments: commentsReducer})
 
 const store = createStore(rootReducer, compose(applyMiddleware(thunk),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))

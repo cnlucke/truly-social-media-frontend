@@ -1,15 +1,27 @@
 export default function commentsReducer(
   state = {
-    itemChoice: null,
-    showItem: false,
+    showCommentContainer: true,
+    comments: [],
   },
   action
 ) {
   switch (action.type) {
+    case 'SHOW_COMMENT_CONTAINER':
+      return {...state, showCommentContainer: true }
+    case 'HIDE_COMMENT_CONTAINER':
+      return {...state, showCommentContainer: false }
     case 'SHOW_ITEM':
-      return {...state, itemChoice: action.payload.item, showItem: true }
+      return {...state, showCommentContainer: true }
     case 'HIDE_ITEM':
-      return {...state, itemChoice: null, showItem: false }
+      return {...state, showCommentContainer: false }
+    case 'GET_COMMENTS':
+      return {...state, comments: action.payload}
+    case 'ADD_COMMENT':
+      const username = action.payload.user.first_name + ' ' + action.payload.user.last_name
+      const newComment = {...action.payload.comment, username}
+      console.log("newComment:", newComment)
+      console.log("new comments object:", [...state.comments, newComment])
+      return {...state, comments: [...state.comments, newComment] }
     default:
       return {...state};
   }

@@ -4,13 +4,14 @@ import LoginForm from '../components/LoginForm'
 import SignUpForm from '../components/SignUpForm'
 import ItemModal from '../components/ItemModal'
 import Search from '../components/Search'
-import { withRouter } from 'react-router'
 import { getUser } from '../actions/userActions'
+import { fetchComments } from '../actions/commentActions'
 
 class UserContainer extends React.Component {
   componentDidMount() {
     if (localStorage.getItem('token')) {
-      this.props.getUser(localStorage.getItem('token'), this.props.history)
+      this.props.getUser();
+      this.props.fetchComments();
     }
   }
 
@@ -57,4 +58,4 @@ class UserContainer extends React.Component {
     }
   }
 
-  export default connect(mapStateToProps, { getUser })(withRouter(UserContainer))
+  export default connect(mapStateToProps, { getUser, fetchComments })(UserContainer)

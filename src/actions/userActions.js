@@ -59,11 +59,13 @@ export const logoutUser = () => {
   }
 }
 
-export function getUser(jwt, history){
-  return function(dispatch){
+export const getUser = () => {
+  return (dispatch) => {
     fetch('http://localhost:3000/profile', {
       headers: {
-        "Authorization": jwt
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        Authorization: localStorage.getItem('token')
       }
     })
     .then(res => res.json())
@@ -72,9 +74,6 @@ export function getUser(jwt, history){
         type: "LOGIN_USER",
         payload: { user: response.user, next: response.next, watching: response.watching, seen: response.seen }
       })
-    })
-    .then(()=> {
-      history.push("/")
     })
   }
 }

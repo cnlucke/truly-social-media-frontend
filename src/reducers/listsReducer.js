@@ -1,6 +1,6 @@
 export default function listsReducer(
   state = {
-    currentList: "",
+    currentList: "home",
     next: [],
     watching: [],
     seen: [],
