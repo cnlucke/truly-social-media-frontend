@@ -276,18 +276,18 @@ input {
   position: relative;
 }
 
-.media-content {
+.item-content {
   float: left;
   padding-right: 5px;
 }
 
-.media-content > h5 {
+.item-content > h5 {
   font-size: 20px;
   text-align: center;
   margin: 5px;
 }
 
-.media-content > p {
+.item-content > p {
   font-size: 12px;
   text-align: left;
   margin: 5px;

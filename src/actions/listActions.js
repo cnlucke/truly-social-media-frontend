@@ -30,7 +30,7 @@ export const removeItemFromList = (list, item, history) => {
   }
 }
 
-// { "list": {"media_id": "5678", "list_type": "watching"} }
+// { "list": {"item_id": "5678", "list_type": "watching"} }
 export const addToList = (list,  item, history) => {
   return function(dispatch){
     fetch("http://localhost:3000/add_list_item", {

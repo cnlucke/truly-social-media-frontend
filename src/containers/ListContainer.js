@@ -29,7 +29,7 @@ const ListContainer = (props) => {
 }
 
 export default connect((state) => ({
-  showItem: state.media.showItem,
+  showItem: state.item.showItem,
   currentList: state.lists.currentList,
   next: state.lists.next,
   watching: state.lists.watching,

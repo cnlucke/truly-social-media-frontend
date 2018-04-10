@@ -53,7 +53,7 @@ class UserContainer extends React.Component {
     return {
       isLoggedIn: state.users.isLoggedIn,
       currentUser: state.users.currentUser,
-      showItem: state.media.showItem,
+      showItem: state.item.showItem,
     }
   }
 

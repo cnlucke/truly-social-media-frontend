@@ -46,6 +46,6 @@ class LandingContainer extends React.Component {
 }
 
 export default connect((state) => ({
-  showItem: state.media.showItem,
+  showItem: state.item.showItem,
   isLoggedIn: state.users.isLoggedIn
 }), { logIn, getUser })(withRouter(LandingContainer))
