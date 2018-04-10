@@ -20,7 +20,7 @@ const ListItem = (props) => {
   return (
       <div className="item" id={props.id}>
         <a className="item-link">
-          <div className="item-content">
+          <div className="list-item-content">
             <div id="item-left-col">
               <img  onClick={handleChoice}
                     src={(props.item.poster_url) ? props.item.poster_url : require('../default.jpeg')}

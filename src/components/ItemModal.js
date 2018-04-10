@@ -13,7 +13,6 @@ const ItemModal = (props) => {
 
   if (props.showItem) {
     return (
-      <div>
       <div id="movie-modal" className="modal">
         <button id="close" onClick={props.hideitemChoice}>x</button>
         <div className='item-content' >
@@ -39,22 +38,14 @@ const ItemModal = (props) => {
           </button>
         </div>
       </div>
-      <div id="movie-modal" className="modal">
-        <button id="close" onClick={props.hideitemChoice}>x</button>
-        <div className='item-content' >
-          <p>{props.itemChoice.overview}</p>
-          <p><b>genres:</b> {props.itemChoice.genres}</p>
-          <p><b>release date:</b> {props.itemChoice.date}</p>
-        </div>
-      </div>
-    </div>
     )
   }
 }
 
+
 export default connect(state => ({
-  itemChoice: state.item.itemChoice,
-  showItem: state.item.showItem,
+  itemChoice: state.items.itemChoice,
+  showItem: state.items.showItem,
   list: state.lists.currentList
 }), { hideitemChoice, addToList })(withRouter(ItemModal))
 

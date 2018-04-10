@@ -367,7 +367,7 @@ input {
   min-height: 110px;
 }
 
-.item-content {
+.list-item-content {
   display: -webkit-inline-box;
   font-size: 12px;
   margin-top: 5px;
