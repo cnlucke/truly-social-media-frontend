@@ -20,7 +20,7 @@ const MediaModal = (props) => {
             <img src={url} alt="movie poster"/>
           </div>
           <p>{props.mediaChoice.overview}</p>
-          <p><b>genres:</b> {props.mediaChoice.genres.join(', ')}</p>
+          <p><b>genres:</b> {props.mediaChoice.genres}</p>
           <p><b>release date:</b> {props.mediaChoice.date}</p>
         </div>
         <div id="button-container">

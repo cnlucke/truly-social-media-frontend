@@ -16,7 +16,7 @@ export function logIn(email,  password, history){
         localStorage.setItem("token", response.token)
         dispatch({
           type: "LOGIN_USER",
-          payload: { user: response.user, lists: response.lists }
+          payload: { user: response.user, next: response.next, watching: response.watching, seen: response.seen }
         })
       }
 
@@ -43,7 +43,7 @@ export function signUp(user, history){
       localStorage.setItem("token", response.token)
       dispatch({
         type: "LOGIN_USER",
-        payload: response
+        payload: { user: response.user, next: [], watching: [], seen: [] }
       })
     })
     .then(()=> {
@@ -70,7 +70,7 @@ export function getUser(jwt, history){
     .then(response => {
       dispatch({
         type: "LOGIN_USER",
-        payload: response
+        payload: { user: response.user, next: response.next, watching: response.watching, seen: response.seen }
       })
     })
     .then(()=> {

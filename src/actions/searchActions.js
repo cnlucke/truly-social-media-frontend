@@ -60,7 +60,7 @@ const transformGenres = (genre_ids, genres) => {
       }
     })
   }
-  return finalGenres
+  return finalGenres.join(', ')
 }
 
 const formatDateString = (dateString) => {

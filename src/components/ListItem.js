@@ -1,40 +1,70 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { showMediaChoice } from '../actions/mediaActions'
-import { removeItemFromList } from '../actions/listActions'
+import { removeItemFromList, rateItem } from '../actions/listActions'
+import { withRouter } from 'react-router-dom'
 
 const ListItem = (props) => {
-  console.log("ListItem props:", props.item.title, props.item.date)
   const handleChoice = () => {
     props.showMediaChoice(props.item)
   }
 
   const handleRemove = () => {
-    props.removeItemFromList(props.currentList, props.item)
+    props.removeItemFromList(props.currentList, props.item, props.history)
+  }
+
+  const handleRating = (e) => {
+    props.rateItem(e.target.id, props.item.id)
   }
 
   return (
       <div className="item" id={props.id}>
         <a className="item-link">
           <div className="item-content">
-            <img  onClick={handleChoice}
-                  src={(props.item.poster_url) ? props.item.poster_url : require('../default.jpeg')}
-                  className='item-img'
-                  alt="movie poster"/>
+            <div id="item-left-col">
+              <img  onClick={handleChoice}
+                    src={(props.item.poster_url) ? props.item.poster_url : require('../default.jpeg')}
+                    className='item-img'
+                    alt="movie poster"/>
+                <button className="list-item-remove" onClick={handleRemove}>remove</button>
+            </div>
             <div id='item-text'>
               <div className="title"
                     onClick={handleChoice}
                     style={{textAlign: 'left'}}>
-                    {(props.item.date) ?
-                    <b>{`${props.item.title} - ${props.item.date.split(" ")[1]}`}</b>
-                    : <b>props.item.title</b>}
+                    <b>{props.item.title}</b>
               </div>
-              <div>
-                <p onClick={handleChoice} id='overview'>{props.item.overview}</p>
-              </div>
-              <div>
-                <button className="list-item-remove" onClick={handleRemove}>remove</button>
-              </div>
+              <p className="small-title"><b>{props.item.date.split(" ")[1]}</b></p>
+              <p onClick={handleChoice} id='overview'>{props.item.overview}</p>
+              <p className="small-title"
+                    onClick={handleChoice}
+                    style={{textAlign: 'left'}}>
+                    <b>genres:</b> {props.item.genres}
+              </p>
+              {(props.currentList === 'seen') ?
+                <div className="rating">
+                  <span id='10' onClick={handleRating}>
+                    {(props.item.rating === 10) ? '★' : '☆' }</span>
+                  <span id='9' onClick={handleRating}>
+                    {(props.item.rating >= 9) ? '★' : '☆' }</span>
+                  <span id='8' onClick={handleRating}>
+                    {(props.item.rating >= 8) ? '★' : '☆' }</span>
+                  <span id='7' onClick={handleRating}>
+                    {(props.item.rating >= 7) ? '★' : '☆' }</span>
+                  <span id='6' onClick={handleRating}>
+                    {(props.item.rating >= 6) ? '★' : '☆' }</span>
+                  <span id='5' onClick={handleRating}>
+                    {(props.item.rating >= 5) ? '★' : '☆' }</span>
+                  <span id='4' onClick={handleRating}>
+                    {(props.item.rating >= 4) ? '★' : '☆' }</span>
+                  <span id='3' onClick={handleRating}>
+                    {(props.item.rating >= 3) ? '★' : '☆' }</span>
+                  <span id='2' onClick={handleRating}>
+                    {(props.item.rating >= 2) ? '★' : '☆' }</span>
+                  <span id='1' onClick={handleRating}>
+                    {(props.item.rating >= 1) ? '★' : '☆' }</span>
+                </div>
+              : null }
             </div>
           </div>
         </a>
@@ -44,4 +74,4 @@ const ListItem = (props) => {
 
 export default connect((state) => {
   return { currentList: state.lists.currentList }
-}, {showMediaChoice, removeItemFromList})(ListItem)
+}, {showMediaChoice, removeItemFromList, rateItem})(withRouter(ListItem))
