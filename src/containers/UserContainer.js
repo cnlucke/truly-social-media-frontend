@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import LoginForm from '../components/LoginForm'
 import SignUpForm from '../components/SignUpForm'
-import MediaModal from '../components/MediaModal'
+import ItemModal from '../components/ItemModal'
 import Search from '../components/Search'
 import { withRouter } from 'react-router'
 import { getUser } from '../actions/userActions'
@@ -24,7 +24,7 @@ class UserContainer extends React.Component {
   }
 
   render() {
-    if (this.props.isLoggedIn && this.props.currentUser && !this.props.showMedia) {
+    if (this.props.isLoggedIn && this.props.currentUser && !this.props.showItem) {
       return (
         <div id="landing-container">
           <h5>{this.buildWelcomeMsg()}</h5>
@@ -32,9 +32,9 @@ class UserContainer extends React.Component {
           <Search />
         </div>
       )
-    } else if (this.props.showMedia){
+    } else if (this.props.showItem){
       return (
-              <MediaModal />
+              <ItemModal />
               )
     } else {
       const path = this.props.location.pathname.slice(1)
@@ -53,7 +53,7 @@ class UserContainer extends React.Component {
     return {
       isLoggedIn: state.users.isLoggedIn,
       currentUser: state.users.currentUser,
-      showMedia: state.media.showMedia,
+      showItem: state.media.showItem,
     }
   }
 

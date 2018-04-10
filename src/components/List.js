@@ -18,7 +18,9 @@ const List = (props) => {
     <div id="list-items-container">
       <Search />
       <div id="sort-button-container">
+        {(props.currentList === 'seen') ?
         <button className="sort-button" id='rating' onClick={handleSort}>rating</button>
+        : null}
         <button className="sort-button" id='dateAdded' onClick={handleSort}>date added</button>
         <button className="sort-button" id='title' onClick={handleSort}>title</button>
       </div>

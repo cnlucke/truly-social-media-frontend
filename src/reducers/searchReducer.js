@@ -2,7 +2,7 @@ export default function searchReducer(
   state = {
     searchResults: [],
     genres: [],
-    mediaChoice: null,
+    itemChoice: null,
   },
   action
 ) {
@@ -11,8 +11,8 @@ export default function searchReducer(
       return {...state, genres: action.payload}
     case 'LOAD_RESULTS':
       return {...state, searchResults: action.payload}
-    case 'SHOW_MEDIA_CHOICE':
-      return {...state, mediaChoice: action.payload}
+    case 'SHOW_ITEM_CHOICE':
+      return {...state, itemChoice: action.payload}
     case 'CLEAR_RESULTS':
       return {...state, searchResults: []}
     default:

@@ -81,7 +81,7 @@ export const fetchGenres = () => {
 export const setSearchChoice = (item) => {
   return (dispatch) => {
     dispatch({
-      type: 'SHOW_MEDIA_CHOICE',
+      type: 'SHOW_ITEM_CHOICE',
       payload: item
     })
   }

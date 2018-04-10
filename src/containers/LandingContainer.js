@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Search from '../components/Search'
-import MediaModal from '../components/MediaModal'
+import ItemModal from '../components/ItemModal'
 import { Link, withRouter } from 'react-router-dom';
 import { logIn, getUser } from '../actions/userActions'
 
@@ -17,9 +17,9 @@ class LandingContainer extends React.Component {
   }
 
   render() {
-    if (this.props.showMedia) {
+    if (this.props.showItem) {
       return (
-        <MediaModal />
+        <ItemModal />
       )
     } else {
       return (
@@ -46,6 +46,6 @@ class LandingContainer extends React.Component {
 }
 
 export default connect((state) => ({
-  showMedia: state.media.showMedia,
+  showItem: state.media.showItem,
   isLoggedIn: state.users.isLoggedIn
 }), { logIn, getUser })(withRouter(LandingContainer))

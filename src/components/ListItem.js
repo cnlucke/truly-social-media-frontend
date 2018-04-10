@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { showMediaChoice } from '../actions/mediaActions'
+import { showitemChoice } from '../actions/itemActions'
 import { removeItemFromList, rateItem } from '../actions/listActions'
 import { withRouter } from 'react-router-dom'
 
 const ListItem = (props) => {
   const handleChoice = () => {
-    props.showMediaChoice(props.item)
+    props.showitemChoice(props.item)
   }
 
   const handleRemove = () => {
@@ -35,7 +35,7 @@ const ListItem = (props) => {
                     <b>{props.item.title}</b>
               </div>
               <p className="small-title"><b>{props.item.date.split(" ")[1]}</b></p>
-              <p onClick={handleChoice} id='overview'>{props.item.overview}</p>
+              <p onClick={handleChoice} id='list-item-overview'>{props.item.overview}</p>
               <p className="small-title"
                     onClick={handleChoice}
                     style={{textAlign: 'left'}}>
@@ -74,4 +74,4 @@ const ListItem = (props) => {
 
 export default connect((state) => {
   return { currentList: state.lists.currentList }
-}, {showMediaChoice, removeItemFromList, rateItem})(withRouter(ListItem))
+}, {showitemChoice, removeItemFromList, rateItem})(withRouter(ListItem))

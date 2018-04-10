@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { showMediaChoice } from '../actions/mediaActions'
+import { showitemChoice } from '../actions/itemActions'
 
 const ListItem = (props) => {
   const handleChoice = () => {
-    props.showMediaChoice(props.item)
+    props.showitemChoice(props.item)
   }
 
   return (
@@ -25,4 +25,4 @@ const ListItem = (props) => {
   )
 }
 
-export default connect(null, {showMediaChoice})(ListItem)
+export default connect(null, {showitemChoice})(ListItem)

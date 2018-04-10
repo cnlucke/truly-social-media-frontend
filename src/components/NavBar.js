@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from "react-redux";
 import { setCurrentList } from '../actions/listActions'
 import { logoutUser } from '../actions/userActions'
-import { hideMediaChoice } from '../actions/mediaActions'
+import { hideitemChoice } from '../actions/itemActions'
 import { Link } from 'react-router-dom'
 
 const NavBar = (props) => {
 
   const handleOnClick = (list) => {
     props.setCurrentList(list)
-    props.hideMediaChoice()
+    props.hideitemChoice()
   }
 
   return (
@@ -71,4 +71,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { setCurrentList, logoutUser, hideMediaChoice })(NavBar)
+export default connect(mapStateToProps, { setCurrentList, logoutUser, hideitemChoice })(NavBar)

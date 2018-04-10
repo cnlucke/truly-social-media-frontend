@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import List from '../components/List'
-import MediaModal from '../components/MediaModal'
+import ItemModal from '../components/ItemModal'
 import RecommendedList from '../components/RecommendedList'
 import FriendsList from '../components/FriendsList'
 
 const ListContainer = (props) => {
-  if (props.showMedia) {
+  if (props.showItem) {
     return (
-      <MediaModal />
+      <ItemModal />
     )
   } else {
     switch (props.currentList) {
@@ -29,7 +29,7 @@ const ListContainer = (props) => {
 }
 
 export default connect((state) => ({
-  showMedia: state.media.showMedia,
+  showItem: state.media.showItem,
   currentList: state.lists.currentList,
   next: state.lists.next,
   watching: state.lists.watching,

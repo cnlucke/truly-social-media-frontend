@@ -1,27 +1,27 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { hideMediaChoice } from '../actions/mediaActions'
+import { hideitemChoice } from '../actions/itemActions'
 import { addToList } from '../actions/listActions'
 import { withRouter } from 'react-router-dom'
 
-const MediaModal = (props) => {
-  const url = (props.mediaChoice.poster_url) ? props.mediaChoice.poster_url : require('../default.jpeg')
+const ItemModal = (props) => {
+  const url = (props.itemChoice.poster_url) ? props.itemChoice.poster_url : require('../default.jpeg')
 
   const handleClick = (list) => {
-    props.addToList(list, props.mediaChoice, props.history)
+    props.addToList(list, props.itemChoice, props.history)
   }
 
-  if (props.showMedia) {
+  if (props.showItem) {
     return (
       <div id="movie-modal" className="modal">
-        <button id="close" onClick={props.hideMediaChoice}>x</button>
+        <button id="close" onClick={props.hideitemChoice}>x</button>
         <div className='media-content' >
           <div id="movie-poster">
             <img src={url} alt="movie poster"/>
           </div>
-          <p>{props.mediaChoice.overview}</p>
-          <p><b>genres:</b> {props.mediaChoice.genres}</p>
-          <p><b>release date:</b> {props.mediaChoice.date}</p>
+          <p>{props.itemChoice.overview}</p>
+          <p><b>genres:</b> {props.itemChoice.genres}</p>
+          <p><b>release date:</b> {props.itemChoice.date}</p>
         </div>
         <div id="button-container">
           <button className="add-buttons" id="add-nextlist" onClick={() => handleClick('next')}>
@@ -43,10 +43,10 @@ const MediaModal = (props) => {
 }
 
 export default connect(state => ({
-  mediaChoice: state.media.mediaChoice,
-  showMedia: state.media.showMedia,
+  itemChoice: state.media.itemChoice,
+  showItem: state.media.showItem,
   list: state.lists.currentList
-}), { hideMediaChoice, addToList })(withRouter(MediaModal))
+}), { hideitemChoice, addToList })(withRouter(ItemModal))
 
 
  //       <img src={url} className="movie-poster" alt="movie poster"/>
