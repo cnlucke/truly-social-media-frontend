@@ -42,8 +42,8 @@ li a {
 #home {
   font-size: 24px;
   padding-top: 10px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .nav-lists {
@@ -80,6 +80,7 @@ li a:hover {
 
 .active {
   background-color: #657681;
+  color: #00AAE2;
 }
 
 /*------------------------------LANDING--------------------------------------*/
@@ -92,6 +93,7 @@ li a:hover {
   text-align: center;
   margin-top: 100px;
   margin-bottom: 80px;
+  text-shadow: 2px 2px #00AAE2;
 }
 
 .landing-buttons {

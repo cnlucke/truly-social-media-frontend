@@ -70,7 +70,6 @@ export const getUser = () => {
     })
     .then(res => res.json())
     .then(response => {
-      console.log("got user:", response)
       dispatch({
         type: "LOGIN_USER",
         payload: { user: response.user, next: response.next, watching: response.watching, seen: response.seen }

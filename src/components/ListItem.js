@@ -33,7 +33,7 @@ const ListItem = (props) => {
                     onClick={handleChoice}
                     style={{textAlign: 'left'}}>
                     <b>{props.item.title}</b>
-                    <i class="fas fa-bars fa-sm"></i>
+                    {(props.currentList === 'next') ? <i className="fas fa-bars fa-sm"></i> : null}
               </span>
               <p className="small-title"><b>{props.item.date.split(" ")[1]}</b></p>
               <p onClick={handleChoice} id='list-item-overview'>{props.item.overview}</p>

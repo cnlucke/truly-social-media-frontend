@@ -47,9 +47,14 @@ export const addToList = (list,  item, history) => {
       if (response.error){
         alert(response.error)
       } else {
+        console.log("ADD TO LIST ITEM:", response.item)
         dispatch({
           type: 'ADD_ITEM_TO_LIST',
           payload: { list: response.list_type, item: response.item }
+        })
+        dispatch({
+          type: 'SHOW_ITEM',
+          payload: { item: response.item }
         })
       }
 
@@ -110,9 +115,9 @@ export const sortList = (list, sortType, listType) => {
         b = new Date(b.created_at);
         return (a > b) ? -1 : (a < b) ? 1 : 0;
       })
-    break;
+      break;
     default:
-      return list;
+      break;
   }
   return {
     type: 'SORT_LIST',

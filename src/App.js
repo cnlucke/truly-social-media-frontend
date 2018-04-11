@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import LandingContainer from './containers/LandingContainer'
 import ListContainer from './containers/ListContainer'
 import UserContainer from './containers/UserContainer'
@@ -21,19 +21,19 @@ class App extends Component {
           this.props.isLoggedIn ? (<UserContainer/>) : (<LandingContainer/>)
         )} />
         <Route exact path="/next" render={() => (
-          (this.props.isLoggedIn && this.props.currentList === 'next') ? (<ListContainer/>) : (<LandingContainer/>)
+          (this.props.isLoggedIn && this.props.currentList === 'next') ? (<ListContainer/>) : (<Redirect to='/'/>)
         )} />
         <Route exact path="/seen" render={() => (
-          (this.props.isLoggedIn && this.props.currentList === 'seen')  ? (<ListContainer/>) : (<LandingContainer/>)
+          (this.props.isLoggedIn && this.props.currentList === 'seen')  ? (<ListContainer/>) : (<Redirect to='/'/>)
         )} />
         <Route exact path="/watching" render={() => (
-          (this.props.isLoggedIn && this.props.currentList === 'watching')  ? (<ListContainer/>) : (<LandingContainer/>)
+          (this.props.isLoggedIn && this.props.currentList === 'watching')  ? (<ListContainer/>) : (<Redirect to='/'/>)
         )} />
         <Route exact path="/recommended" render={() => (
-          (this.props.isLoggedIn && this.props.currentList === 'recommended')  ? (<ListContainer/>) : (<LandingContainer/>)
+          (this.props.isLoggedIn && this.props.currentList === 'recommended')  ? (<ListContainer/>) : (<Redirect to='/'/>)
         )} />
         <Route exact path="/friends" render={() => (
-          (this.props.isLoggedIn && this.props.currentList === 'friends')  ? (<ListContainer/>) : (<LandingContainer/>)
+          (this.props.isLoggedIn && this.props.currentList === 'friends')  ? (<ListContainer/>) : (<Redirect to='/'/>)
         )} />
       </div>
     )

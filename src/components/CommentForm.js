@@ -10,7 +10,7 @@ class CommentForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const username = this.props.currentUser.first_name + ' ' + this.props.currentUser.last_name
-    this.props.addComment(this.props.item.id, this.state.comment, this.props.currentUser.id, this.props.item.id, username)
+    this.props.addComment(this.props.item.id, this.state.comment, this.props.currentUser.id, this.props.item.api_id, username)
     this.setState({comment: ''})
   }
 
