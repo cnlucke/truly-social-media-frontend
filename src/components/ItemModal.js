@@ -26,7 +26,9 @@ const ItemModal = (props) => {
             <p><b>genres:</b> {props.itemChoice.genres}</p>
             <p><b>release date:</b> {props.itemChoice.date}</p>
             <div>
-              <button id="show-comments" onClick={props.showCommentContainer}>comments</button>
+              {(props.showComments) ? null :
+                <button id="show-comments" onClick={props.showCommentContainer}>comments</button>
+              }
             </div>
           </div>
           <div id="button-container">

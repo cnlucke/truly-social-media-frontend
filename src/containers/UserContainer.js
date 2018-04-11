@@ -29,7 +29,7 @@ class UserContainer extends React.Component {
     if (this.props.isLoggedIn && this.props.currentUser && !this.props.showItem) {
       return (
         <div id="landing-container">
-          <h5>{this.buildWelcomeMsg()}</h5>
+          <h5 id="welcome">{this.buildWelcomeMsg()}</h5>
           <h1 id="landing-title">What Do You Want to Look For Today?</h1>
           <Search />
         </div>

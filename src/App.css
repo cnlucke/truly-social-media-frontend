@@ -44,6 +44,7 @@ li a {
   padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
+  text-shadow: 2px 2px 4px black;
 }
 
 .nav-lists {
@@ -64,6 +65,7 @@ li a {
 .nav-link {
   color: white;
   float: left;
+  text-shadow: 2px 2px 4px black;
 }
 
 #logout {
@@ -78,9 +80,10 @@ li a:hover {
   text-decoration: underline
 }
 
-.active {
+.nav-link.active {
   background-color: #657681;
   color: #00AAE2;
+  text-shadow: 2px 2px 4px black;
 }
 
 /*------------------------------LANDING--------------------------------------*/
@@ -93,7 +96,11 @@ li a:hover {
   text-align: center;
   margin-top: 100px;
   margin-bottom: 80px;
-  text-shadow: 2px 2px #00AAE2;
+  text-shadow: 1px 1px 5px #00AAE2;
+}
+
+#welcome {
+  text-shadow: 1px 1px gray;
 }
 
 .landing-buttons {
@@ -230,6 +237,7 @@ input {
 
 .item {
   margin: auto;
+  margin-bottom: 5px;
   color: gray;
   min-height: 70px;
   width: 400px;
@@ -239,6 +247,7 @@ input {
   border-width: 1px;
   overflow: hidden;
   border-radius: 5px;
+  box-shadow: 5px 5px 5px #22282a;
 }
 
 #list-item-overview {
@@ -258,21 +267,26 @@ input {
   font-size: 8px;
   z-index: 1;
   margin-top: 5px;
+  box-shadow: 2px 2px 2px #22282a;
 }
 
 .item-img {
   width: 80px;
   min-height: 110px;
+  box-shadow: 3px 3px 3px #22282a;
 }
 
 .list-item-content {
   display: -webkit-inline-box;
-  font-size: 12px;
+  /* font-size: 12px; */
   margin-top: 5px;
   margin-bottom: 5px;
   background-color: #e3e6e8;
 }
 
+#item-text {
+  margin-left: 3px;
+}
 .fa-bars {
   float: right;
   padding-right: 5px;
@@ -297,14 +311,19 @@ input {
    position: absolute;
 }
 
-.title, .small-title {
+.title {
+  color: #4f5c63;
   margin-left: 5px;
+  text-shadow: 3px 3px 3px white;
+  font-size:
 }
 
 .small-title {
+  margin-left: 5px;
   font-size: 10px;
   margin-bottom: 3px;
   margin-top: 3px;
+  text-shadow: 1px 1px white;
 }
 
 #item-left-col {
@@ -333,6 +352,7 @@ input {
   margin-right: 3px;
   font-weight: bold;
   background-color: #d5dadd;
+  box-shadow: 2px 2px 2px #22282a;
 }
 
 /*------------------------------ITEM MODAL-----------------------------------*/
@@ -346,6 +366,7 @@ input {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  box-shadow: 5px 5px 5px #22282a;
 }
 
 #movie-modal {
@@ -365,6 +386,7 @@ input {
 #movie-poster > img {
   width: 300px;
   height: 300px;
+  box-shadow: 3px 3px 3px white;
 }
 
 #modal-background {
@@ -416,7 +438,9 @@ input {
 .add-buttons {
   background-color: #8898A2;
   border-radius: 3px;
-  margin: 1px;
+  margin: 4px;
+  margin-left: 2px;
+  box-shadow: 2px 2px 2px gray;
 }
 /* The Close Button */
 #close {
@@ -468,6 +492,7 @@ input {
   padding: 5px;
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  box-shadow: 5px 5px 5px #22282a;
 }
 
 #modal-background {
@@ -509,11 +534,6 @@ input {
   margin: 5px;
 }
 
-.add-buttons {
-  background-color: #8898A2;
-  border-radius: 3px;
-  margin: 1px;
-}
 /* The Close Button */
 #close {
   color: #384247;
@@ -578,6 +598,7 @@ textarea.login-input {
   height: 70px;
   padding: 5px;
   margin: 0 auto;
+  box-shadow: 4px 4px 4px #434f56;
 }
 
 #comment-input {
@@ -595,6 +616,7 @@ textarea.login-input {
   padding-top: 0px;
   padding-bottom: 0px;
   margin-bottom: 5px;
+  box-shadow: 4px 4px 4px #5a6972;
 }
 
 #timestamp {
