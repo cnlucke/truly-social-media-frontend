@@ -6,22 +6,24 @@ import CommentList from '../components/CommentList'
 
 const CommentContainer = (props) => {
   const inList = itemInAnyList([...props.next, ...props.watching, ...props.seen], props.itemChoice)
-  console.log("inList?", inList)
+
   if (props.showCommentContainer && props.isLoggedIn && inList) {
     return (
-      <div id="comment-modal" className="modal">
+      <div id="comment-modal" className="comment-modal">
         <button id="close" onClick={props.hideCommentContainer}>x</button>
-        <div className='jcomment-content' >
+        <div className='comment-content' >
           <CommentList />
           <CommentForm />
         </div>
       </div>
     )
+  } else {
+    return null
   }
 }
 
 const itemInAnyList = (lists, itemChoice) => {
-  return lists.filter(item => item.api_id === itemChoice.api_id).length > 0;
+  return lists.filter(item => parseInt(item.api_id, 10) === parseInt(itemChoice.api_id, 10)).length > 0;
 }
 
 export default connect(state => ({

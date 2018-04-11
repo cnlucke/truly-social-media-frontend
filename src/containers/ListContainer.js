@@ -4,26 +4,35 @@ import List from '../components/List'
 import ItemModal from '../components/ItemModal'
 import RecommendedList from '../components/RecommendedList'
 import FriendsList from '../components/FriendsList'
+import { fetchComments } from '../actions/commentActions'
 
-const ListContainer = (props) => {
-  if (props.showItem) {
-    return (
-      <ItemModal />
-    )
-  } else {
-    switch (props.currentList) {
-      case 'next':
-      return (<List list={props.next}/>)
-      case 'watching':
-      return (<List list={props.watching}/>)
-      case 'seen':
-      return (<List list={props.seen}/>)
-      case 'recommended':
-      return (<RecommendedList list={props.recommended}/>)
-      case 'friends':
-      return (<FriendsList list={props.friends}/>)
-      default:
-      return null
+class ListContainer extends React.Component {
+  componentDidMount() {
+    if (localStorage.getItem('token')) {
+      this.props.fetchComments();
+    }
+  }
+
+  render () {
+    if (this.props.showItem) {
+      return (
+        <ItemModal />
+      )
+    } else {
+      switch (this.props.currentList) {
+        case 'next':
+        return (<List list={this.props.next}/>)
+        case 'watching':
+        return (<List list={this.props.watching}/>)
+        case 'seen':
+        return (<List list={this.props.seen}/>)
+        case 'recommended':
+        return (<RecommendedList list={this.props.recommended}/>)
+        case 'friends':
+        return (<FriendsList list={this.props.friends}/>)
+        default:
+        return null
+      }
     }
   }
 }
@@ -36,6 +45,4 @@ export default connect((state) => ({
   seen: state.lists.seen,
   recommended: state.lists.recommended,
   friends: state.lists.friends,
-}), null)(ListContainer)
-
-//word[0].toUpperCase() + word.substr(1);
+}), { fetchComments })(ListContainer)

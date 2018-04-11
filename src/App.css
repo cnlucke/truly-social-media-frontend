@@ -457,6 +457,8 @@ input {
   display: flex;
   overflow: visible;
   padding: 5px;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 #modal-background {
@@ -483,6 +485,10 @@ input {
   position: relative;
 }
 
+#comment-list {
+  margin-top: 5px;
+}
+
 .item-content {
   float: left;
   padding-right: 5px;
@@ -492,10 +498,6 @@ input {
   font-size: 20px;
   text-align: center;
   margin: 5px;
-}
-
-#button-container {
-  display: grid;
 }
 
 .add-buttons {
@@ -563,7 +565,7 @@ textarea.login-input {
 }
 
 #comment-form {
-  width: 330px;
+  width: 430px;
   height: 70px;
   padding: 5px;
   margin: 0 auto;
@@ -576,8 +578,8 @@ textarea.login-input {
 
 .comment {
   color: #2F373B;
-  background-color: white;
-  width: 330px;
+  background-color: #f1f3f4;
+  width: 430px;
   margin: 0 auto;
   border-radius: 5px;
   padding: 5px;

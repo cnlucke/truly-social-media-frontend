@@ -6,6 +6,7 @@ import ItemModal from '../components/ItemModal'
 import Search from '../components/Search'
 import { getUser } from '../actions/userActions'
 import { fetchComments } from '../actions/commentActions'
+import { withRouter } from 'react-router-dom'
 
 class UserContainer extends React.Component {
   componentDidMount() {
@@ -58,4 +59,4 @@ class UserContainer extends React.Component {
     }
   }
 
-  export default connect(mapStateToProps, { getUser, fetchComments })(UserContainer)
+  export default connect(mapStateToProps, { getUser, fetchComments })(withRouter(UserContainer))

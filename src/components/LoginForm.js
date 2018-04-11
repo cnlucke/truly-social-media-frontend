@@ -22,8 +22,8 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div id="login-form">
-        <form onSubmit={this.handleSubmit} >
+      <div id="login-form-container">
+        <form id="login-form" onSubmit={this.handleSubmit} >
           <input  type="email"
                   name='email'
                   className="login-input"

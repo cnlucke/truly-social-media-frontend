@@ -1,7 +1,7 @@
 const URL1 = 'https://api.themoviedb.org/3/search/multi?api_key=625636fd09b073d7a5b8a815b469ee71&language=en-US&query='
 const URL2 = '&page=1&include_adult=false'
 const GENRE_URL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=625636fd09b073d7a5b8a815b469ee71&language=en-US'
-const BASE_URL = 'https://image.tmdb.org/t/p/w300'
+const BASE_URL = 'https://image.tmdb.org/t/p/w400'
 
 export const fetchSearchResults = (searchTerm, genres) => {
   return (dispatch) => {
