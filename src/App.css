@@ -271,6 +271,11 @@ input {
   background-color: #e3e6e8;
 }
 
+.fa-bars {
+  float: right;
+  padding-right: 5px;
+}
+
 .rating {
   unicode-bidi: bidi-override;
   direction: rtl;

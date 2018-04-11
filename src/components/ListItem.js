@@ -29,11 +29,12 @@ const ListItem = (props) => {
                 <button className="list-item-remove" onClick={handleRemove}>remove</button>
             </div>
             <div id='item-text'>
-              <div className="title"
+              <span className="title"
                     onClick={handleChoice}
                     style={{textAlign: 'left'}}>
                     <b>{props.item.title}</b>
-              </div>
+                    <i class="fas fa-bars fa-sm"></i>
+              </span>
               <p className="small-title"><b>{props.item.date.split(" ")[1]}</b></p>
               <p onClick={handleChoice} id='list-item-overview'>{props.item.overview}</p>
               <p className="small-title"
