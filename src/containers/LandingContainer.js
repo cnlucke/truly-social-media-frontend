@@ -8,7 +8,7 @@ import { logIn, getUser } from '../actions/userActions'
 class LandingContainer extends React.Component {
   componentDidMount() {
     if (localStorage.getItem('token')) {
-      this.props.getUser(localStorage.getItem('token'), this.props.history)
+      this.props.getUser()
     }
   }
 

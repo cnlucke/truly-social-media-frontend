@@ -21,23 +21,30 @@ class App extends Component {
           this.props.isLoggedIn ? (<UserContainer/>) : (<LandingContainer/>)
         )} />
         <Route exact path="/next" render={() => (
-          this.props.isLoggedIn ? (<ListContainer/>) : (<LandingContainer/>)
+          (this.props.isLoggedIn && this.props.currentList === 'next') ? (<ListContainer/>) : (<LandingContainer/>)
         )} />
         <Route exact path="/seen" render={() => (
-          this.props.isLoggedIn ? (<ListContainer/>) : (<LandingContainer/>)
+          (this.props.isLoggedIn && this.props.currentList === 'seen')  ? (<ListContainer/>) : (<LandingContainer/>)
         )} />
         <Route exact path="/watching" render={() => (
-          this.props.isLoggedIn ? (<ListContainer/>) : (<LandingContainer/>)
+          (this.props.isLoggedIn && this.props.currentList === 'watching')  ? (<ListContainer/>) : (<LandingContainer/>)
         )} />
         <Route exact path="/recommended" render={() => (
-          this.props.isLoggedIn ? (<ListContainer/>) : (<LandingContainer/>)
+          (this.props.isLoggedIn && this.props.currentList === 'recommended')  ? (<ListContainer/>) : (<LandingContainer/>)
         )} />
         <Route exact path="/friends" render={() => (
-          this.props.isLoggedIn ? (<ListContainer/>) : (<LandingContainer/>)
+          (this.props.isLoggedIn && this.props.currentList === 'friends')  ? (<ListContainer/>) : (<LandingContainer/>)
         )} />
       </div>
     )
   }
 }
 
-export default connect((state) => ({isLoggedIn: state.users.isLoggedIn}), null)(App)
+const mapStateToProps = (state) => {
+  return {
+    isLoggedIn: state.users.isLoggedIn,
+    currentList: state.lists.currentList,
+  }
+}
+
+export default connect(mapStateToProps, null)(App)

@@ -40,7 +40,7 @@ export const addToList = (list,  item, history) => {
         "Accept": "application/json",
         Authorization: localStorage.getItem('token')
       },
-      body: JSON.stringify({ list: {"list_type": list, items_attributes: item }})
+      body: JSON.stringify({ list: {list_type: list, items_attributes: item }})
     })
     .then(res=> res.json())
     .then(response => {
