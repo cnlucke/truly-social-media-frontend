@@ -18,29 +18,32 @@ const ListItem = (props) => {
   }
 
   return (
-      <div className="item" id={props.id}>
-        <a className="item-link">
-          <div className="list-item-content">
-            <div id="item-left-col">
-              <img  onClick={handleChoice}
-                    src={(props.item.poster_url) ? props.item.poster_url : require('../default.jpeg')}
-                    className='item-img'
-                    alt="movie poster"/>
-                <button className="list-item-remove" onClick={handleRemove}>remove</button>
-            </div>
-            <div id='item-text'>
-              <span className="title"
-                    onClick={handleChoice}
-                    style={{textAlign: 'left'}}>
-                    <b>{props.item.title}</b>
-                    {(props.currentList === 'next') ? <i className="fas fa-bars fa-sm"></i> : null}
-              </span>
-              <p className="small-title"><b>{props.item.date.split(" ")[1]}</b></p>
-              <p onClick={handleChoice} id='list-item-overview'>{props.item.overview}</p>
-              <p className="small-title"
-                    onClick={handleChoice}
-                    style={{textAlign: 'left'}}>
-                    <b>genres:</b> {props.item.genres}
+    <div className="item" id={props.id}>
+      <a className="item-link">
+        <div className="list-item-content">
+          {(props.currentList === 'next') ?
+            (<div className="draggable">
+            ..............................................................................................................................................................................
+          </div>) : null}
+          <div id="item-left-col">
+            <img  onClick={handleChoice}
+              src={(props.item.poster_url) ? props.item.poster_url : require('../default.jpeg')}
+              className='item-img'
+              alt="movie poster"/>
+            <button className="list-item-remove" onClick={handleRemove}>remove</button>
+          </div>
+          <div id='item-text'>
+            <span className="title"
+              onClick={handleChoice}
+              style={{textAlign: 'left'}}>
+              <b>{props.item.title}</b>
+            </span>
+            <p className="small-title"><b>{props.item.date.split(" ")[1]}</b></p>
+            <p onClick={handleChoice} id='list-item-overview'>{props.item.overview}</p>
+            <p className="small-title"
+              onClick={handleChoice}
+              style={{textAlign: 'left'}}>
+              <b>genres:</b> {props.item.genres}
               </p>
               {(props.currentList === 'seen') ?
                 <div className="rating">
@@ -65,14 +68,41 @@ const ListItem = (props) => {
                   <span id='1' onClick={handleRating}>
                     {(props.item.rating >= 1) ? '★' : '☆' }</span>
                 </div>
-              : null }
+                : null }
+              </div>
             </div>
-          </div>
-        </a>
-      </div>
-  )
-}
+          </a>
+        </div>
+      )
+    }
 
-export default connect((state) => {
-  return { currentList: state.lists.currentList }
-}, {showitemChoice, removeItemFromList, rateItem})(withRouter(ListItem))
+    export default connect((state) => {
+      return { currentList: state.lists.currentList }
+    }, {showitemChoice, removeItemFromList, rateItem})(withRouter(ListItem))
+
+
+
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>
+    // <i class="fas fa-ellipsis-v fa-xs"></i>

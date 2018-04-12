@@ -26,20 +26,18 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 });
 
 const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? '#00AAE2' : '#4F5C63',
+  // background: isDraggingOver ? '#00AAE2' : '#4F5C63',
+  background: '#4F5C63',
 });
 
 
 class SortableList extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
-      items: props.list,
+      items: props.list
     }
-  }
 
-  componentWillReceiveProps(nextProps){
-    this.setState({ items: nextProps.list})
   }
 
   onDragEnd = (result) => {
@@ -49,24 +47,15 @@ class SortableList extends React.Component {
     }
 
     const items = reorder(
-      this.state.items,
+      this.props.list,
       result.source.index,
       result.destination.index
     );
-    this.setState({
-      items,
-    }, () => this.handleReorder());
-
-    // console.log("reordered! about to call action")
-    // this.props.sortList(items, 'reorder', this.props.currentList)
+    this.setState({ items }, () => this.props.sortList(items, 'reorder', this.props.currentList))
   }
 
-  handleSort = (e) => {
+  handleButtonSort = (e) => {
     this.props.sortList(this.props.list, e.target.id, this.props.currentList)
-  }
-
-  handleReorder = () => {
-    this.props.sortList(this.state.items, 'reorder', this.props.currentList)
   }
 
   render() {
@@ -75,10 +64,10 @@ class SortableList extends React.Component {
         <Search />
         <div id="sort-button-container">
           {(this.props.currentList === 'seen') ?
-            <button className="sort-button" id='rating' onClick={this.handleSort}>rating</button>
+            <button className="sort-button" id='rating' onClick={this.handleButtonSort}>rating</button>
             : null}
-            <button className="sort-button" id='dateAdded' onClick={this.handleSort}>date added</button>
-            <button className="sort-button" id='title' onClick={this.handleSort}>title</button>
+            <button className="sort-button" id='dateAdded' onClick={this.handleButtonSort}>date added</button>
+            <button className="sort-button" id='title' onClick={this.handleButtonSort}>title</button>
           </div>
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Droppable droppableId="droppable">

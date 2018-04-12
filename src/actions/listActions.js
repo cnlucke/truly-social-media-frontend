@@ -47,7 +47,6 @@ export const addToList = (list,  item, history) => {
       if (response.error){
         alert(response.error)
       } else {
-        console.log("ADD TO LIST ITEM:", response.item)
         dispatch({
           type: 'ADD_ITEM_TO_LIST',
           payload: { list: response.list_type, item: response.item }
@@ -91,36 +90,55 @@ export const rateItem = (rating, item_id) => {
 }
 
 export const sortList = (list, sortType, listType) => {
-  let newList = [...list];
-  switch (sortType) {
-    case 'rating':
-      newList.sort((a, b) => b.rating - a.rating )
-    break;
-    case 'title':
-      newList.sort((a, b) => {
-        var titleA = a.title.toUpperCase(); // ignore upper and lowercase
-        var titleB = b.title.toUpperCase(); // ignore upper and lowercase
-        if (titleA < titleB) {
-          return -1;
-        }
-        if (titleA > titleB) {
-          return 1;
-        }
-        return 0;
-      })
-    break;
-    case 'dateAdded':
-      newList.sort((a, b) => {
-        a = new Date(a.created_at);
-        b = new Date(b.created_at);
-        return (a > b) ? -1 : (a < b) ? 1 : 0;
-      })
+  return function(dispatch) {
+    let newList = [...list];
+    switch (sortType) {
+      case 'rating':
+        newList.sort((a, b) => b.rating - a.rating )
       break;
-    default:
+      case 'title':
+        newList.sort((a, b) => {
+          var titleA = a.title.toUpperCase(); // ignore upper and lowercase
+          var titleB = b.title.toUpperCase(); // ignore upper and lowercase
+          if (titleA < titleB) {
+            return -1;
+          }
+          if (titleA > titleB) {
+            return 1;
+          }
+          return 0;
+        })
       break;
-  }
-  return {
-    type: 'SORT_LIST',
-    payload: { listType, list: newList }
+      case 'dateAdded':
+        newList.sort((a, b) => {
+          a = new Date(a.created_at);
+          b = new Date(b.created_at);
+          return (a > b) ? -1 : (a < b) ? 1 : 0;
+        })
+        break;
+      default:
+        break;
+    }
+
+    fetch("http://localhost:3000/order", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        Authorization: localStorage.getItem('token')
+      },
+      body: JSON.stringify({ list: { items_attributes: newList }})
+    })
+    .then(res=> res.json())
+    .then(list => {
+      if (list.error){
+        alert(list.error)
+      } else {
+        dispatch({
+          type: 'SORT_LIST',
+          payload: { listType, list }
+        })
+      }
+    })
   }
 }

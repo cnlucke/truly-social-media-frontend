@@ -1,6 +1,6 @@
 #root {
   background-color: #4f5c64;
-  min-height: 100vh;
+  min-height: 150vh;
   min-width: 900px;
 }
 
@@ -117,6 +117,7 @@ li a:hover {
   font-size: 30px;
   font-weight: bold;
   border-radius: 15px;
+  box-shadow: 4px 4px 10px #000;
 }
 
 #demo-button {
@@ -140,6 +141,7 @@ button a {
   display: inherit;
   padding-left: 5px;
   border: none;
+  box-shadow: 4px 4px 10px #000;
 }
 
 .result {
@@ -233,14 +235,14 @@ input {
 
 #list-items-container {
   margin-top: 5px;
+  min-height: 200vh;
 }
 
 .item {
   margin: auto;
   margin-bottom: 8px;
   color: gray;
-  min-height: 70px;
-  width: 400px;
+  width: 500px;
   background-color: #e3e6e8;
   padding-left: 5px;
   border-style: solid;
@@ -251,10 +253,11 @@ input {
 }
 
 #list-item-overview {
-  font-size: 9px;
-  width: 310px;
+  font-size: 12px;
+  width: 380px;
   padding-left: 5px;
   padding-right: 5px;
+  padding-bottom: 5px;
   margin-bottom: 0px;
   margin-top: 0px;
 }
@@ -273,6 +276,7 @@ input {
 .item-img {
   width: 80px;
   min-height: 110px;
+  padding-top: 3px;
   box-shadow: 3px 3px 3px #22282a;
 }
 
@@ -287,9 +291,15 @@ input {
 #item-text {
   margin-left: 3px;
 }
-.fa-bars {
-  float: right;
-  padding-right: 5px;
+
+.draggable {
+  width: 15px;
+  padding-right: 2px;
+  word-wrap: break-word;
+  line-height: 0.3;
+  color: #a9b5bc;
+  overflow: hidden;
+  height: 150px;
 }
 
 .rating {
@@ -352,7 +362,7 @@ input {
   margin-right: 3px;
   font-weight: bold;
   background-color: #d5dadd;
-  box-shadow: 2px 2px 2px #22282a;
+  box-shadow: 3px 3px 10px #000;
 }
 
 /*------------------------------ITEM MODAL-----------------------------------*/
@@ -385,8 +395,8 @@ input {
 
 #movie-poster > img {
   width: 300px;
-  height: 300px;
-  box-shadow: 3px 3px 3px white;
+  height: 400px;
+  box-shadow: 4px 4px 10px #000;
 }
 
 #modal-background {
@@ -440,7 +450,8 @@ input {
   border-radius: 3px;
   margin: 4px;
   margin-left: 2px;
-  box-shadow: 2px 2px 2px gray;
+  margin-top: 0px;
+  box-shadow: 4px 4px 10px #000;
 }
 /* The Close Button */
 #close {
@@ -474,7 +485,7 @@ input {
 
 #modal-container {
   width: 80%;
-  min-height: 130vh;
+  min-height: 200vh;
   margin: auto;
   padding: 10px;
 }
@@ -598,7 +609,7 @@ textarea.login-input {
   height: 70px;
   padding: 5px;
   margin: 0 auto;
-  box-shadow: 4px 4px 4px #434f56;
+  box-shadow: 4px 4px 10px #000;
 }
 
 #comment-input {
@@ -616,7 +627,7 @@ textarea.login-input {
   padding-top: 0px;
   padding-bottom: 0px;
   margin-bottom: 5px;
-  box-shadow: 4px 4px 4px #5a6972;
+  box-shadow: 4px 4px 10px #000;
 }
 
 #timestamp {

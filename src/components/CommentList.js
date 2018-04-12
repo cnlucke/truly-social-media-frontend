@@ -6,8 +6,7 @@ const CommentList = (props) => {
   const matchingComments = props.comments.filter(comment => {
     return (comment.item_id === props.item.id) || (comment.api_id === props.item.api_id)
     })
-  console.log("matchingComments:", matchingComments)
-  const comments = matchingComments.map((comment, index) => <Comment comment={comment} key={index} />)
+  const comments = matchingComments.map((comment, index) => <Comment comment={comment} key={comment.id} />)
 
   return (
     <div id="comment-list">
