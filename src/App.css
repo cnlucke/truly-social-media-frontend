@@ -12,8 +12,8 @@ button:hover {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  height: 50px;
+  overflow: visible;
+  height: 52px;
   background-color: #8898A2;
 }
 
@@ -25,6 +25,7 @@ ul {
 
 li {
   float: left;
+  margin-right: 3px;
 }
 
 #logout {
@@ -41,30 +42,33 @@ li a {
 
 #home {
   font-size: 24px;
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
   text-shadow: 2px 2px 4px black;
+  padding: 11px;
+  height: 28px;
 }
 
 .nav-lists {
-  width: 50px;
+  width: 85px;
+  margin-left: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 7px;
+  padding-bottom: 13px;
+}
+
+#recommended {
+  width: 100px;
+  height: 27px;
   margin-left: 0px;
   padding-top: 6px;
   padding-left: 10px;
-  padding-right: 20px;
-}
-
-.nav-recommended {
-  width: 85px;
-  margin-left: 0px;
-  padding-top: 6px;
-  padding-left: 3px;
+  padding-right: 10px;
 }
 
 .nav-link {
   color: white;
   float: left;
+  height: 31px;
   text-shadow: 2px 2px 4px black;
 }
 
@@ -77,13 +81,16 @@ li a {
 /* Change the link color on hover */
 li a:hover {
   background-color: #657681;
-  text-decoration: underline
+  text-decoration: underline;
+  border-radius: 6px;
+  box-shadow: 2px 2px 2px black;
 }
 
 .nav-link.active {
   background-color: #657681;
   color: #00AAE2;
-  text-shadow: 2px 2px 4px black;
+  border-radius: 6px;
+  box-shadow: 2px 2px 2px black;
 }
 
 /*------------------------------LANDING--------------------------------------*/
@@ -133,7 +140,7 @@ button a {
 
 /*------------------------------SEARCH----------------------------------------*/
 
-#search{
+.search{
   width: 300px;
   height: 40px;
   border-radius: 10px;
@@ -144,26 +151,31 @@ button a {
   box-shadow: 4px 4px 10px #000;
 }
 
+#friend-search {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 .result {
   margin: auto;
   color: gray;
   height: 30px;
+  line-height: 30px;
   width: 280px;
   background-color: white;
   padding-left: 10px;
   border-style: solid;
   border-width: 1px;
-}
-
-#first {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 .content {
   display: -webkit-inline-box;
   font-size: 12px;
-  margin-top: 5px;
+  /* margin-top: 5px; */
 }
 
 #overview {
@@ -172,10 +184,10 @@ button a {
 }
 
 .result-img {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
+  margin-top: 2px;
 }
-
 
 /*------------------------------LOGINFORM------------------------------------*/
 
@@ -317,8 +329,8 @@ input {
 
 .rating > span:hover:before,
 .rating > span:hover ~ span:before {
-   content: "\2605";
-   position: absolute;
+  content: "\2605";
+  position: absolute;
 }
 
 .title {
@@ -395,7 +407,7 @@ input {
 
 #movie-poster > img {
   width: 300px;
-  height: 400px;
+  height: 450px;
   box-shadow: 4px 4px 10px #000;
 }
 
@@ -646,4 +658,100 @@ span.comment-content {
   font-size: 11px;
   padding-left: 5px;
   padding-top: 5px;
+}
+
+/*-----------------------------FRIEND MODAL-----------------------------------*/
+
+#friend-modal {
+  width: 300px;
+  margin: auto;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+  padding: 5px;
+}
+
+#friend-img {
+  width: 65px;
+  min-height: 64px;
+  border-style: solid;
+  border-width: 1px;
+  padding-top: 3px;
+  box-shadow: 3px 3px 3px #22282a;
+}
+
+#friend-text {
+  margin-left: 5px;
+  /* background-color: rgba(0,0,0,0.4); */
+}
+
+#add-friend-button {
+  width: 80px;
+  top: 30px;
+  position: absolute;
+  border-radius: 15px;
+  right: 50px;
+}
+
+#friend-poster {
+  margin-left: 5px;
+}
+
+.friend-item {
+  margin: auto;
+  margin-bottom: 8px;
+  color: gray;
+  width: 300px;
+  background-color: rgba(0,0,0,0.2);
+  padding-left: 5px;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  border-radius: 5px;
+  -webkit-box-shadow: 5px 5px 5px #22282a;
+  box-shadow: 5px 5px 5px #22282a;
+}
+
+.friend-content {
+  display: -webkit-inline-box;
+  /* font-size: 12px; */
+  margin-top: 5px;
+  margin-bottom: 5px;
+  /* background-color: #e3e6e8; */
+}
+
+.friend-title {
+  /* color: #4f5c63; */
+  margin-left: 5px;
+  text-shadow: 1px 1px black;
+}
+
+.friend-small-title {
+  margin-left: 5px;
+  font-size: 10px;
+  margin-bottom: 3px;
+  margin-top: 3px;
+  text-shadow: 1px 1px black;
+}
+
+.remove-friend {
+    border-radius: 10px;
+    width: 65px;
+    color: black;
+    font-weight: bold;
+    font-size: 9px;
+    z-index: 1;
+    background-color: #808080;
+    margin-top: 5px;
+    -webkit-box-shadow: 2px 2px 2px #22282a;
+    box-shadow: 2px 2px 2px #22282a;
+}
+
+#friend-left-col {
+  width: 70px;
+}
+
+.friend-link {
+  color: lightgray;
 }

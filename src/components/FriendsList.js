@@ -1,12 +1,34 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import FriendSearch from './FriendSearch'
+import { getAllUsers } from '../actions/userActions'
+import { getFriends } from '../actions/friendActions'
+import Friend from './Friend'
 
-const FriendsList = (props) => {
-  return (
-    <div id="friends-list">
-      <ul>Friends List</ul>
-    </div>
-  )
+class FriendsList extends React.Component {
+  componentDidMount() {
+    this.props.getAllUsers()
+  }
+
+  render() {
+    const friends = this.props.friends.map((friend) => {
+      return <Friend friend={friend} key={friend.id} />
+    })
+
+    return (
+      <div id="friends-list">
+        <FriendSearch />
+        {friends}
+      </div>
+    )
+  }
 }
 
-export default connect(null, null)(FriendsList)
+const mapStateToProps = (state) => {
+  return {
+    friends: state.friends.friends,
+    all_users: state.friends.all_users
+  }
+}
+
+export default connect(mapStateToProps, { getFriends, getAllUsers })(FriendsList)

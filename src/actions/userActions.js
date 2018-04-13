@@ -72,7 +72,26 @@ export const getUser = () => {
     .then(response => {
       dispatch({
         type: "LOGIN_USER",
-        payload: { user: response.user, next: response.next, watching: response.watching, seen: response.seen }
+        payload: { user: response.user, next: response.next, watching: response.watching, seen: response.seen, friends: response.friends, all_users: response.all_users }
+      })
+    })
+  }
+}
+
+export const getAllUsers = () => {
+  return (dispatch) => {
+    fetch('http://localhost:3000/users', {
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        Authorization: localStorage.getItem('token')
+      }
+    })
+    .then(res => res.json())
+    .then(users => {
+      dispatch({
+        type: "GET_USERS",
+        payload: { all_users: users }
       })
     })
   }

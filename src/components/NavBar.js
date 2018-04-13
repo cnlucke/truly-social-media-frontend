@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { setCurrentList } from '../actions/listActions'
 import { logoutUser } from '../actions/userActions'
 import { hideitemChoice } from '../actions/itemActions'
+import { hideFriendChoice } from '../actions/friendActions'
 import { Link } from 'react-router-dom'
 
 const NavBar = (props) => {
@@ -10,6 +11,7 @@ const NavBar = (props) => {
   const handleOnClick = (list) => {
     props.setCurrentList(list)
     props.hideitemChoice()
+    props.hideFriendChoice()
   }
 
   return (
@@ -25,37 +27,56 @@ const NavBar = (props) => {
                       name="next"
                       className={"nav-link nav-lists " + (props.currentList === 'next' ? 'active' : null)}
                       onClick={() => handleOnClick('next')}>
-                      <i className="fas fa-step-forward fa-lg" color='black'></i> next
+                      <div className="icon">
+                        <i className="fas fa-step-forward fa-lg" color='black'></i>
+                      </div>
+                      next
                   </Link></li>
             <li><Link to="/watching"
                       name="watching"
                       className={"nav-link nav-lists " + (props.currentList === 'watching' ? 'active' : null)}
                       onClick={() => handleOnClick('watching')}>
-                      <i className="fas fa-eye fa-lg" color='black'></i> watching
+                      <div className="icon">
+                        <i className="fas fa-eye fa-lg" color='black'></i>
+                      </div>
+                      watching
                     </Link></li>
             <li><Link to="/seen"
                       name="seen"
                       className={"nav-link nav-lists " + (props.currentList === 'seen' ? 'active' : null)}
                       onClick={() => handleOnClick('seen')}>
-                      <i className="fas fa-step-backward fa-lg" color='black'></i> seen
+                      <div className="icon">
+                        <i className="fas fa-step-backward fa-lg" color='black'></i>
+                      </div>
+                      seen
                     </Link></li>
             <li><Link to="/recommended"
                       name="recommended"
+                      id='recommended'
                       className={"nav-link nav-recommended " + (props.currentList === 'recommended' ? 'active' : null)}
                       onClick={() => handleOnClick('recommended')}>
-                      <i className="fas fa-thumbs-up fa-lg" color="black"></i> recommended
+                      <div className="icon">
+                        <i className="fas fa-thumbs-up fa-lg" color="black"></i>
+                      </div>
+                      recommended
                     </Link></li>
             <li><Link to="/friends"
                       name="friends"
                       className={"nav-link nav-lists " + (props.currentList === 'friends' ? 'active' : null)}
                       onClick={() => handleOnClick('friends')}>
-                      <i className="fas fa-users fa-lg" color='black'></i> friends
+                      <div className="icon">
+                        <i className="fas fa-users fa-lg" color='black'></i>
+                      </div>
+                      friends
                     </Link></li>
             <li id="logout"><Link to="/"
                                   name="logout"
                                   className="nav-link" id="logout"
                                   onClick={props.logoutUser}>
-                                  <i className="fas fa-sign-out-alt fa-lg" color="black"></i> logout
+                                  <div className="icon">
+                                    <i className="fas fa-sign-out-alt fa-lg" color="black"></i>
+                                  </div>
+                                  logout
                                 </Link></li>
           </span>
           : null
@@ -71,4 +92,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { setCurrentList, logoutUser, hideitemChoice })(NavBar)
+export default connect(mapStateToProps, { setCurrentList, logoutUser, hideitemChoice, hideFriendChoice })(NavBar)

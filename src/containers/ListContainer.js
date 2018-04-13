@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import List from '../components/List'
-import SortableList from '../components/SortableList'
 import ItemModal from '../components/ItemModal'
+import FriendModal from '../components/FriendModal'
+import SortableList from '../components/SortableList'
+import List from '../components/List'
 import RecommendedList from '../components/RecommendedList'
 import FriendsList from '../components/FriendsList'
 import { fetchComments } from '../actions/commentActions'
@@ -19,6 +20,10 @@ class ListContainer extends React.Component {
       return (
         <ItemModal />
       )
+    } else if (this.props.showFriend){
+      return (
+        <FriendModal />
+      )
     } else {
       switch (this.props.currentList) {
         case 'next':
@@ -30,7 +35,7 @@ class ListContainer extends React.Component {
         case 'recommended':
           return (<RecommendedList list={this.props.recommended}/>)
         case 'friends':
-          return (<FriendsList list={this.props.friends}/>)
+          return (<FriendsList />)
         default:
           return null
       }
@@ -40,6 +45,8 @@ class ListContainer extends React.Component {
 
 export default connect((state) => ({
   showItem: state.items.showItem,
+  friendChoice: state.friends.friendChoice,
+  showFriend: state.friends.showFriend,
   currentList: state.lists.currentList,
   next: state.lists.next,
   watching: state.lists.watching,

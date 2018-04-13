@@ -26,7 +26,7 @@ class Search extends React.Component {
     return(
       <div>
         <input  type="search"
-                id="search"
+                className="search"
                 placeholder='add items...'
                 onChange={this.handleOnChange} />
         <SearchResultsContainer />
