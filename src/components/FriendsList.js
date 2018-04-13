@@ -8,6 +8,7 @@ import Friend from './Friend'
 class FriendsList extends React.Component {
   componentDidMount() {
     this.props.getAllUsers()
+    this.props.getFriends()
   }
 
   render() {

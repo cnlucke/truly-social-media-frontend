@@ -8,6 +8,8 @@ const FriendModal = (props) => {
   const handleClick = () => {
     props.addFriend(props.friendChoice)
   }
+  const isFriend = (props.friends.filter(friend => friend.id === props.friendChoice.id).length > 0)
+  console.log("isFriend?", isFriend)
 
   if (props.showFriend) {
     return (
@@ -23,10 +25,12 @@ const FriendModal = (props) => {
             <p><b>state:</b> {props.friendChoice.state}</p>
           </div>
           <div id="button-container">
+            {(isFriend) ? null :
             <button className="add-buttons" id="add-friend-button" onClick={handleClick}>
               <i className="fas fa-plus fa-sm"></i><br/>
                add friend
             </button>
+            }
           </div>
         </div>
       </div>
@@ -39,6 +43,7 @@ export default connect(state => ({
   friendChoice: state.friends.friendChoice,
   showFriend: state.friends.showFriend,
   list: state.lists.currentList,
+  friends: state.friends.friends,
   showComments: state.comments.showCommentContainer
 }), { hideFriendChoice, addFriend })(withRouter(FriendModal))
 

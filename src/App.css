@@ -688,10 +688,10 @@ span.comment-content {
 
 #add-friend-button {
   width: 80px;
-  top: 30px;
+  top: 10px;
   position: absolute;
   border-radius: 15px;
-  right: 50px;
+  right: 80px;
 }
 
 #friend-poster {

@@ -43,16 +43,58 @@ export const hideFriendChoice = (item) => {
   }
 }
 
-export const addFriend = (friend) => {
+export function addFriend(friend){
+  return function(dispatch){
+
+    fetch("http://localhost:3000/friends", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        Authorization: localStorage.getItem('token')
+      },
+      body: JSON.stringify({user: friend})
+    })
+    .then(res=> res.json())
+    .then(friend => {
+      if (friend.error) {
+        alert(friend.error)
+      } else {
+        dispatch({
+          type: 'ADD_FRIEND',
+          payload: friend
+        })
+      }
+    })
+  }
+}
+
+
+export const removeFriendOld = (friend) => {
   return {
-    type: 'ADD_FRIEND',
+    type: 'REMOVE_FRIEND',
     payload: friend
   }
 }
 
-export const removeFriend = (friend) => {
-  return {
-    type: 'REMOVE_FRIEND',
-    payload: friend
+export function removeFriend(friend){
+  return function(dispatch){
+
+    fetch("http://localhost:3000/remove_friend", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        Authorization: localStorage.getItem('token')
+      },
+      body: JSON.stringify({user: friend})
+    })
+    .then(res=> res.json())
+    .then(friend => {
+      dispatch({
+        type: 'REMOVE_FRIEND',
+        payload: friend
+      })
+    })
   }
 }

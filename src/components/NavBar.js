@@ -71,7 +71,7 @@ const NavBar = (props) => {
                     </Link></li>
             <li id="logout"><Link to="/"
                                   name="logout"
-                                  className="nav-link" id="logout"
+                                  className="nav-link nav-lists" id="logout"
                                   onClick={props.logoutUser}>
                                   <div className="icon">
                                     <i className="fas fa-sign-out-alt fa-lg" color="black"></i>
