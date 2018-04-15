@@ -48,12 +48,12 @@ export const addToList = (list,  item, history) => {
         alert(response.error)
       } else {
         dispatch({
-          type: 'ADD_ITEM_TO_LIST',
-          payload: { list: response.list_type, item: response.item }
-        })
-        dispatch({
           type: 'SHOW_ITEM',
           payload: { item: response.item }
+        })
+        dispatch({
+          type: 'ADD_ITEM_TO_LIST',
+          payload: { list: response.list_type, item: response.item }
         })
       }
 

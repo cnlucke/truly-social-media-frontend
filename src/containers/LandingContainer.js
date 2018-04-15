@@ -4,6 +4,7 @@ import Search from '../components/Search'
 import ItemModal from '../components/ItemModal'
 import { Link, withRouter } from 'react-router-dom';
 import { logIn, getUser } from '../actions/userActions'
+import CommentContainer from '../containers/CommentContainer'
 
 class LandingContainer extends React.Component {
   componentDidMount() {
@@ -13,13 +14,21 @@ class LandingContainer extends React.Component {
   }
 
   handleDemo = () => {
-    this.props.logIn('demo@example.com', 'password', this.props.history)
+    this.props.logIn('demo@example.com', 'red', this.props.history)
+  }
+
+  itemInAnyList = () => {
+    return this.props.all.filter(item => parseInt(item.api_id, 10) === parseInt(this.props.itemChoice.api_id, 10)).length > 0;
   }
 
   render() {
     if (this.props.showItem) {
       return (
+      <div id="modal-container">
         <ItemModal />
+        {(this.props.showComments && this.props.isLoggedIn && this.itemInAnyList()) ? null :
+          (<CommentContainer />)}
+        </div>
       )
     } else {
       return (
@@ -47,5 +56,8 @@ class LandingContainer extends React.Component {
 
 export default connect((state) => ({
   showItem: state.items.showItem,
-  isLoggedIn: state.users.isLoggedIn
+  itemChoice: state.items.itemChoice,
+  showComments: state.comments.showCommentContainer,
+  isLoggedIn: state.users.isLoggedIn,
+  all: state.lists.all,
 }), { logIn, getUser })(withRouter(LandingContainer))

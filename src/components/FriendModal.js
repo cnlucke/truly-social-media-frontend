@@ -9,7 +9,6 @@ const FriendModal = (props) => {
     props.addFriend(props.friendChoice)
   }
   const isFriend = (props.friends.filter(friend => friend.id === props.friendChoice.id).length > 0)
-  console.log("isFriend?", isFriend)
 
   if (props.showFriend) {
     return (

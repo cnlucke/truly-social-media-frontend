@@ -2,6 +2,7 @@ export default function searchReducer(
   state = {
     itemChoice: null,
     showItem: false,
+    inList: false,
   },
   action
 ) {

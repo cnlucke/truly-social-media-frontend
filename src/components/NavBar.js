@@ -2,16 +2,31 @@ import React from 'react';
 import { connect } from "react-redux";
 import { setCurrentList } from '../actions/listActions'
 import { logoutUser } from '../actions/userActions'
+import { setUserProfileChoice } from '../actions/userActions'
 import { hideitemChoice } from '../actions/itemActions'
 import { hideFriendChoice } from '../actions/friendActions'
+import { hideFriendList } from '../actions/friendActions'
 import { Link } from 'react-router-dom'
 
 const NavBar = (props) => {
+
+  const buildWelcomeMsg = () => {
+    if (props.currentUser) {
+      return (props.currentUser.email === 'demo@example.com') ? 'Welcome to the Demo!'
+                          : `Welcome, ${props.currentUser.first_name}!`
+    } else {
+      return "Welcome!"
+    }
+  }
 
   const handleOnClick = (list) => {
     props.setCurrentList(list)
     props.hideitemChoice()
     props.hideFriendChoice()
+    props.hideFriendList()
+    if (list === 'profile') {
+      props.setUserProfileChoice(props.currentUser)
+    }
   }
 
   return (
@@ -71,13 +86,21 @@ const NavBar = (props) => {
                     </Link></li>
             <li id="logout"><Link to="/"
                                   name="logout"
-                                  className="nav-link nav-lists" id="logout"
+                                  className="nav-link nav-lists"
+                                  id="logout"
                                   onClick={props.logoutUser}>
-                                  <div className="icon">
+                                  <div id='logout-icon' className="icon">
                                     <i className="fas fa-sign-out-alt fa-lg" color="black"></i>
                                   </div>
                                   logout
                                 </Link></li>
+            <li id="profile"><Link to="/profile"
+                      name="profile"
+                      className="nav-link nav-lists"
+                      id="profile"
+                      onClick={() => handleOnClick('profile')}>
+                      {buildWelcomeMsg()}
+                    </Link></li>
           </span>
           : null
         }
@@ -88,8 +111,9 @@ const NavBar = (props) => {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.users.isLoggedIn,
+    currentUser: state.users.currentUser,
     currentList: state.lists.currentList,
   }
 }
 
-export default connect(mapStateToProps, { setCurrentList, logoutUser, hideitemChoice, hideFriendChoice })(NavBar)
+export default connect(mapStateToProps, { setCurrentList, logoutUser, hideitemChoice, hideFriendChoice, setUserProfileChoice, hideFriendList })(NavBar)

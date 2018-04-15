@@ -1,40 +1,35 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { clearResults } from '../actions/searchActions'
-import { setFriendSearchResults } from '../actions/friendActions'
+import { setFriendSearchResults, setFriendSearchTerm } from '../actions/friendActions'
 import SearchResultsContainer from '../containers/SearchResultsContainer'
 
 class FriendSearch extends React.Component {
-  state = {
-    searchTerm: '',
-    searchResults: [],
-  }
 
   componentWillUnmount() {
     this.props.clearResults()
   }
 
   handleOnChange = (e) => {
-    this.setState({searchTerm: e.target.value}, () => {
-      if (this.state.searchTerm === '') {
-        this.props.clearResults()
-      } else {
-        this.searchUsers()
-      }
-    })
+    this.props.setFriendSearchTerm(e.target.value)
+    if (e.target.value === '') {
+      this.props.clearResults()
+    } else {
+      this.props.setFriendSearchResults(this.searchUsers())
+    }
+  }
+
+  handleOnBlur = () => {
+    setTimeout(this.props.clearResults, 1000)
   }
 
   searchUsers = () => {
-    const term = this.state.searchTerm
-
-    const filteredUsers = this.props.all_users.filter(user => {
+    const term = this.props.searchTerm.toLowerCase()
+    return this.props.all_users.filter(user => {
       return (user.first_name.toLowerCase().includes(term)
             || user.last_name.toLowerCase().includes(term)
             || user.email.toLowerCase().includes(term)
             || user.city.toLowerCase().includes(term))
-    })
-    this.setState({ searchResults: filteredUsers }, () => {
-      this.props.setFriendSearchResults(this.state.searchResults)
     })
   }
 
@@ -45,7 +40,9 @@ class FriendSearch extends React.Component {
                 id="friend-search"
                 className="search"
                 placeholder='search for friends...'
-                value={this.state.searchTerm}
+                value={this.props.searchTerm}
+                onBlur={this.handleOnBlur}
+                onFocus={this.handleOnChange}
                 onChange={this.handleOnChange} />
         <SearchResultsContainer />
       </div>
@@ -56,4 +53,5 @@ class FriendSearch extends React.Component {
 export default connect((state) => ({
   all_users: state.friends.all_users,
   friends: state.friends.friends,
-}), { setFriendSearchResults, clearResults })(FriendSearch)
+  searchTerm: state.friends.friendSearchTerm,
+}), { setFriendSearchResults, clearResults, setFriendSearchTerm })(FriendSearch)

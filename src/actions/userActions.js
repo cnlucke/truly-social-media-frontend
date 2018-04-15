@@ -52,6 +52,32 @@ export function signUp(user, history){
   }
 }
 
+export function updateProfile(user, history){
+  return function(dispatch){
+    fetch("http://localhost:3000/profile", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        Authorization: localStorage.getItem('token')
+      },
+      body: JSON.stringify({user})
+    })
+    .then(res=> res.json())
+    .then(response => {
+      if (!response.error) {
+        dispatch({
+          type: "UPDATE_USER",
+          payload: response,
+        })
+      }
+    })
+    .then(()=> {
+      history.push('/')
+    })
+  }
+}
+
 export const logoutUser = () => {
   localStorage.clear();
   return {
@@ -94,5 +120,12 @@ export const getAllUsers = () => {
         payload: { all_users: users }
       })
     })
+  }
+}
+
+export const setUserProfileChoice = (user) => {
+  return {
+      type: 'SET_PROFILE',
+      payload: user,
   }
 }

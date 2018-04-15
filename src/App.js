@@ -4,6 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 import LandingContainer from './containers/LandingContainer'
 import ListContainer from './containers/ListContainer'
 import UserContainer from './containers/UserContainer'
+import UserProfileContainer from './containers/UserProfileContainer'
 import NavBar from './components/NavBar'
 import { connect } from "react-redux";
 
@@ -18,7 +19,7 @@ class App extends Component {
         <Route exact path="/login" component={UserContainer} />
         <Route exact path="/signup" component={UserContainer} />
         <Route exact path="/profile" render={() => (
-          this.props.isLoggedIn ? (<UserContainer/>) : (<LandingContainer/>)
+          (this.props.isLoggedIn && this.props.currentList === 'profile') ? (<UserProfileContainer/>) : (<Redirect to='/'/>)
         )} />
         <Route exact path="/next" render={() => (
           (this.props.isLoggedIn && this.props.currentList === 'next') ? (<ListContainer/>) : (<Redirect to='/'/>)

@@ -1,6 +1,6 @@
 export default function commentsReducer(
   state = {
-    showCommentContainer: true,
+    showCommentContainer: false,
     comments: [],
   },
   action

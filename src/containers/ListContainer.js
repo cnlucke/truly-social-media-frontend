@@ -7,6 +7,7 @@ import List from '../components/List'
 import RecommendedList from '../components/RecommendedList'
 import FriendsList from '../components/FriendsList'
 import { fetchComments } from '../actions/commentActions'
+import CommentContainer from '../containers/CommentContainer'
 
 class ListContainer extends React.Component {
   componentDidMount() {
@@ -16,9 +17,16 @@ class ListContainer extends React.Component {
   }
 
   render () {
+    console.log("showComments:", this.props.showComments)
+    console.log("isLoggedIn:", this.props.isLoggedIn)
+
     if (this.props.showItem) {
       return (
+      <div id="modal-container">
         <ItemModal />
+        {(this.props.showComments && this.props.isLoggedIn) ?
+          (<CommentContainer />) : null}
+        </div>
       )
     } else if (this.props.showFriend){
       return (
@@ -45,6 +53,7 @@ class ListContainer extends React.Component {
 
 export default connect((state) => ({
   showItem: state.items.showItem,
+  showComments: state.comments.showCommentContainer,
   friendChoice: state.friends.friendChoice,
   showFriend: state.friends.showFriend,
   currentList: state.lists.currentList,
@@ -53,4 +62,7 @@ export default connect((state) => ({
   seen: state.lists.seen,
   recommended: state.lists.recommended,
   friends: state.lists.friends,
+  itemChoice: state.items.itemChoice,
+  isLoggedIn: state.users.isLoggedIn,
+  all: state.lists.all,
 }), { fetchComments })(ListContainer)

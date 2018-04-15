@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { showFriendChoice } from '../actions/friendActions'
+import { seeFriendList } from '../actions/friendActions'
 import { removeFriend } from '../actions/friendActions'
 
 const Friend = (props) => {
-  const handleChoice = () => {
-    props.showFriendChoice(props.friend)
+  const handleClick = (e) => {
+    props.seeFriendList(props.friend, e.target.id)
   }
 
   const handleRemove = () => {
@@ -17,17 +17,22 @@ const Friend = (props) => {
       <a className="friend-link">
         <div className="friend-content">
           <div id="friend-left-col">
-            <div id='friend-img' onClick={handleChoice}>
+            <div id='friend-img'>
               <i className="fas fa-user fa-4x"></i>
             </div>
             <button className="remove-friend" onClick={handleRemove}>remove</button>
           </div>
-          <div id='friend-text' onClick={handleChoice}>
-            <span className="friend-title" style={{textAlign: 'left'}}>
+          <div id='friend-text'>
+            <span className="friend-title">
               <b>{props.friend.first_name + ' ' + props.friend.last_name}</b>
             </span>
-            <p className="friend-small-title" onClick={handleChoice}><b>city: </b>{props.friend.city}</p>
-            <p className="friend-small-title" onClick={handleChoice}><b>state: </b>{props.friend.state}</p>
+            <p className="friend-small-title"><b>city: </b>{props.friend.city}</p>
+            <p className="friend-small-title"><b>state: </b>{props.friend.state}</p>
+          </div>
+          <div id='friend-right-col'>
+            <button className="friend-list-button" id='next' onClick={handleClick}>next</button>
+            <button className="friend-list-button" id='watching' onClick={handleClick}>watching</button>
+            <button className="friend-list-button" id='seen' onClick={handleClick}>seen</button>
           </div>
         </div>
       </a>
@@ -35,4 +40,4 @@ const Friend = (props) => {
   )
 }
 
-export default connect((state) => ({friends: state.friends.friends}), {showFriendChoice, removeFriend })(Friend)
+export default connect((state) => ({friends: state.friends.friends}), {seeFriendList, removeFriend })(Friend)

@@ -7,7 +7,18 @@
 button:hover {
   cursor: pointer;
 }
+
+input {
+  box-shadow: 2px 2px 2px black;
+}
+
+input[type=submit] {
+  text-shadow: 0.5px 0.5px black;
+  color: #00AAE2;
+}
+
 /*------------------------------NAVBAR----------------------------------------*/
+
 #nav {
   list-style-type: none;
   margin: 0;
@@ -76,14 +87,28 @@ li a {
   float: right;
   width: 60px;
   padding: 0px;
-  padding-top: 3px;
 }
-/* Change the link color on hover */
+
+#logout-icon {
+  padding-top: 5px;
+}
+
+a#logout.nav-link {
+  height: 52px;
+}
+
+#profile {
+  width: 200px;
+  line-height: 52px;
+  float: right;
+}
+
 li a:hover {
   background-color: #657681;
   text-decoration: underline;
   border-radius: 6px;
   box-shadow: 2px 2px 2px black;
+  color: #00AAE2;
 }
 
 .nav-link.active {
@@ -91,6 +116,12 @@ li a:hover {
   color: #00AAE2;
   border-radius: 6px;
   box-shadow: 2px 2px 2px black;
+}
+
+a#profile.nav-link.nav-lists {
+  padding-top: 7px;
+  padding-bottom: 0px;
+  height: 45px;
 }
 
 /*------------------------------LANDING--------------------------------------*/
@@ -153,7 +184,7 @@ button a {
 
 #friend-search {
   margin-top: 15px;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 }
 
 .result {
@@ -175,7 +206,6 @@ button a {
 .content {
   display: -webkit-inline-box;
   font-size: 12px;
-  /* margin-top: 5px; */
 }
 
 #overview {
@@ -194,7 +224,7 @@ button a {
 #form {
   margin: auto;
   margin-top: 20px;
-  width: 200px;
+  width: 340px;
   border-width: 1px;
   border-color: black;
   border-radius: 5px;
@@ -208,11 +238,20 @@ button a {
   margin-top: 20px;
 }
 
+#change-password {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: #00AAE2;
+  text-shadow: 0.5px 0.5px black;
+}
+
 form {
+  margin: 0 auto;
   width: 300px;
   border-radius: 5px;
   background-color: #8898A2;
   padding: 20px;
+  box-shadow: 2px 2px 2px black;
 }
 
 input[type=submit], input[type=email], input[type=password], input[type=text] {
@@ -223,6 +262,7 @@ input[type=submit], input[type=email], input[type=password], input[type=text] {
 
 input[type=email], input[type=password], input[type=text] {
   padding-left: 10px;
+  width: 290px;
 }
 
 input[type=submit]:hover {
@@ -248,6 +288,13 @@ input {
 #list-items-container {
   margin-top: 5px;
   min-height: 200vh;
+  text-align: center;
+}
+
+#friend-list-title {
+  text-shadow: 1px 1px black;
+  color: #00AAE2;
+  text-decoration: underline;
 }
 
 .item {
@@ -267,7 +314,7 @@ input {
 #list-item-overview {
   font-size: 12px;
   width: 380px;
-  padding-left: 5px;
+  padding-left: 10px;
   padding-right: 5px;
   padding-bottom: 5px;
   margin-bottom: 0px;
@@ -294,7 +341,6 @@ input {
 
 .list-item-content {
   display: -webkit-inline-box;
-  /* font-size: 12px; */
   margin-top: 5px;
   margin-bottom: 5px;
   background-color: #e3e6e8;
@@ -302,6 +348,7 @@ input {
 
 #item-text {
   margin-left: 3px;
+  text-align: left;
 }
 
 .draggable {
@@ -380,14 +427,14 @@ input {
 /*------------------------------ITEM MODAL-----------------------------------*/
 
 .modal {
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
   box-shadow: 5px 5px 5px #22282a;
 }
 
@@ -402,6 +449,9 @@ input {
   display: flex;
   overflow: visible;
   padding: 5px;
+}
+
+.modal-left {
   float: left;
 }
 
@@ -422,13 +472,12 @@ input {
   height: 100%;
 }
 
-/* Modal Content/Box */
 .modal-content {
-  margin: 0 auto; /* 15% from the top and centered */
+  margin: 0 auto;
   margin-top: 20px;
   padding: 20px;
   border: 1px solid #888;
-  width: 250px; /* Could be more or less, depending on screen size */
+  width: 250px;
   height: 250px;
   position: relative;
 }
@@ -465,7 +514,7 @@ input {
   margin-top: 0px;
   box-shadow: 4px 4px 10px #000;
 }
-/* The Close Button */
+
 #close {
   color: #384247;
   font-size: 12px;
@@ -500,6 +549,7 @@ input {
   min-height: 200vh;
   margin: auto;
   padding: 10px;
+  transition: transform .5s ease .01ms;
 }
 
 #comment-modal {
@@ -513,8 +563,8 @@ input {
   display: flex;
   overflow: visible;
   padding: 5px;
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
   box-shadow: 5px 5px 5px #22282a;
 }
 
@@ -529,15 +579,12 @@ input {
   height: 100%;
 }
 
-/* Modal Content/Box */
 .modal-content {
-  /* background-color: #fefefe; */
-  margin: 0 auto; /* 15% from the top and centered */
+  margin: 0 auto;
   margin-top: 20px;
-  /* margin-bottom: 40px; */
   padding: 20px;
   border: 1px solid #888;
-  width: 250px; /* Could be more or less, depending on screen size */
+  width: 250px;
   height: 250px;
   position: relative;
 }
@@ -557,7 +604,6 @@ input {
   margin: 5px;
 }
 
-/* The Close Button */
 #close {
   color: #384247;
   font-size: 12px;
@@ -651,7 +697,7 @@ textarea.login-input {
 
 .comment-name {
   font-size: 10px;
-  color: #336699;
+  color: #006080;
 }
 
 span.comment-content {
@@ -683,7 +729,7 @@ span.comment-content {
 
 #friend-text {
   margin-left: 5px;
-  /* background-color: rgba(0,0,0,0.4); */
+  width: 129px;
 }
 
 #add-friend-button {
@@ -701,6 +747,7 @@ span.comment-content {
 .friend-item {
   margin: auto;
   margin-bottom: 8px;
+  margin-top: 8px;
   color: gray;
   width: 300px;
   background-color: rgba(0,0,0,0.2);
@@ -715,14 +762,12 @@ span.comment-content {
 
 .friend-content {
   display: -webkit-inline-box;
-  /* font-size: 12px; */
   margin-top: 5px;
   margin-bottom: 5px;
-  /* background-color: #e3e6e8; */
 }
 
 .friend-title {
-  /* color: #4f5c63; */
+  text-align: left;
   margin-left: 5px;
   text-shadow: 1px 1px black;
 }
@@ -736,20 +781,40 @@ span.comment-content {
 }
 
 .remove-friend {
-    border-radius: 10px;
-    width: 65px;
-    color: black;
-    font-weight: bold;
-    font-size: 9px;
-    z-index: 1;
-    background-color: #808080;
-    margin-top: 5px;
-    -webkit-box-shadow: 2px 2px 2px #22282a;
-    box-shadow: 2px 2px 2px #22282a;
+  border-radius: 10px;
+  width: 65px;
+  color: black;
+  font-weight: bold;
+  font-size: 9px;
+  z-index: 1;
+  background-color: #808080;
+  margin-top: 5px;
+  -webkit-box-shadow: 2px 2px 2px #22282a;
+  box-shadow: 2px 2px 2px #22282a;
+}
+
+.friend-list-button {
+  border-radius: 10px;
+  width: 65px;
+  color: black;
+  font-weight: bold;
+  font-size: 9px;
+  z-index: 1;
+  background-color: #808080;
+  -webkit-box-shadow: 2px 2px 2px #22282a;
+  box-shadow: 2px 2px 2px #22282a;
+  margin-bottom: 4px;
 }
 
 #friend-left-col {
   width: 70px;
+}
+
+#friend-right-col {
+  width: 70px;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .friend-link {

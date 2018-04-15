@@ -1,6 +1,7 @@
 export default function listsReducer(
   state = {
     currentList: "home",
+    all: [],
     next: [],
     watching: [],
     seen: [],
@@ -13,9 +14,10 @@ export default function listsReducer(
     case 'SET_CURRENT_LIST':
       return {...state, currentList: action.payload}
     case 'LOGOUT_USER':
-      return {...state, next: [], watching: [], seen: [] }
+      return {...state, next: [], watching: [], seen: [], all: [] }
     case 'LOGIN_USER':
-      return {...state, next: action.payload.next, watching: action.payload.watching, seen: action.payload.seen }
+      const {next, watching, seen} = action.payload
+      return {...state, next: next, watching: watching, seen: seen, all: [...next, ...watching, ...seen] }
     case 'ADD_ITEM_TO_LIST':
       if (state[action.payload.list].filter(item => action.payload.item.id === item.id).length === 0) {
         return {...state, [action.payload.list]: [...state[action.payload.list], action.payload.item]}

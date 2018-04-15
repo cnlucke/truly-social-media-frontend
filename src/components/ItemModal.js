@@ -4,7 +4,6 @@ import { hideitemChoice } from '../actions/itemActions'
 import { addToList } from '../actions/listActions'
 import { showCommentContainer } from '../actions/commentActions'
 import { withRouter } from 'react-router-dom'
-import CommentContainer from '../containers/CommentContainer'
 
 const ItemModal = (props) => {
   const url = (props.itemChoice.poster_url) ? props.itemChoice.poster_url : require('../default.jpeg')
@@ -13,10 +12,14 @@ const ItemModal = (props) => {
     props.addToList(list, props.itemChoice, props.history)
   }
 
+  const itemInAnyList = () => {
+    return props.all.filter(item => parseInt(item.api_id, 10) === parseInt(props.itemChoice.api_id, 10)).length > 0;
+  }
+
   if (props.showItem) {
+    console.log("itemInAnyList?", itemInAnyList())
     return (
-      <div id="modal-container">
-        <div id="movie-modal" className="modal">
+        <div id="movie-modal" className={(props.showComments && itemInAnyList()) ? 'modal modal-left' : 'modal'}>
           <button id="close" onClick={props.hideitemChoice}>x</button>
           <div className='item-content' >
             <div id="movie-poster">
@@ -26,8 +29,9 @@ const ItemModal = (props) => {
             <p><b>genres:</b> {props.itemChoice.genres}</p>
             <p><b>release date:</b> {props.itemChoice.date}</p>
             <div>
-              {(props.showComments) ? null :
+              {(props.showComments && itemInAnyList()) ?
                 <button id="show-comments" onClick={props.showCommentContainer}>comments</button>
+                : null
               }
             </div>
           </div>
@@ -46,8 +50,6 @@ const ItemModal = (props) => {
             </button>
           </div>
         </div>
-        {(props.showComments) ? <CommentContainer /> : null}
-      </div>
     )
   }
 }
@@ -57,7 +59,8 @@ export default connect(state => ({
   itemChoice: state.items.itemChoice,
   showItem: state.items.showItem,
   list: state.lists.currentList,
-  showComments: state.comments.showCommentContainer
+  showComments: state.comments.showCommentContainer,
+  all: state.lists.all,
 }), { hideitemChoice, addToList, showCommentContainer })(withRouter(ItemModal))
 
 
