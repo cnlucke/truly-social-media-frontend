@@ -43,10 +43,12 @@ export default function friendsReducer(
     case 'HIDE_FRIEND':
       return {...state, friendChoice: null, showFriend: false }
     case 'SEE_FRIEND':
-      const {user, next, watching, seen, list} = action.payload
-      return {...state, friendProfile: user, next: next, watching: watching, seen: seen, currentFriendList: list, seeFriend: true}
+      const {user, next, watching, seen, ratings, list} = action.payload
+      return {...state, next, watching, seen, friendProfile: user, currentFriendList: list, seeFriend: true, friendRatings: ratings}
     case 'HIDE_FRIEND_LIST':
       return {...state, seeFriend: false}
+    case 'SORT_FRIEND_LIST':
+      return {...state, [action.payload.listType]: action.payload.list}
     default:
       return state;
   }

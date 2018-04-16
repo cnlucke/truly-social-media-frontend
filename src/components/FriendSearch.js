@@ -24,7 +24,6 @@ class FriendSearch extends React.Component {
   }
 
   searchUsers = () => {
-    console.log("all_users:", this.props.all_users)
     const term = this.props.searchTerm.toLowerCase()
     return this.props.all_users.filter(user => {
       return (user.first_name.toLowerCase().includes(term)

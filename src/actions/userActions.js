@@ -10,14 +10,10 @@ export function logIn(email,  password, history){
     })
     .then(res=>res.json())
     .then(response => {
-      console.log("response from getUser:", response)
       if (response.error){
         alert(response.error)
       } else {
-        console.log("logIn userAction executed!")
-        console.log("getUser userAction executed!")
         const {user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended } = response
-        console.log("destructured response:", { user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended })
         localStorage.setItem("token", response.token)
         dispatch({
           type: "LOGIN_USER",
@@ -44,7 +40,6 @@ export function signUp(user, history){
     })
     .then(res=> res.json())
     .then(response => {
-      console.log("signUp userAction executed!")
       localStorage.setItem("token", response.token)
       dispatch({
         type: "LOGIN_USER",
@@ -101,10 +96,7 @@ export const getUser = () => {
     })
     .then(res => res.json())
     .then(response => {
-      console.log("getUser userAction executed!")
-      console.log("response from getUser:", response)
       const {user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended } = response
-      console.log("destructured response:", { user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended })
       dispatch({
         type: "LOGIN_USER",
         payload: { user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended }

@@ -50,6 +50,26 @@ export const hideFriendChoice = (item) => {
   }
 }
 
+export const getFriend = (friend) => {
+  return (dispatch) => {
+    fetch(`http://localhost:3000/profile/${friend.id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        Authorization: localStorage.getItem('token')
+      }
+    })
+    .then(res => res.json())
+    .then(response => {
+      const {user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended } = response
+      dispatch({
+        type: "GET_FRIEND",
+        payload: { user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended }
+      })
+    })
+  }
+}
+
 export function addFriend(friend){
   return function(dispatch){
     fetch("http://localhost:3000/friends", {
@@ -113,9 +133,10 @@ export const currentFriendList = (friend, list) => {
     })
     .then(res => res.json())
     .then(response => {
+      const {user, next, watching, seen, ratings } = response
       dispatch({
         type: "SEE_FRIEND",
-        payload: { user: response.user, next: response.next, watching: response.watching, seen: response.seen, list: list }
+        payload: { user, next, watching, seen, ratings, list }
       })
     })
   }

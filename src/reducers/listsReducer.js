@@ -39,7 +39,6 @@ export default function listsReducer(
       })
       return {...state, seen: updatedItemList, ratings: [...updatedRatingList, action.payload.rating]}
     case 'SORT_LIST':
-      console.log("listsReducer payload:", action.payload)
       return {...state, [action.payload.listType]: action.payload.list}
     default:
       return {...state};

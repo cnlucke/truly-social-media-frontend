@@ -89,7 +89,7 @@ export const rateItem = (rating, item_id) => {
   }
 }
 
-export const sortList = (list, sortType, listType) => {
+export const sortList = (list, sortType, listType, friend) => {
   return function(dispatch) {
     let newList = [...list];
     switch (sortType) {
@@ -119,7 +119,7 @@ export const sortList = (list, sortType, listType) => {
       default:
         break;
     }
-    if (listType === 'seen') {
+    if (listType === 'seen' && !friend) {
       fetch("http://localhost:3000/order", {
         method: "PATCH",
         headers: {
@@ -139,6 +139,11 @@ export const sortList = (list, sortType, listType) => {
             payload: { listType, list }
           })
         }
+      })
+    } else if (friend){
+      dispatch({
+        type: 'SORT_FRIEND_LIST',
+        payload: { listType, list: newList }
       })
     } else {
       dispatch({

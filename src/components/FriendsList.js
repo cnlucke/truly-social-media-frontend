@@ -56,7 +56,6 @@ const mapStateToProps = (state) => {
     watching: state.friends.watching,
     seen: state.friends.seen,
     searchTerm: state.friends.friendSearchTerm,
-    friendSearchResults: state.friends.friendSearchResults,
   }
 }
 

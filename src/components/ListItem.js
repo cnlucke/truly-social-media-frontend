@@ -18,7 +18,9 @@ const ListItem = (props) => {
   }
 
   const findFriendRating = () => {
-    const ratingExists = props.friendRatings.find(r => r.item_id === props.item.id)
+    const ratingExists = props.friendRatings.find(r => {
+      return ((r.item_id === props.item.id) && (r.user_id === props.friendProfile.id))
+    })
     if (ratingExists) {
       return ratingExists.rating
     } else {
@@ -96,6 +98,7 @@ const mapStateToProps = (state) => {
     currentFriendList: state.friends.currentFriendList,
     friendRatings: state.friends.friendRatings,
     seeFriend: state.friends.seeFriend,
+    friendProfile: state.friends.friendProfile,
   }
 }
 
