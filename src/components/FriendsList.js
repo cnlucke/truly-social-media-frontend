@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import FriendSearch from './FriendSearch'
-import { getAllUsers } from '../actions/userActions'
 import { getFriends } from '../actions/friendActions'
 import List from './List'
 import Friend from './Friend'
@@ -12,7 +11,6 @@ class FriendsList extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllUsers()
     this.props.getFriends()
   }
 
@@ -32,7 +30,7 @@ class FriendsList extends React.Component {
 
   render() {
     if (this.props.seeFriend) {
-      return <List list={this.props[this.props.seeFriendList]} />
+      return <List list={this.props[this.props.currentFriendList]} />
     } else {
       const friends = this.searchFriends().map((friend) => {
         return <Friend friend={friend} key={friend.id} />
@@ -53,8 +51,7 @@ const mapStateToProps = (state) => {
     friends: state.friends.friends,
     all_users: state.friends.all_users,
     seeFriend: state.friends.seeFriend,
-    friendProfile: state.friends.friendProfile,
-    seeFriendList: state.friends.seeFriendList,
+    currentFriendList: state.friends.currentFriendList,
     next: state.friends.next,
     watching: state.friends.watching,
     seen: state.friends.seen,
@@ -63,4 +60,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { getFriends, getAllUsers })(FriendsList)
+export default connect(mapStateToProps, { getFriends })(FriendsList)

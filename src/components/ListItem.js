@@ -17,6 +17,16 @@ const ListItem = (props) => {
     props.rateItem(e.target.id, props.item.id)
   }
 
+  const findFriendRating = () => {
+    const ratingExists = props.friendRatings.find(r => r.item_id === props.item.id)
+    if (ratingExists) {
+      return ratingExists.rating
+    } else {
+      return 0
+    }
+  }
+
+  const rating = (props.seeFriend) ? findFriendRating() : props.rating
   return (
     <div className="item" id={props.id}>
       <a className="item-link">
@@ -49,28 +59,28 @@ const ListItem = (props) => {
               style={{textAlign: 'left'}}>
               <b>average rating:</b> {props.item.rating}
             </p>
-          {(props.currentList === 'seen') ?
+          {((props.currentList === 'seen') || (props.currentFriendList === 'seen')) ?
             <div className="rating">
-              <span id='10' onClick={handleRating}>
-                {(parseInt(props.rating, 10) === 10) ? '★' : '☆' }</span>
-              <span id='9' onClick={handleRating}>
-                {(parseInt(props.rating, 10) >= 9) ? '★' : '☆' }</span>
-              <span id='8' onClick={handleRating}>
-                {(parseInt(props.rating, 10) >= 8) ? '★' : '☆' }</span>
-              <span id='7' onClick={handleRating}>
-                {(parseInt(props.rating, 10) >= 7) ? '★' : '☆' }</span>
-              <span id='6' onClick={handleRating}>
-                {(parseInt(props.rating, 10) >= 6) ? '★' : '☆' }</span>
-              <span id='5' onClick={handleRating}>
-                {(parseInt(props.rating, 10) >= 5) ? '★' : '☆' }</span>
-              <span id='4' onClick={handleRating}>
-                {(parseInt(props.rating, 10) >= 4) ? '★' : '☆' }</span>
-              <span id='3' onClick={handleRating}>
-                {(parseInt(props.rating, 10) >= 3) ? '★' : '☆' }</span>
-              <span id='2' onClick={handleRating}>
-                {(parseInt(props.rating, 10) >= 2) ? '★' : '☆' }</span>
-              <span id='1' onClick={handleRating}>
-                {(parseInt(props.rating, 10) >= 1) ? '★' : '☆' }</span>
+              <span id='10' onClick={ (props.seeFriend) ? null : handleRating}>
+                {(parseInt(rating, 10) === 10) ? '★' : '☆' }</span>
+              <span id='9' onClick={ (props.seeFriend) ? null : handleRating}>
+                {(parseInt(rating, 10) >= 9) ? '★' : '☆' }</span>
+              <span id='8' onClick={ (props.seeFriend) ? null : handleRating}>
+                {(parseInt(rating, 10) >= 8) ? '★' : '☆' }</span>
+              <span id='7' onClick={ (props.seeFriend) ? null : handleRating}>
+                {(parseInt(rating, 10) >= 7) ? '★' : '☆' }</span>
+              <span id='6' onClick={ (props.seeFriend) ? null : handleRating}>
+                {(parseInt(rating, 10) >= 6) ? '★' : '☆' }</span>
+              <span id='5' onClick={ (props.seeFriend) ? null : handleRating}>
+                {(parseInt(rating, 10) >= 5) ? '★' : '☆' }</span>
+              <span id='4' onClick={ (props.seeFriend) ? null : handleRating}>
+                {(parseInt(rating, 10) >= 4) ? '★' : '☆' }</span>
+              <span id='3' onClick={ (props.seeFriend) ? null : handleRating}>
+                {(parseInt(rating, 10) >= 3) ? '★' : '☆' }</span>
+              <span id='2' onClick={ (props.seeFriend) ? null : handleRating}>
+                {(parseInt(rating, 10) >= 2) ? '★' : '☆' }</span>
+              <span id='1' onClick={ (props.seeFriend) ? null : handleRating}>
+                {(parseInt(rating, 10) >= 1) ? '★' : '☆' }</span>
             </div>
             : null }
           </div>
@@ -80,6 +90,14 @@ const ListItem = (props) => {
   )
 }
 
-    export default connect((state) => {
-      return { currentList: state.lists.currentList }
-    }, {showitemChoice, removeItemFromList, rateItem})(withRouter(ListItem))
+const mapStateToProps = (state) => {
+  return {
+    currentList: state.lists.currentList,
+    currentFriendList: state.friends.currentFriendList,
+    friendRatings: state.friends.friendRatings,
+    seeFriend: state.friends.seeFriend,
+  }
+}
+
+
+    export default connect(mapStateToProps, {showitemChoice, removeItemFromList, rateItem})(withRouter(ListItem))

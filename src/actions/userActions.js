@@ -8,18 +8,22 @@ export function logIn(email,  password, history){
       },
       body: JSON.stringify({ email, password })
     })
-    .then(res=> res.json())
+    .then(res=>res.json())
     .then(response => {
+      console.log("response from getUser:", response)
       if (response.error){
         alert(response.error)
       } else {
+        console.log("logIn userAction executed!")
+        console.log("getUser userAction executed!")
+        const {user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended } = response
+        console.log("destructured response:", { user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended })
         localStorage.setItem("token", response.token)
         dispatch({
           type: "LOGIN_USER",
-          payload: { user: response.user, next: response.next, watching: response.watching, seen: response.seen, ratings: response.ratings }
+          payload: { user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended }
         })
       }
-
     })
     .then(()=> {
       history.push('/')
@@ -40,10 +44,11 @@ export function signUp(user, history){
     })
     .then(res=> res.json())
     .then(response => {
+      console.log("signUp userAction executed!")
       localStorage.setItem("token", response.token)
       dispatch({
         type: "LOGIN_USER",
-        payload: { user: response.user, next: [], watching: [], seen: [], ratings: [] }
+        payload: { user: response.user, next: [], watching: [], seen: [], ratings: [], friend_ratings: [], recommended: [] }
       })
     })
     .then(()=> {
@@ -96,29 +101,13 @@ export const getUser = () => {
     })
     .then(res => res.json())
     .then(response => {
+      console.log("getUser userAction executed!")
       console.log("response from getUser:", response)
+      const {user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended } = response
+      console.log("destructured response:", { user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended })
       dispatch({
         type: "LOGIN_USER",
-        payload: { user: response.user, next: response.next, watching: response.watching, seen: response.seen, friends: response.friends, all_users: response.all_users, ratings: response.ratings }
-      })
-    })
-  }
-}
-
-export const getAllUsers = () => {
-  return (dispatch) => {
-    fetch('http://localhost:3000/users', {
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        Authorization: localStorage.getItem('token')
-      }
-    })
-    .then(res => res.json())
-    .then(users => {
-      dispatch({
-        type: "GET_USERS",
-        payload: { all_users: users }
+        payload: { user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended }
       })
     })
   }

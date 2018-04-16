@@ -1,4 +1,4 @@
-export default function searchReducer(
+export default function itemsReducer(
   state = {
     itemChoice: null,
     showItem: false,

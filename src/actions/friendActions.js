@@ -102,7 +102,7 @@ export function removeFriend(friend){
   }
 }
 
-export const seeFriendList = (friend, list) => {
+export const currentFriendList = (friend, list) => {
   return (dispatch) => {
     fetch(`http://localhost:3000/profile/${friend.id}`, {
       headers: {

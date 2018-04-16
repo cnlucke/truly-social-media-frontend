@@ -1,21 +1,25 @@
-export default function usersReducer(
+export default function friendsReducer(
+  //remember these lists are the *friend's* lists, not the current users
   state = {
-    all_users: [],
+    all_users: [], //ability to search for new friends
     friends: [],
+    friendRatings: [],
     friendSearchTerm: '',
     friendSearchResults: [],
-    friendChoice: null,
-    showFriend: false,
-    friendProfile: null,
-    next: [],
-    watching: [],
-    seen: [],
-    seeFriend: null,
-    seeFriendList: null,
+    friendChoice: null, //friend modal you are viewing with option to add friend
+    showFriend: false, //ability to view friend modal
+    friendProfile: null, //which friend's list you are currently viewing
+    next: [], //current friend's, set on 'SEE_FRIEND'
+    watching: [], //current friend's, set on 'SEE_FRIEND'
+    seen: [], //current friend's, set on 'SEE_FRIEND'
+    seeFriend: null, //boolean flag on whether to show friend list in FriendList/List
+    currentFriendList: null, //string showing friend list type in FriendList/List
   },
   action
 ) {
   switch (action.type) {
+    case 'LOGIN_USER':
+      return {...state, friends: action.payload.friends, friendRatings: action.payload.friend_ratings, all_users: action.payload.all_users }
     case 'GET_USERS':
       return {...state, all_users: action.payload.all_users }
     case 'GET_FRIENDS':
@@ -40,7 +44,7 @@ export default function usersReducer(
       return {...state, friendChoice: null, showFriend: false }
     case 'SEE_FRIEND':
       const {user, next, watching, seen, list} = action.payload
-      return {...state, friendProfile: user, next: next, watching: watching, seen: seen, seeFriendList: list, seeFriend: true}
+      return {...state, friendProfile: user, next: next, watching: watching, seen: seen, currentFriendList: list, seeFriend: true}
     case 'HIDE_FRIEND_LIST':
       return {...state, seeFriend: false}
     default:

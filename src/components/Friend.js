@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { seeFriendList } from '../actions/friendActions'
+import { currentFriendList } from '../actions/friendActions'
 import { removeFriend } from '../actions/friendActions'
 
 const Friend = (props) => {
   const handleClick = (e) => {
-    props.seeFriendList(props.friend, e.target.id)
+    props.currentFriendList(props.friend, e.target.id)
   }
 
   const handleRemove = () => {
@@ -40,4 +40,4 @@ const Friend = (props) => {
   )
 }
 
-export default connect((state) => ({friends: state.friends.friends}), {seeFriendList, removeFriend })(Friend)
+export default connect((state) => ({friends: state.friends.friends}), {currentFriendList, removeFriend })(Friend)

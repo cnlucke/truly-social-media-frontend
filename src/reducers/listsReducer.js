@@ -5,9 +5,7 @@ export default function listsReducer(
     next: [],
     watching: [],
     seen: [],
-    recommended: [],
-    friends: [],
-    ratings: [],
+    recommended: [], //items highly rated by friends
   },
   action
 ) {
@@ -17,9 +15,8 @@ export default function listsReducer(
     case 'LOGOUT_USER':
       return {...state, next: [], watching: [], seen: [], all: [], ratings: [] }
     case 'LOGIN_USER':
-      const {next, watching, seen, ratings} = action.payload
-      console.log("action.payload", action.payload)
-      return {...state, next: next, watching: watching, seen: seen, all: [...next, ...watching, ...seen], ratings: ratings }
+      const {next, watching, seen, ratings, recommended } = action.payload
+      return {...state, next: next, watching: watching, seen: seen, all: [...next, ...watching, ...seen], ratings: ratings, recommended: recommended }
     case 'ADD_ITEM_TO_LIST':
       if (state[action.payload.list].filter(item => action.payload.item.id === item.id).length === 0) {
         return {...state, [action.payload.list]: [...state[action.payload.list], action.payload.item]}
@@ -42,6 +39,7 @@ export default function listsReducer(
       })
       return {...state, seen: updatedItemList, ratings: [...updatedRatingList, action.payload.rating]}
     case 'SORT_LIST':
+      console.log("listsReducer payload:", action.payload)
       return {...state, [action.payload.listType]: action.payload.list}
     default:
       return {...state};

@@ -93,7 +93,7 @@ export const sortList = (list, sortType, listType) => {
   return function(dispatch) {
     let newList = [...list];
     switch (sortType) {
-      case 'rating':
+      case 'avg-rating':
         newList.sort((a, b) => b.rating - a.rating )
       break;
       case 'title':
@@ -119,26 +119,32 @@ export const sortList = (list, sortType, listType) => {
       default:
         break;
     }
-
-    fetch("http://localhost:3000/order", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        Authorization: localStorage.getItem('token')
-      },
-      body: JSON.stringify({ list: { items_attributes: newList }})
-    })
-    .then(res=> res.json())
-    .then(list => {
-      if (list.error){
-        alert(list.error)
-      } else {
-        dispatch({
-          type: 'SORT_LIST',
-          payload: { listType, list }
-        })
-      }
-    })
+    if (listType === 'seen') {
+      fetch("http://localhost:3000/order", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          Authorization: localStorage.getItem('token')
+        },
+        body: JSON.stringify({ list: { items_attributes: newList }})
+      })
+      .then(res=> res.json())
+      .then(list => {
+        if (list.error){
+          alert(list.error)
+        } else {
+          dispatch({
+            type: 'SORT_LIST',
+            payload: { listType, list }
+          })
+        }
+      })
+    } else {
+      dispatch({
+        type: 'SORT_LIST',
+        payload: { listType, list: newList }
+      })
+    }
   }
 }
