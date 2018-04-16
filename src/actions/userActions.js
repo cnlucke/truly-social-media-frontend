@@ -16,7 +16,7 @@ export function logIn(email,  password, history){
         localStorage.setItem("token", response.token)
         dispatch({
           type: "LOGIN_USER",
-          payload: { user: response.user, next: response.next, watching: response.watching, seen: response.seen }
+          payload: { user: response.user, next: response.next, watching: response.watching, seen: response.seen, ratings: response.ratings }
         })
       }
 
@@ -43,7 +43,7 @@ export function signUp(user, history){
       localStorage.setItem("token", response.token)
       dispatch({
         type: "LOGIN_USER",
-        payload: { user: response.user, next: [], watching: [], seen: [] }
+        payload: { user: response.user, next: [], watching: [], seen: [], ratings: [] }
       })
     })
     .then(()=> {
@@ -96,9 +96,10 @@ export const getUser = () => {
     })
     .then(res => res.json())
     .then(response => {
+      console.log("response from getUser:", response)
       dispatch({
         type: "LOGIN_USER",
-        payload: { user: response.user, next: response.next, watching: response.watching, seen: response.seen, friends: response.friends, all_users: response.all_users }
+        payload: { user: response.user, next: response.next, watching: response.watching, seen: response.seen, friends: response.friends, all_users: response.all_users, ratings: response.ratings }
       })
     })
   }

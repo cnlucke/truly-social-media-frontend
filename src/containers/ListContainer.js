@@ -17,9 +17,6 @@ class ListContainer extends React.Component {
   }
 
   render () {
-    console.log("showComments:", this.props.showComments)
-    console.log("isLoggedIn:", this.props.isLoggedIn)
-
     if (this.props.showItem) {
       return (
       <div id="modal-container">

@@ -43,65 +43,43 @@ const ListItem = (props) => {
               onClick={handleChoice}
               style={{textAlign: 'left'}}>
               <b>genres:</b> {props.item.genres}
-              </p>
-              {(props.currentList === 'seen') ?
-                <div className="rating">
-                  <span id='10' onClick={handleRating}>
-                    {(props.item.rating === 10) ? '★' : '☆' }</span>
-                  <span id='9' onClick={handleRating}>
-                    {(props.item.rating >= 9) ? '★' : '☆' }</span>
-                  <span id='8' onClick={handleRating}>
-                    {(props.item.rating >= 8) ? '★' : '☆' }</span>
-                  <span id='7' onClick={handleRating}>
-                    {(props.item.rating >= 7) ? '★' : '☆' }</span>
-                  <span id='6' onClick={handleRating}>
-                    {(props.item.rating >= 6) ? '★' : '☆' }</span>
-                  <span id='5' onClick={handleRating}>
-                    {(props.item.rating >= 5) ? '★' : '☆' }</span>
-                  <span id='4' onClick={handleRating}>
-                    {(props.item.rating >= 4) ? '★' : '☆' }</span>
-                  <span id='3' onClick={handleRating}>
-                    {(props.item.rating >= 3) ? '★' : '☆' }</span>
-                  <span id='2' onClick={handleRating}>
-                    {(props.item.rating >= 2) ? '★' : '☆' }</span>
-                  <span id='1' onClick={handleRating}>
-                    {(props.item.rating >= 1) ? '★' : '☆' }</span>
-                </div>
-                : null }
-              </div>
+            </p>
+            <p className="small-title"
+              onClick={handleChoice}
+              style={{textAlign: 'left'}}>
+              <b>average rating:</b> {props.item.rating}
+            </p>
+          {(props.currentList === 'seen') ?
+            <div className="rating">
+              <span id='10' onClick={handleRating}>
+                {(parseInt(props.rating, 10) === 10) ? '★' : '☆' }</span>
+              <span id='9' onClick={handleRating}>
+                {(parseInt(props.rating, 10) >= 9) ? '★' : '☆' }</span>
+              <span id='8' onClick={handleRating}>
+                {(parseInt(props.rating, 10) >= 8) ? '★' : '☆' }</span>
+              <span id='7' onClick={handleRating}>
+                {(parseInt(props.rating, 10) >= 7) ? '★' : '☆' }</span>
+              <span id='6' onClick={handleRating}>
+                {(parseInt(props.rating, 10) >= 6) ? '★' : '☆' }</span>
+              <span id='5' onClick={handleRating}>
+                {(parseInt(props.rating, 10) >= 5) ? '★' : '☆' }</span>
+              <span id='4' onClick={handleRating}>
+                {(parseInt(props.rating, 10) >= 4) ? '★' : '☆' }</span>
+              <span id='3' onClick={handleRating}>
+                {(parseInt(props.rating, 10) >= 3) ? '★' : '☆' }</span>
+              <span id='2' onClick={handleRating}>
+                {(parseInt(props.rating, 10) >= 2) ? '★' : '☆' }</span>
+              <span id='1' onClick={handleRating}>
+                {(parseInt(props.rating, 10) >= 1) ? '★' : '☆' }</span>
             </div>
-          </a>
+            : null }
+          </div>
         </div>
-      )
-    }
+      </a>
+    </div>
+  )
+}
 
     export default connect((state) => {
       return { currentList: state.lists.currentList }
     }, {showitemChoice, removeItemFromList, rateItem})(withRouter(ListItem))
-
-
-
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>
-    // <i className="fas fa-ellipsis-v fa-xs"></i>

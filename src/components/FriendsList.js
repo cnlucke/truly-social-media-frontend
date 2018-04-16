@@ -34,7 +34,6 @@ class FriendsList extends React.Component {
     if (this.props.seeFriend) {
       return <List list={this.props[this.props.seeFriendList]} />
     } else {
-      console.log("this.searchFriends() in render:", this.searchFriends())
       const friends = this.searchFriends().map((friend) => {
         return <Friend friend={friend} key={friend.id} />
       })

@@ -75,14 +75,14 @@ export const rateItem = (rating, item_id) => {
       },
       body: JSON.stringify({ item: { id: item_id, rating: rating }})
     })
-    .then(res=> res.json())
+    .then(res => res.json())
     .then(response => {
       if (response.error){
-        alert(response.error)
+        alert(response)
       } else {
         dispatch({
           type: 'RATE_ITEM',
-          payload: { rating: response.rating, item_id: response.id }
+          payload: { item: response.item, rating: response.rating}
         })
       }
     })

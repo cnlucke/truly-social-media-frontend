@@ -5,36 +5,45 @@ import Search from '../components/Search'
 import { sortList } from '../actions/listActions'
 
 
-const List = (props) => {
-  const items = props.list.map((item) => {
-    return <ListItem item={item} key={item.id} />
-  })
+class List extends React.Component {
 
-  const handleSort = (e) => {
-    props.sortList(props.list, e.target.id, props.currentList)
+  componentWillReceiveProps(nextProps) {
+    console.log('NEXTPROPS:', nextProps)
   }
 
-  if (props.seeFriend) {
-    return(
-      <div id="list-items-container">
-        <h2 id="friend-list-title">{`${props.friendProfile.first_name.toLowerCase()}'s ${props.seeFriendList} list`}</h2>
-        {items}
-      </div>
-    )
-  } else {
-    return (
-      <div id="list-items-container">
-        <Search />
-        <div id="sort-button-container">
-          {(props.currentList === 'seen') ?
-          <button className="sort-button" id='rating' onClick={handleSort}>rating</button>
-          : null}
-          <button className="sort-button" id='dateAdded' onClick={handleSort}>date added</button>
-          <button className="sort-button" id='title' onClick={handleSort}>title</button>
+
+
+  handleSort = (e) => {
+    this.props.sortList(this.props.list, e.target.id, this.props.currentList)
+  }
+
+  render() {
+    const items = this.props.list.map((item) => {
+      const r = this.props.ratings.find(r => item.id === r.item_id) || 0
+      return <ListItem item={item} rating={r.rating} key={item.id} />
+    })
+    if (this.props.seeFriend) {
+      return(
+        <div id="list-items-container">
+          <h2 id="friend-list-title">{`${this.props.friendProfile.first_name.toLowerCase()}'s ${this.props.seeFriendList} list`}</h2>
+          {items}
         </div>
-        {items}
-      </div>
-    )
+      )
+    } else {
+      return (
+        <div id="list-items-container">
+          <Search />
+          <div id="sort-button-container">
+            {(this.props.currentList === 'seen') ?
+            <button className="sort-button" id='rating' onClick={this.handleSort}>rating</button>
+            : null}
+            <button className="sort-button" id='dateAdded' onClick={this.handleSort}>date added</button>
+            <button className="sort-button" id='title' onClick={this.handleSort}>title</button>
+          </div>
+          {items}
+        </div>
+      )
+    }
   }
 }
 
@@ -44,6 +53,7 @@ const mapStateToProps = (state) => {
     seeFriend: state.friends.seeFriend,
     friendProfile: state.friends.friendProfile,
     seeFriendList: state.friends.seeFriendList,
+    ratings: state.lists.ratings,
   }
 }
 

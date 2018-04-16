@@ -17,7 +17,6 @@ const ItemModal = (props) => {
   }
 
   if (props.showItem) {
-    console.log("itemInAnyList?", itemInAnyList())
     return (
         <div id="movie-modal" className={(props.showComments && itemInAnyList()) ? 'modal modal-left' : 'modal'}>
           <button id="close" onClick={props.hideitemChoice}>x</button>

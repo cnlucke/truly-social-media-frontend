@@ -7,6 +7,7 @@ export default function listsReducer(
     seen: [],
     recommended: [],
     friends: [],
+    ratings: [],
   },
   action
 ) {
@@ -14,10 +15,11 @@ export default function listsReducer(
     case 'SET_CURRENT_LIST':
       return {...state, currentList: action.payload}
     case 'LOGOUT_USER':
-      return {...state, next: [], watching: [], seen: [], all: [] }
+      return {...state, next: [], watching: [], seen: [], all: [], ratings: [] }
     case 'LOGIN_USER':
-      const {next, watching, seen} = action.payload
-      return {...state, next: next, watching: watching, seen: seen, all: [...next, ...watching, ...seen] }
+      const {next, watching, seen, ratings} = action.payload
+      console.log("action.payload", action.payload)
+      return {...state, next: next, watching: watching, seen: seen, all: [...next, ...watching, ...seen], ratings: ratings }
     case 'ADD_ITEM_TO_LIST':
       if (state[action.payload.list].filter(item => action.payload.item.id === item.id).length === 0) {
         return {...state, [action.payload.list]: [...state[action.payload.list], action.payload.item]}
@@ -29,13 +31,16 @@ export default function listsReducer(
     case 'RATE_ITEM':
       // Update item:
       const updatedItemList = state.seen.map(item => {
-        if (item.id === action.payload.item_id) {
-          return {...item, rating: action.payload.rating}
+        if (item.id === action.payload.item.id) {
+          return {...item, rating: action.payload.item.rating}
         } else {
           return item
         }
       })
-      return {...state, seen: updatedItemList}
+      const updatedRatingList = state.ratings.filter(r => {
+        return ((r.id !== action.payload.rating.id) && (r.item_id !== action.payload.rating.item_id))
+      })
+      return {...state, seen: updatedItemList, ratings: [...updatedRatingList, action.payload.rating]}
     case 'SORT_LIST':
       return {...state, [action.payload.listType]: action.payload.list}
     default:
