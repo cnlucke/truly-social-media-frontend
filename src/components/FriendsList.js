@@ -4,6 +4,7 @@ import FriendSearch from './FriendSearch'
 import { getFriends } from '../actions/friendActions'
 import List from './List'
 import Friend from './Friend'
+import ActivityFeedContainer from '../containers/ActivityFeedContainer'
 
 class FriendsList extends React.Component {
   state = {
@@ -37,9 +38,12 @@ class FriendsList extends React.Component {
       })
 
       return (
-        <div id="friends-list">
-          <FriendSearch />
-          {friends}
+        <div id='friend-container'>
+          <div id="friends-list">
+            <FriendSearch />
+            {friends}
+          </div>
+          <ActivityFeedContainer />
         </div>
       )
     }

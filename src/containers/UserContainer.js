@@ -6,14 +6,17 @@ import ItemModal from '../components/ItemModal'
 import Search from '../components/Search'
 import { getUser } from '../actions/userActions'
 import { fetchComments } from '../actions/commentActions'
+import { getActivityFeed } from '../actions/activityActions'
 import { withRouter } from 'react-router-dom'
-import CommentContainer from '../containers/CommentContainer'
+import CommentContainer from './CommentContainer'
+import ActivityFeedContainer from './ActivityFeedContainer'
 
 class UserContainer extends React.Component {
   componentDidMount() {
     if (localStorage.getItem('token')) {
       this.props.getUser();
       this.props.fetchComments();
+      this.props.getActivityFeed();
     }
   }
 
@@ -27,6 +30,7 @@ class UserContainer extends React.Component {
         <div id="landing-container">
           <h1 id="landing-title">What Do You Want to Look For Today?</h1>
           <Search />
+          <ActivityFeedContainer />
         </div>
       )
     } else if (this.props.showItem) {
@@ -61,4 +65,4 @@ class UserContainer extends React.Component {
     }
   }
 
-  export default connect(mapStateToProps, { getUser, fetchComments })(withRouter(UserContainer))
+  export default connect(mapStateToProps, { getUser, fetchComments, getActivityFeed })(withRouter(UserContainer))

@@ -69,3 +69,16 @@ class Act < ApplicationRecord
   belongs_to :actor, class_name: "User", foreign_key: "actor_id"
   belongs_to :entity, polymorphic: true
 end
+
+def create
+    @building = Building.new(sanitized_params)
+    @building.site = current_site
+    if @building.save
+      flash.now[:notice] = "Building created!"
+      notify Notification::ACTIVITY_NEW_BUILDING, @building
+    else
+      flash.now[:alert] = "Please fix the errors below."
+      render :new
+    end
+  end
+end

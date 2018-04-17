@@ -1,6 +1,6 @@
 #root {
   background-color: #4f5c64;
-  min-height: 150vh;
+  min-height: 250vh;
   min-width: 900px;
 }
 
@@ -132,30 +132,30 @@ a#profile.nav-link.nav-lists {
 }
 
 .dropdown {
-    position: relative;
-    display: inline-block;
-    float: right;
-    padding-right: 30px;
+  position: relative;
+  display: inline-block;
+  float: right;
+  padding-right: 30px;
 }
 
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #8898A1;
-    min-width: 80px;
-    box-shadow: 0px 8px 16px 0px black;
-    z-index: 1;
-    color: black;
-    border-style: solid;
-    border-width: 1px;
-    border-color: white;
-    right: 9px;
-    border-style: outset;
-    border-radius: 3px;
+  display: none;
+  position: absolute;
+  background-color: #8898A1;
+  min-width: 80px;
+  box-shadow: 0px 8px 16px 0px black;
+  z-index: 1;
+  color: black;
+  border-style: solid;
+  border-width: 1px;
+  border-color: white;
+  right: 9px;
+  border-style: outset;
+  border-radius: 3px;
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+  display: block;
 }
 
 .dropdown-item {
@@ -211,6 +211,42 @@ button a {
   color: #7b8d93;
 }
 
+/*------------------------------ACTIVITY FEED---------------------------------*/
+
+#landing-container > #activity-feed-container {
+  text-align: left;
+  float: left;
+  width: 100%;
+}
+
+#landing-container > #activity-feed-container > #activity-title {
+  text-align: center;
+}
+
+#landing-container > #activity-feed-container > #activity {
+  text-align: left;
+  width: 560px;
+}
+
+#activity-feed-container {
+  margin-top: 30px;
+  text-align: left;
+  width: 700px;
+  float: right;
+}
+
+.activity-item {
+  font-style: italic;
+}
+
+#activity-title {
+  text-shadow: 1px 1px 5px #00AAE2;
+
+}
+
+#activity {
+  margin: 0 auto;
+}
 /*------------------------------SEARCH----------------------------------------*/
 
 .search{
@@ -341,6 +377,11 @@ input {
   font-style: italic;
 }
 
+#friends-list {
+  float: left;
+  padding-left: 100px;
+  padding-top: 50px;
+}
 #recommend-list-title {
   text-shadow: 1px 1px black;
   color: #00AAE2;

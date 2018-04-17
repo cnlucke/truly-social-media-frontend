@@ -1,5 +1,4 @@
 export function logIn(email,  password, history){
-  console.log("attempting to log in...")
   return function(dispatch){
     fetch("http://localhost:3000/login", {
       method: "POST",
@@ -14,7 +13,6 @@ export function logIn(email,  password, history){
       if (response.error){
         alert(response.error)
       } else {
-        console.log("login response:", response)
         const {user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended } = response
         if (response.token) {
           localStorage.setItem("token", response.token)
@@ -100,13 +98,12 @@ export const getUser = () => {
     })
     .then(res => res.json())
     .then(response => {
-      console.log("getUser response:", response)
       if (!response.error) {
         const {user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended } = response
         dispatch({
           type: "LOGIN_USER",
           payload: { user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended }
-        })        
+        })
       }
     })
   }
