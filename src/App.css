@@ -81,6 +81,9 @@ li a {
   float: left;
   height: 31px;
   text-shadow: 2px 2px 4px black;
+  border-width: 1px;
+  border-radius: 3px;
+  border-style: groove;
 }
 
 #logout {
@@ -106,7 +109,6 @@ a#logout.nav-link {
 li a:hover {
   background-color: #657681;
   text-decoration: underline;
-  border-radius: 6px;
   box-shadow: 2px 2px 2px black;
   color: #00AAE2;
 }
@@ -114,7 +116,6 @@ li a:hover {
 .nav-link.active {
   background-color: #657681;
   color: #00AAE2;
-  border-radius: 6px;
   box-shadow: 2px 2px 2px black;
 }
 
@@ -124,6 +125,41 @@ a#profile.nav-link.nav-lists {
   height: 45px;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+    float: right;
+    padding-right: 30px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #8898A1;
+    min-width: 80px;
+    box-shadow: 0px 8px 16px 0px black;
+    z-index: 1;
+    color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    right: 9px;
+    border-style: outset;
+    border-radius: 3px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-item {
+  border-style: solid;
+  border-width: 1px;
+}
+
+.fa-user-circle {
+  padding-top: 2px;
+}
 /*------------------------------LANDING--------------------------------------*/
 
 #landing-container > h5 {

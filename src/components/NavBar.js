@@ -83,24 +83,15 @@ const NavBar = (props) => {
                         <i className="fas fa-users fa-lg" color='black'></i>
                       </div>
                       friends
-                    </Link></li>
-            <li id="logout"><Link to="/"
-                                  name="logout"
-                                  className="nav-link nav-lists"
-                                  id="logout"
-                                  onClick={props.logoutUser}>
-                                  <div id='logout-icon' className="icon">
-                                    <i className="fas fa-sign-out-alt fa-lg" color="black"></i>
-                                  </div>
-                                  logout
-                                </Link></li>
-            <li id="profile"><Link to="/profile"
-                      name="profile"
-                      className="nav-link nav-lists"
-                      id="profile"
-                      onClick={() => handleOnClick('profile')}>
-                      {buildWelcomeMsg()}
-                    </Link></li>
+                    </Link>
+            </li>
+            <li className="dropdown">
+              <span><i className="far fa-user-circle fa-3x"></i></span>
+              <div className="dropdown-content">
+                <Link className="dropdown-item" to="/" name="logout" onClick={props.logoutUser}>logout</Link>
+                <Link className="dropdown-item" to="/profile" name="profile" onClick={() => handleOnClick('profile')}>profile</Link>
+              </div>
+            </li>
           </span>
           : null
         }
@@ -117,3 +108,10 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, { setCurrentList, logoutUser, hideitemChoice, hideFriendChoice, setUserProfileChoice, hideFriendList })(NavBar)
+
+// <div className="dropdown">
+//   <span>Mouse over me</span>
+//   <div className="dropdown-content">
+//     <p>Hello World!</p>
+//   </div>
+// </div>
