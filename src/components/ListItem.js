@@ -55,6 +55,7 @@ const ListItem = (props) => {
               onClick={handleChoice}
               style={{textAlign: 'left'}}>
               <b>genres:</b> {props.item.genres}
+              <b>media type:</b> {props.item.media_type}
             </p>
             <p className="small-title"
               onClick={handleChoice}

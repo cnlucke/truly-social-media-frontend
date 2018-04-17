@@ -100,11 +100,14 @@ export const getUser = () => {
     })
     .then(res => res.json())
     .then(response => {
-      const {user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended } = response
-      dispatch({
-        type: "LOGIN_USER",
-        payload: { user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended }
-      })
+      console.log("getUser response:", response)
+      if (!response.error) {
+        const {user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended } = response
+        dispatch({
+          type: "LOGIN_USER",
+          payload: { user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended }
+        })        
+      }
     })
   }
 }
