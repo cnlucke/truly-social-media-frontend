@@ -85,6 +85,7 @@ const NavBar = (props) => {
                       friends
                     </Link>
             </li>
+            <li id='welcome'>{buildWelcomeMsg()}</li>
             <li className="dropdown">
               <span><i className="far fa-user-circle fa-3x"></i></span>
               <div className="dropdown-content">
