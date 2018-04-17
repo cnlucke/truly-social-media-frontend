@@ -28,7 +28,7 @@ export default function friendsReducer(
       if (state.friends.filter(friend => friend.id === action.payload.id).length > 0) {
         return state;
       } else {
-        return {...state, friends: [...state.friends, action.payload] }
+        return {...state, friends: [...state.friends, action.payload], friendChoice: null, showFriend: false }
       }
     case 'REMOVE_FRIEND':
       return {...state, friends: state.friends.filter(friend => friend.id !== action.payload.id) }

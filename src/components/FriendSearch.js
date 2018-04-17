@@ -43,7 +43,7 @@ class FriendSearch extends React.Component {
                 value={this.props.searchTerm}
                 onBlur={this.handleOnBlur}
                 onFocus={this.handleOnChange}
-                onChange={this.handleOnChange} />
+                onChange={this.handleOnChange} autoFocus/>
         <SearchResultsContainer />
       </div>
     )

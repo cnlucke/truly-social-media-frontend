@@ -28,7 +28,7 @@ class Search extends React.Component {
         <input  type="search"
                 className="search"
                 placeholder='add items...'
-                onChange={this.handleOnChange} />
+                onChange={this.handleOnChange} autoFocus/>
         <SearchResultsContainer />
       </div>
     )

@@ -44,7 +44,7 @@ export const showFriendChoice = (friend) => {
   }
 }
 
-export const hideFriendChoice = (item) => {
+export const hideFriendChoice = () => {
   return {
     type: 'HIDE_FRIEND'
   }

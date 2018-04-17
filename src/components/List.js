@@ -31,6 +31,10 @@ class List extends React.Component {
   }
 
   render() {
+    if (this.props.currentList === 'seen') {
+      console.log("List seen:", this.props.list)
+    }
+    console.log()
     const items = this.props.list.map((item) => {
       const r = this.props.ratings.find(r => item.id === r.item_id) || 0
       return <ListItem item={item} rating={r.rating} key={item.id} />

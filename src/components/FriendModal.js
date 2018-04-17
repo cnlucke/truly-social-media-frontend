@@ -8,6 +8,7 @@ const FriendModal = (props) => {
   const handleClick = () => {
     props.addFriend(props.friendChoice)
   }
+  
   const isFriend = (props.friends.filter(friend => friend.id === props.friendChoice.id).length > 0)
 
   if (props.showFriend) {
