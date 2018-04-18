@@ -14,7 +14,7 @@ class LandingContainer extends React.Component {
   }
 
   handleDemo = () => {
-    this.props.logIn('demo@example.com', 'red', this.props.history)
+    this.props.logIn('demo@example.com', 'password', this.props.history)
   }
 
   itemInAnyList = () => {

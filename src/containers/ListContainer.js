@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import ItemModal from '../components/ItemModal'
-import FriendModal from '../components/FriendModal'
 import SortableList from '../components/SortableList'
 import List from '../components/List'
 import FriendsList from '../components/FriendsList'
@@ -23,10 +22,6 @@ class ListContainer extends React.Component {
         {(this.props.showComments && this.props.isLoggedIn) ?
           (<CommentContainer />) : null}
         </div>
-      )
-    } else if (this.props.showFriend){
-      return (
-        <FriendModal />
       )
     } else {
       switch (this.props.currentList) {

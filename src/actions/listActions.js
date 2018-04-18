@@ -47,7 +47,6 @@ export const addToList = (list,  item, history) => {
       if (response.error){
         alert(response.error)
       } else {
-        console.log("added item to list:", response.item)
         dispatch({
           type: 'SHOW_ITEM',
           payload: { item: response.item }

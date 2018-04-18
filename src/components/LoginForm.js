@@ -30,7 +30,7 @@ class LoginForm extends React.Component {
                   className="login-input"
                   placeholder="enter email address"
                   autoComplete='email'
-                  onChange={this.handleOnChange} autoFocus/>
+                  onChange={this.handleOnChange} required='true' autoFocus/>
                 {(this.state.showError) ? this.state.error : null}
           <input  type="password"
                   name='password'
@@ -38,7 +38,7 @@ class LoginForm extends React.Component {
                   placeholder="enter password"
                   autoComplete='new-password'
                   onChange={this.handleOnChange}/>
-          <input className="form-submit" type="submit" value="log in" />
+                <input className="form-submit" type="submit" value="log in" required/>
         </form>
       </div>
     )

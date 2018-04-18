@@ -11,7 +11,7 @@ export function logIn(email,  password, history){
     .then(res=>res.json())
     .then(response => {
       if (response.error){
-        alert(response.error)
+        console.log(response)
       } else {
         const {user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended } = response
         if (response.token) {
@@ -31,7 +31,6 @@ export function logIn(email,  password, history){
 
 export function signUp(user, history){
   return function(dispatch){
-
     fetch("http://localhost:3000/signup", {
       method: "POST",
       headers: {

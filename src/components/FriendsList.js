@@ -5,6 +5,7 @@ import { getFriends } from '../actions/friendActions'
 import List from './List'
 import Friend from './Friend'
 import ActivityFeedContainer from '../containers/ActivityFeedContainer'
+import FriendModal from '../components/FriendModal'
 
 class FriendsList extends React.Component {
   state = {
@@ -41,7 +42,7 @@ class FriendsList extends React.Component {
         <div id='friend-container'>
           <div id="friends-list">
             <FriendSearch />
-            {friends}
+            {(this.props.showFriend) ? (<FriendModal />) : friends}
           </div>
           <ActivityFeedContainer />
         </div>
@@ -55,6 +56,7 @@ const mapStateToProps = (state) => {
     friends: state.friends.friends,
     all_users: state.friends.all_users,
     seeFriend: state.friends.seeFriend,
+    showFriend: state.friends.showFriend,
     currentFriendList: state.friends.currentFriendList,
     next: state.friends.next,
     watching: state.friends.watching,

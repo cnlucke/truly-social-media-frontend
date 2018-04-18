@@ -653,9 +653,6 @@ input {
 
 #modal-container {
   width: 80%;
-  min-height: 200vh;
-  margin: auto;
-  padding: 10px;
   transition: transform .5s ease .01ms;
 }
 

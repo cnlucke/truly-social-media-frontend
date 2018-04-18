@@ -8,7 +8,6 @@ import { ActionCable } from 'react-actioncable-provider';
 
 const CommentContainer = (props) => {
   const handleSocketResponse = data => {
-    console.log("handleSocketResponse!!", data)
     switch (data.type) {
       case 'ADD_COMMENT':
        		props.addComment(data.payload)

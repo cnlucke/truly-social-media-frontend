@@ -7,15 +7,15 @@ class ProfileForm extends React.Component {
   constructor (props) {
     super();
     this.state = {
-      first_name: (props.currentUser) ? props.currentUser.first_name : '',
-      last_name: (props.currentUser) ? props.currentUser.last_name : '',
-      city: (props.currentUser) ? props.currentUser.city : '',
-      state: (props.currentUser) ? props.currentUser.state : '',
-      email: (props.currentUser) ? props.currentUser.email : '',
+      first_name: (props.isLoggedIn) ? props.currentUser.first_name : '',
+      last_name: (props.isLoggedIn) ? props.currentUser.last_name : '',
+      city: (props.isLoggedIn) ? props.currentUser.city : '',
+      state: (props.isLoggedIn) ? props.currentUser.state : '',
+      email: (props.isLoggedIn) ? props.currentUser.email : '',
       password: '',
       passwordConfirmation: '',
       showError: false,
-      error: '',
+      error: [],
     }
   }
 
@@ -49,14 +49,14 @@ class ProfileForm extends React.Component {
                   autoComplete='given-name'
                   value={this.state.first_name}
                   onChange={this.handleOnChange}
-                  placeholder="enter first name" autoFocus/>
+                  placeholder="enter first name" required='true' autoFocus/>
                 <input  name='last_name'
                   type="text"
                   className="login-input"
                   autoComplete='family-name'
                   value={this.state.last_name}
                   onChange={this.handleOnChange}
-                  placeholder="enter last name" />
+                  placeholder="enter last name" required/>
           <input  name='city'
                   type="text"
                   className="login-input"
@@ -77,7 +77,7 @@ class ProfileForm extends React.Component {
                   autoComplete='email'
                   value={this.state.email}
                   onChange={this.handleOnChange}
-                  placeholder="enter email address" />
+                  placeholder="enter email address" required/>
                 {(path === 'profile') ? <p id='change-password'>change password</p> : null}
           <input  name='password'
                   type="password"
@@ -85,14 +85,14 @@ class ProfileForm extends React.Component {
                   autoComplete='off'
                   onChange={this.handleOnChange}
                   value={this.state.password}
-                  placeholder="enter password" />
+                  placeholder="enter password" required/>
           <input  name='passwordConfirmation'
                   type="password"
                   className="login-input"
                   autoComplete='off'
                   value={this.state.passwordConfirmation}
                   onChange={this.handleOnChange}
-                  placeholder="confirm password" />
+                  placeholder="confirm password" required/>
                 <p style={{color: 'red', margin: 0}}>{(this.state.showError) ? this.state.error : null}</p>
           <input  className="form-submit" type="submit" value={(path === 'profile') ? 'update' : "sign up"} />
         </form>
@@ -101,4 +101,4 @@ class ProfileForm extends React.Component {
   }
 }
 
-export default connect((state) => ({currentUser: state.users.currentUser}), { signUp, updateProfile })(withRouter(ProfileForm))
+export default connect((state) => ({currentUser: state.users.isLoggedIn}), { signUp, updateProfile })(withRouter(ProfileForm))

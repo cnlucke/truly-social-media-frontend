@@ -17,7 +17,6 @@ export default function commentsReducer(
     case 'GET_COMMENTS':
       return {...state, comments: action.payload}
     case 'ADD_COMMENT':
-      console.log("add comment payload:", action.payload)
       const newComment = {...action.payload, username: action.payload.username}
       return {...state, comments: [...state.comments, newComment] }
     default:
