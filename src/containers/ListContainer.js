@@ -7,13 +7,11 @@ import List from '../components/List'
 import FriendsList from '../components/FriendsList'
 import { fetchComments } from '../actions/commentActions'
 import CommentContainer from '../containers/CommentContainer'
-import { getActivityFeed } from '../actions/activityActions'
 
 class ListContainer extends React.Component {
   componentDidMount() {
     if (localStorage.getItem('token')) {
       this.props.fetchComments();
-      this.props.getActivityFeed()
     }
   }
 
@@ -62,4 +60,4 @@ export default connect((state) => ({
   itemChoice: state.items.itemChoice,
   isLoggedIn: state.users.isLoggedIn,
   all: state.lists.all,
-}), { fetchComments, getActivityFeed })(ListContainer)
+}), { fetchComments })(ListContainer)

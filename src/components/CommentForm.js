@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addComment } from '../actions/commentActions'
+import { sendComment } from '../actions/commentActions'
 
 class CommentForm extends React.Component {
   state = {
@@ -10,7 +10,7 @@ class CommentForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const username = this.props.currentUser.first_name + ' ' + this.props.currentUser.last_name
-    this.props.addComment(this.props.item.id, this.state.comment, this.props.currentUser.id, this.props.item.api_id, username)
+    this.props.sendComment(this.props.item.id, this.state.comment, this.props.currentUser.id, this.props.item.api_id, username)
     this.setState({comment: ''})
   }
 
@@ -42,4 +42,4 @@ const mapStateToProps = (state) => {
     item: state.items.itemChoice
   }
 }
-export default connect(mapStateToProps, { addComment })(CommentForm)
+export default connect(mapStateToProps, { sendComment })(CommentForm)

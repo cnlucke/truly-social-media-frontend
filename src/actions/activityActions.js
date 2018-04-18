@@ -1,5 +1,5 @@
-export const getActivityFeed = () => {
-  return (dispatch) => {
+export const fetchActivityFeed = () => {
+  return function(dispatch){
     fetch('http://localhost:3000/feed', {
       headers: {
         "Content-Type": "application/json",
@@ -8,19 +8,29 @@ export const getActivityFeed = () => {
       }
     })
     .then(res => res.json())
-    .then(response => {
-      const formattedResponse = response.map(activity => {
-        activity.created_at = formatDate(new Date(activity.created_at))
-        return activity
-      })
-      if (!response.error) {
+    .then(activity => {
+      if (!activity.error) {
         dispatch({
-          type: "GET_ACTIVITY",
-          payload: formattedResponse
+          type: 'SET_ACTIVITY',
+          payload: formatActivity(activity)
         })
-      }
+      } 
     })
   }
+}
+
+export const setActivityFeed = (activity) => {
+  return {
+    type: "SET_ACTIVITY",
+    payload: formatActivity(activity)
+  }
+}
+
+function formatActivity(activity) {
+  return activity.map(act => {
+    act.created_at = formatDate(new Date(act.created_at))
+    return act
+  })
 }
 
 function formatDate(date) {

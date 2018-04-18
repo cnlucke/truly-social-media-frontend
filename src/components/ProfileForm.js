@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { signUp, updateProfile } from '../actions/userActions'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 class ProfileForm extends React.Component {
   constructor (props) {
@@ -42,13 +42,14 @@ class ProfileForm extends React.Component {
     return (
       <div id="signup-form">
         <form onSubmit={this.handleSubmit}>
+          <Link to='/login' id='switch-link'>already have an account?</Link>
           <input  name='first_name'
                   type="text"
                   className="login-input"
                   autoComplete='given-name'
                   value={this.state.first_name}
                   onChange={this.handleOnChange}
-                  placeholder="enter first name" />
+                  placeholder="enter first name" autoFocus/>
                 <input  name='last_name'
                   type="text"
                   className="login-input"

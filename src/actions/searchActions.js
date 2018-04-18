@@ -33,6 +33,7 @@ const transformMovies = (movies, genres) => {
     movie.date = formatDateString(date);
     movie.title = title;
     movie.api_id = movie.id
+    delete movie.id
     movie.genres = transformGenres(movie.genre_ids, genres)
     if (movie.poster_path) {
       movie.poster_url = `${BASE_URL + movie.poster_path}`

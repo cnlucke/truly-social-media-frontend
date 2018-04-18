@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { logIn } from '../actions/userActions'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 class LoginForm extends React.Component {
   state = {
@@ -24,12 +24,13 @@ class LoginForm extends React.Component {
     return (
       <div id="login-form-container">
         <form id="login-form" onSubmit={this.handleSubmit} >
+          <Link to='/signup' id='switch-link'>don't have an account?</Link>
           <input  type="email"
                   name='email'
                   className="login-input"
                   placeholder="enter email address"
                   autoComplete='email'
-                  onChange={this.handleOnChange}/>
+                  onChange={this.handleOnChange} autoFocus/>
                 {(this.state.showError) ? this.state.error : null}
           <input  type="password"
                   name='password'

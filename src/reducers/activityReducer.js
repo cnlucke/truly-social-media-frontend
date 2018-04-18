@@ -5,7 +5,7 @@ export default function commentsReducer(
   action
 ) {
   switch (action.type) {
-    case 'GET_ACTIVITY':
+    case 'SET_ACTIVITY':
       return {...state, activity: [...action.payload] }
     default:
       return {...state};

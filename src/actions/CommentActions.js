@@ -29,36 +29,36 @@ export const fetchComments = () => {
           payload: comments
         })
       }
-
     })
   }
 }
 
-export const addComment = (item_id, content, user_id, api_id, username) => {
+export const sendComment = (item_id, content, user_id, api_id, username) => {
   const timestamp = formatDate(new Date())
-  return function(dispatch){
-    if (content.length > 0) {
-      fetch("http://localhost:3000/comments", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          Authorization: localStorage.getItem('token')
-        },
-        body: JSON.stringify({ comment: { item_id, content, timestamp, user_id, api_id, username }})
-      })
-      .then(res=> res.json())
-      .then(response => {
-        if (response.error){
-          alert(response.error)
-        } else {
-          dispatch({
-            type: 'ADD_COMMENT',
-            payload: response
-          })
-        }
-      })
-    }
+  if (content.length > 0) {
+    fetch("http://localhost:3000/comments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        Authorization: localStorage.getItem('token')
+      },
+      body: JSON.stringify({ comment: { item_id, content, timestamp, user_id, api_id, username }})
+    })
+    .then(res=> res.json())
+    .then(response => {
+      console.log(response)
+      if (response.error){
+        console.log(response)
+      }
+    })
+  }
+}
+
+export const addComment = (comment) => {
+  return {
+    type: 'ADD_COMMENT',
+    payload: comment
   }
 }
 
