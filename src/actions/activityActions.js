@@ -9,12 +9,10 @@ export const getActivityFeed = () => {
     })
     .then(res => res.json())
     .then(response => {
-      console.log(response)
       const formattedResponse = response.map(activity => {
         activity.created_at = formatDate(new Date(activity.created_at))
         return activity
       })
-      console.log("getActivityFeed response:", formattedResponse)
       if (!response.error) {
         dispatch({
           type: "GET_ACTIVITY",

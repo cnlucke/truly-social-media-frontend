@@ -148,7 +148,7 @@ a#profile.nav-link.nav-lists {
   color: black;
   border-style: solid;
   border-width: 1px;
-  border-color: white;
+  border-color: #4F5C63;
   right: 9px;
   border-style: outset;
   border-radius: 3px;
@@ -161,6 +161,7 @@ a#profile.nav-link.nav-lists {
 .dropdown-item {
   border-style: solid;
   border-width: 1px;
+  border-color: #4F5C63;
 }
 
 .fa-user-circle {

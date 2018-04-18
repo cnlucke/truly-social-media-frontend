@@ -3,12 +3,15 @@ import { connect } from 'react-redux'
 import { hideFriendChoice } from '../actions/friendActions'
 import { addFriend } from '../actions/friendActions'
 import { withRouter } from 'react-router-dom'
+import { getActivityFeed } from '../actions/activityActions'
 
 const FriendModal = (props) => {
   const handleClick = () => {
     props.addFriend(props.friendChoice)
+    props.getActivityFeed()
+
   }
-  
+
   const isFriend = (props.friends.filter(friend => friend.id === props.friendChoice.id).length > 0)
 
   if (props.showFriend) {
@@ -45,7 +48,7 @@ export default connect(state => ({
   list: state.lists.currentList,
   friends: state.friends.friends,
   showComments: state.comments.showCommentContainer
-}), { hideFriendChoice, addFriend })(withRouter(FriendModal))
+}), { hideFriendChoice, addFriend, getActivityFeed })(withRouter(FriendModal))
 
 
  //       <img src={url} className="movie-poster" alt="movie poster"/>

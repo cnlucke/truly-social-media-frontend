@@ -4,7 +4,6 @@ const GENRE_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${proce
 const BASE_URL = 'https://image.tmdb.org/t/p/w400'
 
 export const fetchSearchResults = (searchTerm, genres) => {
-  console.log()
   return (dispatch) => {
     if (searchTerm.length > 0) {
       fetch(URL1 + searchTerm + URL2)
