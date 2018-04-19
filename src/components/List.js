@@ -6,11 +6,10 @@ import { sortList } from '../actions/listActions'
 
 
 class List extends React.Component {
-
   handleSort = (e) => {
     if (this.props.currentList === 'friends') {
       if (e.target.id === 'rating') {
-        const sortedList = this.props.list.map(item => {
+        const sortedList = this.props[this.props.currentList].map(item => {
           const match = this.props.friendRatings.find(r => r.item_id === item.id)
           if (match) {
             return {item: item, rating: match.rating}
@@ -23,17 +22,19 @@ class List extends React.Component {
 
         this.props.sortList(sortedList, e.target.id, this.props.currentFriendList, true)
       } else {
-        this.props.sortList(this.props.list, e.target.id, this.props.currentFriendList, true)
+        this.props.sortList(this.props[this.props.currentList], e.target.id, this.props.currentFriendList, true)
       }
     } else {
-      this.props.sortList(this.props.list, e.target.id, this.props.currentList, false)
+      this.props.sortList(this.props[this.props.currentList], e.target.id, this.props.currentList, false)
     }
   }
 
   render() {
+    if (this.props.currentList === 'next') {
+    }
     if (this.props.currentList === 'seen') {
     }
-    const items = this.props.list.map((item) => {
+    const items = this.props[this.props.currentList].map((item) => {
       const r = this.props.ratings.find(r => item.id === r.item_id) || 0
       return <ListItem item={item} rating={r.rating} key={item.id} />
     })
@@ -81,6 +82,9 @@ const mapStateToProps = (state) => {
     currentFriendList: state.friends.currentFriendList,
     friendRatings: state.friends.friendRatings,
     ratings: state.lists.ratings,
+    watching: state.lists.watching,
+    seen: state.lists.seen,
+    recommended: state.lists.recommended,
   }
 }
 

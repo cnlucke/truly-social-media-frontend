@@ -9,7 +9,6 @@ class ActivityFeedContainer extends React.Component {
   }
 
   handleSocketResponse = data => {
-    console.log("activity socket response!", data)
     switch (data.type) {
       case 'SET_ACTIVITY':
        		this.props.setActivityFeed(data.payload)

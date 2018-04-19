@@ -19,7 +19,7 @@ export const removeItemFromList = (list, item, history) => {
     .then(res=> res.json())
     .then(response => {
       if (response.error){
-        alert(response.error)
+        console.log(response)
       } else {
         dispatch({
           type: 'REMOVE_ITEM_FROM_LIST',

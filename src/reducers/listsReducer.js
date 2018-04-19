@@ -26,7 +26,6 @@ export default function listsReducer(
     case 'REMOVE_ITEM_FROM_LIST':
       return {...state, [action.payload.list]: state[action.payload.list].filter(item => item !== action.payload.item)}
     case 'RATE_ITEM':
-      // Update item:
       const updatedItemList = state.seen.map(item => {
         if (item.id === action.payload.item.id) {
           return {...item, rating: action.payload.item.rating}

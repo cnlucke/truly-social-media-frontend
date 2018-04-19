@@ -13,12 +13,10 @@ const ItemModal = (props) => {
   }
 
   const itemInAnyList = () => {
-    console.log('looking in items:', props.all)
     return props.all.filter(item => parseInt(item.api_id, 10) === parseInt(props.itemChoice.api_id, 10)).length > 0;
   }
 
   if (props.showItem) {
-    console.log("item in any list?", itemInAnyList())
     return (
         <div id="movie-modal" className={(props.showComments && itemInAnyList()) ? 'modal modal-left' : 'modal'}>
           <button id="close" onClick={props.hideitemChoice}>x</button>

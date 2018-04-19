@@ -23,7 +23,6 @@ class ListContainer extends React.Component {
   }
 
   render () {
-    console.log("in any list?", this.itemInAnyList())
     if (this.props.showItem) {
       return (
       <div id="modal-container">
@@ -35,13 +34,13 @@ class ListContainer extends React.Component {
     } else {
       switch (this.props.currentList) {
         case 'next':
-          return (<SortableList list={this.props.next}/>)
+          return (<SortableList />)
         case 'watching':
-          return (<List list={this.props.watching}/>)
+          return (<List />)
         case 'seen':
-          return (<List list={this.props.seen}/>)
+          return (<List />)
         case 'recommended':
-          return (<List list={this.props.recommended}/>)
+          return (<List />)
         case 'friends':
           return (<FriendsList />)
         default:
@@ -56,10 +55,6 @@ export default connect((state) => ({
   showComments: state.comments.showCommentContainer,
   showFriend: state.friends.showFriend,
   currentList: state.lists.currentList,
-  next: state.lists.next,
-  watching: state.lists.watching,
-  seen: state.lists.seen,
-  recommended: state.lists.recommended,
   friends: state.friends.friends,
   itemChoice: state.items.itemChoice,
   isLoggedIn: state.users.isLoggedIn,

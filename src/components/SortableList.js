@@ -35,9 +35,13 @@ class SortableList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: props.list
+      items: props.next
     }
 
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    this.setState({items: nextProps.next})
   }
 
   onDragEnd = (result) => {
@@ -47,7 +51,7 @@ class SortableList extends React.Component {
     }
 
     const items = reorder(
-      this.props.list,
+      this.props.next,
       result.source.index,
       result.destination.index
     );
@@ -55,7 +59,7 @@ class SortableList extends React.Component {
   }
 
   handleButtonSort = (e) => {
-    this.props.sortList(this.props.list, e.target.id, this.props.currentList)
+    this.props.sortList(this.props.next, e.target.id, this.props.currentList)
   }
 
   render() {
