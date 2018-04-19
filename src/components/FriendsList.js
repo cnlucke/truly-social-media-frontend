@@ -24,9 +24,9 @@ class FriendsList extends React.Component {
     const term = this.props.searchTerm.toLowerCase()
     return this.props.friends.filter(user => {
       return (user.first_name.toLowerCase().includes(term)
-            || user.last_name.toLowerCase().includes(term)
-            || user.email.toLowerCase().includes(term)
-            || user.city.toLowerCase().includes(term))
+      || user.last_name.toLowerCase().includes(term)
+      || user.email.toLowerCase().includes(term)
+      || user.city.toLowerCase().includes(term))
     })
   }
 
