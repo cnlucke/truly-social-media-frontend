@@ -1,3 +1,4 @@
+/*------------------------------GENERAL---------------------------------------*/
 #root {
   background-color: #4f5c64;
   min-height: 250vh;
@@ -17,7 +18,7 @@ input[type=submit] {
   color: #00AAE2;
 }
 
-input:focus, textarea:focus {
+input:focus, textarea:focus, button:hover {
   outline: none;
   box-shadow: 0 0 3pt 2pt #00AAE2;
 }
@@ -287,6 +288,7 @@ button a {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
   text-align: left;
+  overflow: hidden;
 }
 
 .content {
@@ -546,14 +548,14 @@ input {
 }
 
 #movie-modal {
-  width: 370px;
-  height: auto;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 40px;
+  min-width: 370px;
+  height: auto;
   position: relative;
   z-index: 1;
   min-height: 400px;
-  display: flex;
+  display: inline-block;
   overflow: visible;
   padding: 5px;
 }
@@ -614,6 +616,7 @@ input {
 }
 
 .add-buttons {
+  height: 148px;
   background-color: #8898A2;
   border-radius: 3px;
   margin: 4px;
@@ -622,7 +625,7 @@ input {
   box-shadow: 4px 4px 10px #000;
 }
 
-#close {
+/* #close {
   color: #384247;
   font-size: 12px;
   font-weight: bold;
@@ -633,7 +636,7 @@ input {
   right: -3px;
   top: -3px;
   border-radius: 10px;
-}
+} */
 
 .close:hover,
 .close:focus {
@@ -652,22 +655,23 @@ input {
 /*------------------------------COMMENT MODAL---------------------------------*/
 
 #modal-container {
-  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 310px;
+  margin-top: 10px;
   transition: transform .5s ease .01ms;
 }
 
 #comment-modal {
-  width: 50%;
-  height: auto;
-  margin: auto;
-  margin-top: 20px;
-  position: relative;
+  max-width: 370px;
+  margin-top: 40px;
+  margin-left: 40px;
   z-index: 1;
   min-height: 400px;
-  display: flex;
+  display: inline-block;
   overflow: visible;
   padding: 5px;
-  background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
   box-shadow: 5px 5px 5px #22282a;
 }
@@ -712,13 +716,12 @@ input {
   color: #384247;
   font-size: 12px;
   font-weight: bold;
-  display: block;
-  margin: 0 auto;
+  float: right;
   background-color: #b8c1c7;
-  position: absolute;
-  right: -3px;
-  top: -3px;
   border-radius: 10px;
+  margin-right: -10px;
+  margin-top: -10px;
+  position: relative;
 }
 
 .close:hover,
@@ -759,7 +762,7 @@ textarea.login-input {
 #comment-form-container {
   margin: 0 auto;
   height: 90px;
-  padding: 10px;
+  /* padding: 10px; */
   padding-top: 0px;
   text-align: center;
   margin-bottom: 0px;
@@ -767,7 +770,7 @@ textarea.login-input {
 }
 
 #comment-form {
-  width: 430px;
+  width: 360px;
   height: 70px;
   padding: 5px;
   margin: 0 auto;
@@ -782,8 +785,8 @@ textarea.login-input {
 .comment {
   color: #2F373B;
   background-color: #f1f3f4;
-  width: 430px;
-  margin: 0 auto;
+  width: 360px;
+  /* margin: 0 auto; */
   border-radius: 5px;
   padding: 5px;
   padding-top: 0px;
@@ -813,7 +816,7 @@ span.comment-content {
 /*-----------------------------FRIEND MODAL-----------------------------------*/
 
 #friend-modal {
-  width: 300px;
+  width: 200px;
   margin: auto;
   margin-top: 20px;
   position: relative;
@@ -838,10 +841,11 @@ span.comment-content {
 
 #add-friend-button {
   width: 80px;
-  top: 10px;
+  bottom: 15px;
+  height: 40px;
   position: absolute;
   border-radius: 15px;
-  right: 80px;
+  right: 20px;
 }
 
 #friend-poster {

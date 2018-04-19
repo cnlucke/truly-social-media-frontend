@@ -18,19 +18,17 @@ const CommentContainer = (props) => {
   };
 
   return (
-    <div>
-    <ActionCable
-          channel={{ channel: 'CommentsChannel', item_id: props.itemChoice.id}}
-          onReceived={handleSocketResponse}
-        />
     <div id="comment-modal" className="comment-modal">
+      <ActionCable
+        channel={{ channel: 'CommentsChannel', item_id: props.itemChoice.id}}
+        onReceived={handleSocketResponse}
+        />
       <button id="close" onClick={props.hideCommentContainer}>x</button>
       <div className='comment-content' >
         <CommentList />
         <CommentForm />
       </div>
     </div>
-  </div>
   )
 }
 

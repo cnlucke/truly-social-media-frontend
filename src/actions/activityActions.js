@@ -14,7 +14,7 @@ export const fetchActivityFeed = () => {
           type: 'SET_ACTIVITY',
           payload: formatActivity(activity)
         })
-      } 
+      }
     })
   }
 }
@@ -27,10 +27,10 @@ export const setActivityFeed = (activity) => {
 }
 
 function formatActivity(activity) {
-  return activity.map(act => {
+  return (activity.map(act => {
     act.created_at = formatDate(new Date(act.created_at))
     return act
-  })
+  }))
 }
 
 function formatDate(date) {

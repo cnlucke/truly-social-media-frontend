@@ -33,7 +33,7 @@ export default function friendsReducer(
     case 'REMOVE_FRIEND':
       return {...state, friends: state.friends.filter(friend => friend.id !== action.payload.id) }
     case 'CLEAR_RESULTS':
-      return {...state, friendSearchResults: []}
+      return {...state, friendSearchResults: [], friendSearchTerm: ''}
     case 'SET_RESULTS':
       return {...state, friendSearchResults: action.payload}
     case 'SET_FRIEND_SEARCH_TERM':

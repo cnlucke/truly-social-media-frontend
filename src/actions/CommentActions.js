@@ -34,24 +34,26 @@ export const fetchComments = () => {
 }
 
 export const sendComment = (item_id, content, user_id, api_id, username) => {
-  const timestamp = formatDate(new Date())
-  if (content.length > 0) {
-    fetch("http://localhost:3000/comments", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        Authorization: localStorage.getItem('token')
-      },
-      body: JSON.stringify({ comment: { item_id, content, timestamp, user_id, api_id, username }})
-    })
-    .then(res=> res.json())
-    .then(response => {
-      console.log(response)
-      if (response.error){
+  return function(dispatch){
+    const timestamp = formatDate(new Date())
+    if (content.length > 0) {
+      fetch("http://localhost:3000/comments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          Authorization: localStorage.getItem('token')
+        },
+        body: JSON.stringify({ comment: { item_id, content, timestamp, user_id, api_id, username }})
+      })
+      .then(res=> res.json())
+      .then(response => {
         console.log(response)
-      }
-    })
+        if (response.error){
+          console.log(response)
+        }
+      })
+    }
   }
 }
 

@@ -43,7 +43,7 @@ const NavBar = (props) => {
                       className={"nav-link nav-lists " + (props.currentList === 'next' ? 'active' : null)}
                       onClick={() => handleOnClick('next')}>
                       <div className="icon">
-                        <i className="fas fa-step-forward fa-lg" color='black'></i>
+                        <i className="far fa-fast-forward fa-lg" color='black'></i>
                       </div>
                       next
                   </Link></li>
@@ -52,7 +52,7 @@ const NavBar = (props) => {
                       className={"nav-link nav-lists " + (props.currentList === 'watching' ? 'active' : null)}
                       onClick={() => handleOnClick('watching')}>
                       <div className="icon">
-                        <i className="fas fa-eye fa-lg" color='black'></i>
+                        <i className="fal fa-eye fa-lg" color='black'></i>
                       </div>
                       watching
                     </Link></li>
@@ -61,7 +61,7 @@ const NavBar = (props) => {
                       className={"nav-link nav-lists " + (props.currentList === 'seen' ? 'active' : null)}
                       onClick={() => handleOnClick('seen')}>
                       <div className="icon">
-                        <i className="fas fa-step-backward fa-lg" color='black'></i>
+                        <i className="far fa-fast-backward fa-lg" color='black'></i>
                       </div>
                       seen
                     </Link></li>
@@ -71,7 +71,7 @@ const NavBar = (props) => {
                       className={"nav-link nav-recommended " + (props.currentList === 'recommended' ? 'active' : null)}
                       onClick={() => handleOnClick('recommended')}>
                       <div className="icon">
-                        <i className="fas fa-thumbs-up fa-lg" color="black"></i>
+                        <i className="far fa-thumbs-up fa-lg" color="black"></i>
                       </div>
                       recommended
                     </Link></li>
@@ -80,7 +80,7 @@ const NavBar = (props) => {
                       className={"nav-link nav-lists " + (props.currentList === 'friends' ? 'active' : null)}
                       onClick={() => handleOnClick('friends')}>
                       <div className="icon">
-                        <i className="fas fa-users fa-lg" color='black'></i>
+                        <i className="far fa-users fa-lg" color='black'></i>
                       </div>
                       friends
                     </Link>

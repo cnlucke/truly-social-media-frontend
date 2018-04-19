@@ -14,13 +14,22 @@ class ListContainer extends React.Component {
     }
   }
 
+  itemInAnyList = () => {
+    if (this.props.itemChoice) {
+      return this.props.all.filter(item => parseInt(item.api_id, 10) === parseInt(this.props.itemChoice.api_id, 10)).length > 0;
+    } else {
+      return false
+    }
+  }
+
   render () {
+    console.log("in any list?", this.itemInAnyList())
     if (this.props.showItem) {
       return (
       <div id="modal-container">
         <ItemModal />
-        {(this.props.showComments && this.props.isLoggedIn) ?
-          (<CommentContainer />) : null}
+          {(this.props.showComments && this.props.isLoggedIn && this.itemInAnyList()) ?
+            (<CommentContainer />) : null}
         </div>
       )
     } else {

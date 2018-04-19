@@ -66,7 +66,7 @@ const ListItem = (props) => {
               style={{textAlign: 'left'}}>
               <b>average rating:</b> {props.item.rating}
             </p>
-          {((props.currentList === 'seen') || (props.currentFriendList === 'seen')) ?
+          {(props.currentList === 'seen') ?
             <div className="rating">
               <span id='10' onClick={ (props.seeFriend) ? null : handleRating}>
                 {(parseInt(rating, 10) === 10) ? '★' : '☆' }</span>
