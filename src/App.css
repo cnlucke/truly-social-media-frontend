@@ -95,7 +95,7 @@ li a {
 #welcome {
   text-align: right;
   line-height: 52px;
-  width: 600px;
+  width: 200px;
 }
 
 #logout {
@@ -292,6 +292,9 @@ button a {
   margin-top: 2px;
 }
 
+/* #search-div {
+  margin:
+} */
 /*------------------------------LOGINFORM------------------------------------*/
 
 #form {
@@ -613,19 +616,6 @@ input {
     margin-top: 0px;
     box-shadow: 4px 4px 10px #000;
   }
-
-  /* #close {
-  color: #384247;
-  font-size: 12px;
-  font-weight: bold;
-  display: block;
-  margin: 0 auto;
-  background-color: #b8c1c7;
-  position: absolute;
-  right: -3px;
-  top: -3px;
-  border-radius: 10px;
-  } */
 
   .close:hover,
   .close:focus {

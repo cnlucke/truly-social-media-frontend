@@ -81,7 +81,7 @@ export function addFriend(friend){
       },
       body: JSON.stringify({user: friend})
     })
-    .then(res=> res.json())
+    .then(handleErrors)
     .then(friend => {
       if (friend.error) {
         alert(friend.error)
@@ -112,7 +112,7 @@ export function removeFriend(friend){
       },
       body: JSON.stringify({user: friend})
     })
-    .then(res=> res.json())
+    .then(handleErrors)
     .then(friend => {
       dispatch({
         type: 'REMOVE_FRIEND',
@@ -131,7 +131,7 @@ export const currentFriendList = (friend, list) => {
         Authorization: localStorage.getItem('token')
       }
     })
-    .then(res => res.json())
+    .then(handleErrors)
     .then(response => {
       const {user, next, watching, seen, ratings } = response
       dispatch({
@@ -139,5 +139,14 @@ export const currentFriendList = (friend, list) => {
         payload: { user, next, watching, seen, ratings, list }
       })
     })
+    .catch(console.log);
   }
+}
+
+function handleErrors(response) {
+    if (!response.ok) {
+      console.log(response)
+      throw Error(response.statusText);
+    }
+    return response.json();
 }

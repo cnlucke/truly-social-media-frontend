@@ -30,15 +30,15 @@ class List extends React.Component {
   }
 
   render() {
-    if (this.props.currentList === 'next') {
-    }
-    if (this.props.currentList === 'seen') {
-    }
-    const items = this.props[this.props.currentList].map((item) => {
-      const r = this.props.ratings.find(r => item.id === r.item_id) || 0
-      return <ListItem item={item} rating={r.rating} key={item.id} />
-    })
     if (this.props.seeFriend) {
+      console.log("List props:", this.props)
+      const listName = 'friend' + this.props.currentFriendList[0].toUpperCase() + this.props.currentFriendList.slice(1)
+      console.log("listName =", listName)
+      const items = this.props[listName].map((item) => {
+        const r = this.props.ratings.find(r => item.id === r.item_id) || 0
+        return <ListItem item={item} rating={r.rating} key={item.id} />
+      })
+
       return(
         <div id="list-items-container">
           <h2 id="friend-list-title">{`${this.props.friendProfile.first_name.toLowerCase()}'s ${this.props.currentFriendList} list`}</h2>
@@ -54,6 +54,11 @@ class List extends React.Component {
         </div>
       )
     } else {
+      const items = this.props[this.props.currentList].map((item) => {
+        const r = this.props.ratings.find(r => item.id === r.item_id) || 0
+        return <ListItem item={item} rating={r.rating} key={item.id} />
+      })
+
       return (
         <div id="list-items-container">
           {(this.props.currentList === 'recommended') ?
@@ -76,15 +81,21 @@ class List extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    // current user props
     currentList: state.lists.currentList,
-    seeFriend: state.friends.seeFriend,
-    friendProfile: state.friends.friendProfile,
-    currentFriendList: state.friends.currentFriendList,
-    friendRatings: state.friends.friendRatings,
     ratings: state.lists.ratings,
     watching: state.lists.watching,
     seen: state.lists.seen,
     recommended: state.lists.recommended,
+
+    // friend props
+    seeFriend: state.friends.seeFriend,
+    friendProfile: state.friends.friendProfile,
+    currentFriendList: state.friends.currentFriendList,
+    friendRatings: state.friends.friendRatings,
+    friendNext: state.friends.next,
+    friendWatching: state.friends.watching,
+    friendSeen: state.friends.seen,
   }
 }
 

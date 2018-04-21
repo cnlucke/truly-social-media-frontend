@@ -8,7 +8,7 @@ export function logIn(email,  password, history){
       },
       body: JSON.stringify({ email, password })
     })
-    .then(res=>res.json())
+    .then(handleErrors)
     .then(response => {
       if (response.error){
         console.log(response)
@@ -39,7 +39,7 @@ export function signUp(user, history){
       },
       body: JSON.stringify({user})
     })
-    .then(res=> res.json())
+    .then(handleErrors)
     .then(response => {
       localStorage.setItem("token", response.token)
       dispatch({
@@ -64,7 +64,7 @@ export function updateProfile(user, history){
       },
       body: JSON.stringify({user})
     })
-    .then(res=> res.json())
+    .then(handleErrors)
     .then(response => {
       if (!response.error) {
         dispatch({
@@ -95,7 +95,7 @@ export const getUser = () => {
         Authorization: localStorage.getItem('token')
       }
     })
-    .then(res => res.json())
+    .then(handleErrors)
     .then(response => {
       if (!response.error) {
         const {user, next, watching, seen, friends, all_users, ratings, friend_ratings, recommended } = response
@@ -113,4 +113,12 @@ export const setUserProfileChoice = (user) => {
       type: 'SET_PROFILE',
       payload: user,
   }
+}
+
+function handleErrors(response) {
+    if (!response.ok) {
+      console.log(response)
+      throw Error(response.statusText);
+    }
+    return response.json();
 }

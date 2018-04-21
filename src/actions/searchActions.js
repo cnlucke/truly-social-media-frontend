@@ -7,7 +7,7 @@ export const fetchSearchResults = (searchTerm, genres) => {
   return (dispatch) => {
     if (searchTerm.length > 0) {
       fetch(URL1 + searchTerm + URL2)
-        .then(res => res.json())
+        .then(handleErrors)
         .then(items => {
 
           //sort by popularity first
@@ -29,9 +29,8 @@ export const fetchSearchResults = (searchTerm, genres) => {
 const transformMovies = (movies, genres) => {
   return movies.map((movie) => {
     const date = movie.release_date || movie.first_air_date
-    const title = movie.title || movie.name
     movie.date = formatDateString(date);
-    movie.title = title;
+    movie.title = movie.title || movie.name
     movie.api_id = movie.id
     delete movie.id
     movie.genres = transformGenres(movie.genre_ids, genres)
@@ -74,8 +73,9 @@ const formatDateString = (dateString) => {
 export const fetchGenres = () => {
   return (dispatch) => {
     fetch(GENRE_URL)
-      .then(res => res.json())
+      .then(handleErrors)
       .then(results => dispatch({ type: 'SET_GENRES', payload: results.genres }))
+      .catch(console.log)
   }
 }
 
@@ -94,4 +94,12 @@ export const clearResults = () => {
       type: 'CLEAR_RESULTS'
     })
   }
+}
+
+function handleErrors(response) {
+    if (!response.ok) {
+      console.log(response)
+      throw Error(response.statusText);
+    }
+    return response.json();
 }

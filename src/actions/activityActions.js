@@ -1,5 +1,5 @@
 export const fetchActivityFeed = () => {
-  return function(dispatch){
+  return function(dispatch) {
     fetch('http://localhost:3000/feed', {
       headers: {
         "Content-Type": "application/json",
@@ -7,15 +7,14 @@ export const fetchActivityFeed = () => {
         Authorization: localStorage.getItem('token')
       }
     })
-    .then(res => res.json())
+    .then(handleErrors)
     .then(activity => {
-      if (!activity.error) {
-        dispatch({
-          type: 'SET_ACTIVITY',
-          payload: formatActivity(activity)
-        })
-      }
+      dispatch({
+        type: 'SET_ACTIVITY',
+        payload: formatActivity(activity)
+      })
     })
+    .catch(console.log);
   }
 }
 
@@ -42,4 +41,12 @@ function formatDate(date) {
   minutes = minutes < 10 ? '0'+minutes : minutes;
   var strTime = hours + ':' + minutes + ' ' + ampm;
   return strTime + ' ' + (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+}
+
+function handleErrors(response) {
+    if (!response.ok) {
+      console.log(response)
+      throw Error(response.statusText);
+    }
+    return response.json();
 }

@@ -24,7 +24,7 @@ class Search extends React.Component {
 
   render() {
     return(
-      <div>
+      <div id="search-div">
         <input  type="search"
                 className="search"
                 placeholder='add items...'
