@@ -18,8 +18,8 @@ class ActivityFeedContainer extends React.Component {
   };
 
   render() {
-    const items = this.props.activity.slice(0,10).map(a => {
-      return <p className='activity-item' key={a.id}>**{a.body} - <small>{a.created_at}</small></p>
+    const items = this.props.activity.slice(0,10).map(act => {
+      return <p className='activity-item' key={act.id}>**{act.body} - <small>{act.created_at}</small></p>
     })
     return (
       <div id='activity-feed-container'>

@@ -11,8 +11,7 @@ const Friend = (props) => {
 
   const handleRemove = () => {
     props.removeFriend(props.friend)
-    props.fetchActivityFeed()
-}
+  }
 
   return (
     <div className="friend-item" id={props.id}>

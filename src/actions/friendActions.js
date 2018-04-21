@@ -71,7 +71,7 @@ export const getFriend = (friend) => {
 }
 
 export function addFriend(friend){
-  return function(dispatch){
+  return function(dispatch) {
     fetch("http://localhost:3000/friends", {
       method: "POST",
       headers: {
@@ -83,15 +83,12 @@ export function addFriend(friend){
     })
     .then(handleErrors)
     .then(friend => {
-      if (friend.error) {
-        alert(friend.error)
-      } else {
-        dispatch({
-          type: 'ADD_FRIEND',
-          payload: friend
-        })
-      }
+      dispatch({
+        type: 'ADD_FRIEND',
+        payload: friend
+      })
     })
+    .catch(console.log)
   }
 }
 
@@ -145,8 +142,9 @@ export const currentFriendList = (friend, list) => {
 }
 
 function handleErrors(response) {
+  console.log("response:", response)
+  // console.log("response.json():", response.json())
     if (!response.ok) {
-      console.log(response)
       throw Error(response.statusText);
     }
     return response.json();

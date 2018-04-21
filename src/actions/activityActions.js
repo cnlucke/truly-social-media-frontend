@@ -8,13 +8,7 @@ export const fetchActivityFeed = () => {
       }
     })
     .then(handleErrors)
-    .then(activity => {
-      console.log("got new activities!")
-      dispatch({
-        type: 'SET_ACTIVITY',
-        payload: formatActivity(activity)
-      })
-    })
+    .then(console.log)
     .catch(console.log);
   }
 }

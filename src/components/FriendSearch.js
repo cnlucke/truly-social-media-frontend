@@ -20,7 +20,7 @@ class FriendSearch extends React.Component {
   }
 
   handleOnBlur = () => {
-    setTimeout(this.props.clearResults, 500)
+    setTimeout(this.props.clearResults, 200)
   }
 
   searchUsers = () => {
