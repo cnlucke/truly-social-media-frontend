@@ -18,7 +18,6 @@ class ActivityFeedContainer extends React.Component {
   };
 
   render() {
-    // only shows last 10 items -- currently grabs everything so will need to be updated to only grab friends' activities
     const items = this.props.activity.slice(0,10).map(a => {
       return <p className='activity-item' key={a.id}>**{a.body} - <small>{a.created_at}</small></p>
     })

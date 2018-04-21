@@ -114,6 +114,7 @@ export function removeFriend(friend){
     })
     .then(handleErrors)
     .then(friend => {
+      console.log("removed friend!")
       dispatch({
         type: 'REMOVE_FRIEND',
         payload: friend
