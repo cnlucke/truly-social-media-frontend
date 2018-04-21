@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from "react-redux";
 import { setCurrentList } from '../actions/listActions'
 import { logoutUser } from '../actions/userActions'
-import { setUserProfileChoice } from '../actions/userActions'
 import { hideitemChoice } from '../actions/itemActions'
 import { hideFriendChoice } from '../actions/friendActions'
 import { hideFriendList } from '../actions/friendActions'
@@ -24,9 +23,6 @@ const NavBar = (props) => {
     props.hideitemChoice()
     props.hideFriendChoice()
     props.hideFriendList()
-    if (list === 'profile') {
-      props.setUserProfileChoice(props.currentUser)
-    }
   }
 
   return (
@@ -108,11 +104,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { setCurrentList, logoutUser, hideitemChoice, hideFriendChoice, setUserProfileChoice, hideFriendList })(NavBar)
-
-// <div className="dropdown">
-//   <span>Mouse over me</span>
-//   <div className="dropdown-content">
-//     <p>Hello World!</p>
-//   </div>
-// </div>
+export default connect(mapStateToProps, { setCurrentList, logoutUser, hideitemChoice, hideFriendChoice, hideFriendList })(NavBar)

@@ -54,13 +54,9 @@ class FriendsList extends React.Component {
 const mapStateToProps = (state) => {
   return {
     friends: state.friends.friends,
-    all_users: state.friends.all_users,
     seeFriend: state.friends.seeFriend,
     showFriend: state.friends.showFriend,
     currentFriendList: state.friends.currentFriendList,
-    next: state.friends.next,
-    watching: state.friends.watching,
-    seen: state.friends.seen,
     searchTerm: state.friends.friendSearchTerm,
   }
 }

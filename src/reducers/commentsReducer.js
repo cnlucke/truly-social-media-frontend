@@ -1,7 +1,7 @@
 export default function commentsReducer(
   state = {
-    showCommentContainer: false,
-    comments: [],
+    showCommentContainer: false, //whether the comments should be shown
+    comments: [], //all friend and friend-of-friend comments
   },
   action
 ) {
@@ -17,8 +17,7 @@ export default function commentsReducer(
     case 'GET_COMMENTS':
       return {...state, comments: action.payload}
     case 'ADD_COMMENT':
-      const newComment = {...action.payload, username: action.payload.username}
-      return {...state, comments: [...state.comments, newComment] }
+      return {...state, comments: [...state.comments, action.payload] }
     default:
       return {...state};
   }

@@ -53,9 +53,7 @@ class ListContainer extends React.Component {
 export default connect((state) => ({
   showItem: state.items.showItem,
   showComments: state.comments.showCommentContainer,
-  showFriend: state.friends.showFriend,
   currentList: state.lists.currentList,
-  friends: state.friends.friends,
   itemChoice: state.items.itemChoice,
   isLoggedIn: state.users.isLoggedIn,
   all: state.lists.all,

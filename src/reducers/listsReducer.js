@@ -1,10 +1,11 @@
 export default function listsReducer(
   state = {
-    currentList: "home",
-    all: [],
-    next: [],
-    watching: [],
-    seen: [],
+    currentList: "home", //which user list is currently being viewed
+    all: [], // next, watching, and seen lists merged for seeing if an item is in any list
+    next: [], //current user's list of items they want to watch next
+    watching: [], //current user's list of items they're currently watching
+    seen: [], //current user's list of items they've already seen
+    ratings: [], // all current user's ratings
     recommended: [], //items highly rated by friends
   },
   action
@@ -26,6 +27,7 @@ export default function listsReducer(
     case 'REMOVE_ITEM_FROM_LIST':
       return {...state, [action.payload.list]: state[action.payload.list].filter(item => item !== action.payload.item)}
     case 'RATE_ITEM':
+      // update average rating returned from api on Item object in "seen" list
       const updatedItemList = state.seen.map(item => {
         if (item.id === action.payload.item.id) {
           return {...item, rating: action.payload.item.rating}
@@ -33,6 +35,7 @@ export default function listsReducer(
           return item
         }
       })
+      // update user's rating
       const updatedRatingList = state.ratings.filter(r => {
         return ((r.id !== action.payload.rating.id) && (r.item_id !== action.payload.rating.item_id))
       })

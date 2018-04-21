@@ -1,8 +1,7 @@
 export default function itemsReducer(
   state = {
-    itemChoice: null,
-    showItem: false,
-    inList: false,
+    itemChoice: null, //which item user wants to look at
+    showItem: false, //should the item modal be visible?
   },
   action
 ) {

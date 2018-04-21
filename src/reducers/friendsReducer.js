@@ -2,10 +2,10 @@ export default function friendsReducer(
   //remember these lists are the *friend's* lists, not the current users
   state = {
     all_users: [], //ability to search for new friends
-    friends: [],
-    friendRatings: [],
-    friendSearchTerm: '',
-    friendSearchResults: [],
+    friends: [], //current user's friends
+    friendRatings: [], //current user's friends' ratings
+    friendSearchTerm: '', //used to filter friends and search amongst all friends
+    friendSearchResults: [], //which friends match friendSearchTerm
     friendChoice: null, //friend modal you are viewing with option to add friend
     showFriend: false, //ability to view friend modal
     friendProfile: null, //which friend's list you are currently viewing

@@ -108,13 +108,6 @@ export const getUser = () => {
   }
 }
 
-export const setUserProfileChoice = (user) => {
-  return {
-      type: 'SET_PROFILE',
-      payload: user,
-  }
-}
-
 function handleErrors(response) {
     if (!response.ok) {
       console.log(response)
