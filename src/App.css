@@ -93,6 +93,7 @@ li a {
 }
 
 #welcome {
+  color: white;
   text-align: right;
   line-height: 52px;
   width: 200px;
@@ -230,11 +231,12 @@ button a {
 
 .activity-item {
   font-style: italic;
+  color: lightgray;
 }
 
 #activity-title {
   text-shadow: 1px 1px 5px #00AAE2;
-
+  color: lightgray;
 }
 
 #activity {
@@ -854,8 +856,8 @@ input {
   }
 
   .friend-title {
+    font-size: 15px;
     text-align: left;
-    margin-left: 5px;
     text-shadow: 1px 1px black;
   }
 

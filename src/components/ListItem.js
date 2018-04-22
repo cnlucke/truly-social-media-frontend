@@ -42,7 +42,8 @@ const ListItem = (props) => {
               src={(props.item.poster_url) ? props.item.poster_url : require('../default.jpeg')}
               className='item-img'
               alt="movie poster"/>
-            <button className="list-item-remove" onClick={handleRemove}>remove</button>
+            {(props.currentList === 'recommended') ? null :<button className="list-item-remove" onClick={handleRemove}>remove</button>
+            }
           </div>
           <div id='item-text'>
             <span className="title"
