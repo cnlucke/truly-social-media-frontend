@@ -111,7 +111,6 @@ export function removeFriend(friend){
     })
     .then(handleErrors)
     .then(friend => {
-      console.log("removed friend!")
       dispatch({
         type: 'REMOVE_FRIEND',
         payload: friend
@@ -142,10 +141,8 @@ export const currentFriendList = (friend, list) => {
 }
 
 function handleErrors(response) {
-  console.log("response:", response)
-  // console.log("response.json():", response.json())
-    if (!response.ok) {
-      throw Error(response.statusText);
-    }
-    return response.json();
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response.json();
 }

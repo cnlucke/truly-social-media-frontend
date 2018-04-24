@@ -4,10 +4,6 @@ import { fetchActivityFeed, setActivityFeed } from '../actions/activityActions'
 import { ActionCable } from 'react-actioncable-provider';
 
 class ActivityFeedContainer extends React.Component {
-  componentDidMount() {
-    this.props.fetchActivityFeed()
-  }
-
   handleSocketResponse = data => {
     switch (data.type) {
       case 'SET_ACTIVITY':

@@ -11,7 +11,13 @@ class ItemModal extends React.Component {
   }
 
   handleClick = (list) => {
-    this.props.addToList(list, this.props.itemChoice, this.props.history)
+    if (localStorage.getItem('token')) {
+      this.props.addToList(list, this.props.itemChoice, this.props.history)
+    } else {
+      alert("log in or sign up to add this item to a list!")
+      this.props.hideitemChoice();
+      this.props.history.push('/login')
+    }
   }
 
   itemInAnyList = () => {

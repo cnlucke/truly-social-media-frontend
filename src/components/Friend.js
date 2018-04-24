@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { currentFriendList } from '../actions/friendActions'
-import { fetchActivityFeed } from '../actions/activityActions'
 import { removeFriend } from '../actions/friendActions'
 
 const Friend = (props) => {
@@ -41,4 +40,4 @@ const Friend = (props) => {
   )
 }
 
-export default connect((state) => ({friends: state.friends.friends}), {currentFriendList, removeFriend, fetchActivityFeed })(Friend)
+export default connect((state) => ({friends: state.friends.friends}), {currentFriendList, removeFriend })(Friend)

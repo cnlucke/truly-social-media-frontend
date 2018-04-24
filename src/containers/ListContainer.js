@@ -6,19 +6,13 @@ import List from '../components/List'
 import FriendsList from '../components/FriendsList'
 import { fetchComments } from '../actions/commentActions'
 import CommentContainer from '../containers/CommentContainer'
+import { fetchActivityFeed } from '../actions/activityActions'
 
 class ListContainer extends React.Component {
   componentDidMount() {
     if (localStorage.getItem('token')) {
       this.props.fetchComments();
-    }
-  }
-
-  itemInAnyList = () => {
-    if (this.props.itemChoice) {
-      return this.props.all.filter(item => parseInt(item.api_id, 10) === parseInt(this.props.itemChoice.api_id, 10)).length > 0;
-    } else {
-      return false
+      this.props.fetchActivityFeed()
     }
   }
 
@@ -27,7 +21,7 @@ class ListContainer extends React.Component {
       return (
       <div id="modal-container">
         <ItemModal />
-          {(this.props.showComments && this.props.isLoggedIn && (this.itemInAnyList() || this.props.currentList === 'friends')) ?
+          {(this.props.showComments && this.props.isLoggedIn) ?
             (<CommentContainer />) : null}
         </div>
       )
@@ -57,4 +51,12 @@ export default connect((state) => ({
   itemChoice: state.items.itemChoice,
   isLoggedIn: state.users.isLoggedIn,
   all: state.lists.all,
-}), { fetchComments })(ListContainer)
+}), { fetchComments, fetchActivityFeed })(ListContainer)
+
+// itemInAnyList = () => {
+//   if (this.props.itemChoice) {
+//     return this.props.all.filter(item => parseInt(item.api_id, 10) === parseInt(this.props.itemChoice.api_id, 10)).length > 0;
+//   } else {
+//     return false
+//   }
+// }

@@ -81,6 +81,10 @@ export const rateItem = (rating, item_id) => {
 
 export const sortList = (list, sortType, listType, friend) => {
   return function(dispatch) {
+    console.log("sortList list:", list)
+    console.log("sortList sortType:", sortType)
+    console.log("sortList listType:", listType)
+    console.log("sortList friend:", friend)
     let newList = [...list];
     switch (sortType) {
       case 'avg-rating':

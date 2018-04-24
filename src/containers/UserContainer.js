@@ -17,10 +17,6 @@ class UserContainer extends React.Component {
     }
   }
 
-  itemInAnyList = () => {
-    return this.props.all.filter(item => parseInt(item.api_id, 10) === parseInt(this.props.itemChoice.api_id, 10)).length > 0;
-  }
-
   render() {
     if (this.props.isLoggedIn && this.props.currentUser && !this.props.showItem) {
       return (
@@ -33,7 +29,7 @@ class UserContainer extends React.Component {
       return (
         <div id="modal-container">
           <ItemModal />
-          {(this.props.showComments && this.props.isLoggedIn && this.itemInAnyList()) ?
+          {(this.props.showComments && this.props.isLoggedIn) ?
             (<CommentContainer />) : null}
         </div>
       )
@@ -62,3 +58,7 @@ class UserContainer extends React.Component {
   }
 
   export default connect(mapStateToProps, { getUser, fetchComments })(withRouter(UserContainer))
+
+  // itemInAnyList = () => {
+  //   return this.props.all.filter(item => parseInt(item.api_id, 10) === parseInt(this.props.itemChoice.api_id, 10)).length > 0;
+  // }

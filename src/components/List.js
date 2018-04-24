@@ -8,8 +8,9 @@ import { sortList } from '../actions/listActions'
 class List extends React.Component {
   handleSort = (e) => {
     if (this.props.currentList === 'friends') {
+      const listName = 'friend' + this.props.currentFriendList[0].toUpperCase() + this.props.currentFriendList.slice(1)
       if (e.target.id === 'rating') {
-        const sortedList = this.props[this.props.currentList].map(item => {
+        const sortedList = this.props[listName].map(item => {
           const match = this.props.friendRatings.find(r => r.item_id === item.id)
           if (match) {
             return {item: item, rating: match.rating}
@@ -19,10 +20,9 @@ class List extends React.Component {
         })
         sortedList.sort((a, b) => b.rating - a.rating)
 
-
         this.props.sortList(sortedList, e.target.id, this.props.currentFriendList, true)
       } else {
-        this.props.sortList(this.props[this.props.currentList], e.target.id, this.props.currentFriendList, true)
+        this.props.sortList(this.props[listName], e.target.id, this.props.currentFriendList, true)
       }
     } else {
       this.props.sortList(this.props[this.props.currentList], e.target.id, this.props.currentList, false)
@@ -31,9 +31,7 @@ class List extends React.Component {
 
   render() {
     if (this.props.seeFriend) {
-      console.log("List props:", this.props)
       const listName = 'friend' + this.props.currentFriendList[0].toUpperCase() + this.props.currentFriendList.slice(1)
-      console.log("listName =", listName)
       const items = this.props[listName].map((item) => {
         const r = this.props.ratings.find(r => item.id === r.item_id) || 0
         return <ListItem item={item} rating={r.rating} key={item.id} />

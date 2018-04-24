@@ -17,6 +17,7 @@ const ListItem = (props) => {
     props.rateItem(e.target.id, props.item.id)
   }
 
+  // This is for displaying a specific friend's rating when viewing their list
   const findFriendRating = () => {
     const ratingExists = props.friendRatings.find(r => {
       return ((r.item_id === props.item.id) && (r.user_id === props.friendProfile.id))
@@ -26,6 +27,34 @@ const ListItem = (props) => {
     } else {
       return 0
     }
+  }
+
+  // For showing number of friends who rated item on Recommended tab
+  const ratingCount = () => {
+    let count = 0
+    for(let i = 0; i < props.friendRatings.length; i++) {
+      if (props.friendRatings[i].item_id === props.item.id) {
+        count ++;
+      }
+    }
+    return count;
+  }
+
+  // For showing which friends who rated item on Recommended tab
+  const whoRecommends = () => {
+    //find friend ratings matching current Item
+    const matchingHighRatings = props.friendRatings.filter(r => {
+      return (r.item_id === props.item.id) && (r.rating >= 9)
+    })
+    //convert to array of user ids
+    const matchingFriendsIds = matchingHighRatings.map(r => ({friendId: r.user_id, rating: r.rating}))
+    //convert to array of friend objects
+    const matchingFriends = matchingFriendsIds.map(i => {
+      const friend = props.friends.find(f => f.id === i.friendId)
+      return ({ friend, rating: i.rating })
+    })
+
+    return matchingFriends.map(f => f.friend.first_name + ' ' + f.friend.last_name + ` (${f.rating})`)
   }
 
   const rating = (props.seeFriend) ? findFriendRating() : props.rating
@@ -65,8 +94,22 @@ const ListItem = (props) => {
             <p className="small-title"
               onClick={handleChoice}
               style={{textAlign: 'left'}}>
-              <b>average rating:</b> {props.item.rating}
+              <b>overall average rating:</b> {props.item.rating}
             </p>
+            {(props.currentList === 'recommended') ?
+            (<div>
+              <p className="small-title"
+                onClick={handleChoice}
+                style={{textAlign: 'left'}}>
+                <b>number of friend ratings:</b> {ratingCount()}
+              </p>
+              <p className="small-title"
+                onClick={handleChoice}
+                style={{textAlign: 'left'}}>
+                <b>highly rated by:</b> {whoRecommends().join(', ')}
+              </p>
+            </div>)
+            : null}
           {(props.currentList === 'seen') ?
             <div className="rating">
               <span id='10' onClick={ (props.seeFriend) ? null : handleRating}>
@@ -105,6 +148,7 @@ const mapStateToProps = (state) => {
     friendRatings: state.friends.friendRatings,
     seeFriend: state.friends.seeFriend,
     friendProfile: state.friends.friendProfile,
+    friends: state.friends.friends,
   }
 }
 
