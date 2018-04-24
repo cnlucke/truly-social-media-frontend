@@ -19,8 +19,9 @@ class List extends React.Component {
           }
         })
         sortedList.sort((a, b) => b.rating - a.rating)
-
-        this.props.sortList(sortedList, e.target.id, this.props.currentFriendList, true)
+        const consolidatedList = sortedList.map(i => i.item)
+        console.log("sortedList by rating:", sortedList)
+        this.props.sortList(consolidatedList, e.target.id, this.props.currentFriendList, true)
       } else {
         this.props.sortList(this.props[listName], e.target.id, this.props.currentFriendList, true)
       }

@@ -26,9 +26,8 @@ class LandingContainer extends React.Component {
       return (
       <div id="modal-container">
         <ItemModal />
-        {(this.props.showComments && this.props.isLoggedIn && this.itemInAnyList()) ?
-          (<CommentContainer />) : null }
-        </div>
+        {(this.props.isLoggedIn) ? (<CommentContainer />) : null }
+      </div>
       )
     } else {
       return (

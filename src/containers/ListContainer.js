@@ -21,8 +21,7 @@ class ListContainer extends React.Component {
       return (
       <div id="modal-container">
         <ItemModal />
-          {(this.props.showComments && this.props.isLoggedIn) ?
-            (<CommentContainer />) : null}
+        <CommentContainer />
         </div>
       )
     } else {
