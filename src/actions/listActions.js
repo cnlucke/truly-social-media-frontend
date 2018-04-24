@@ -81,10 +81,6 @@ export const rateItem = (rating, item_id) => {
 
 export const sortList = (list, sortType, listType, friend) => {
   return function(dispatch) {
-    console.log("sortList list:", list)
-    console.log("sortList sortType:", sortType)
-    console.log("sortList listType:", listType)
-    console.log("sortList friend:", friend)
     let newList = [...list];
     switch (sortType) {
       case 'avg-rating':
@@ -107,7 +103,7 @@ export const sortList = (list, sortType, listType, friend) => {
         newList.sort((a, b) => {
           a = new Date(a.created_at);
           b = new Date(b.created_at);
-          return (a > b) ? -1 : (a < b) ? 1 : 0;
+          return (a < b) ? -1 : (a > b) ? 1 : 0;
         })
         break;
       default:

@@ -62,7 +62,6 @@ class ListItem extends React.Component {
   }
 
   render () {
-    console.log("this.props.item:", this.props.item)
     let friendsNext = null
     let friendsWatching = null
     let friendsSeen = null
@@ -128,11 +127,12 @@ class ListItem extends React.Component {
                   style={{textAlign: 'left'}}>
                   <b>number of friend ratings:</b> {this.ratingCount()}
                 </p>
-                <p className="small-title"
+                {(this.whoRecommends().length > 0) ?
+                (<p className="small-title"
                   onClick={this.handleChoice}
                   style={{textAlign: 'left'}}>
                   <b>highly rated by:</b> {this.whoRecommends().join(', ')}
-                </p>
+                </p>) : null}
               </div>)
               : null}
               {(friendsNext) ?

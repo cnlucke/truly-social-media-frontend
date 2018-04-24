@@ -20,7 +20,6 @@ class List extends React.Component {
         })
         sortedList.sort((a, b) => b.rating - a.rating)
         const consolidatedList = sortedList.map(i => i.item)
-        console.log("sortedList by rating:", sortedList)
         this.props.sortList(consolidatedList, e.target.id, this.props.currentFriendList, true)
       } else {
         this.props.sortList(this.props[listName], e.target.id, this.props.currentFriendList, true)
@@ -31,50 +30,44 @@ class List extends React.Component {
   }
 
   render() {
+    let items;
     if (this.props.seeFriend) {
       const listName = 'friend' + this.props.currentFriendList[0].toUpperCase() + this.props.currentFriendList.slice(1)
-      const items = this.props[listName].map((item) => {
+      items = this.props[listName].map((item) => {
         const r = this.props.ratings.find(r => item.id === r.item_id) || 0
         return <ListItem item={item} rating={r.rating} key={item.id} />
       })
-
-      return(
-        <div id="list-items-container">
-          <h2 id="friend-list-title">{`${this.props.friendProfile.first_name.toLowerCase()}'s ${this.props.currentFriendList} list`}</h2>
-          <div id="sort-button-container">
-            {(this.props.currentFriendList === 'seen') ?
-            <button className="sort-button" id='rating' onClick={this.handleSort}>rating</button>
-            : null}
-            <button className="sort-button" id='avg-rating' onClick={this.handleSort}>avg rating</button>
-            <button className="sort-button" id='dateAdded' onClick={this.handleSort}>date added</button>
-            <button className="sort-button" id='title' onClick={this.handleSort}>title</button>
-          </div>
-          {items}
-        </div>
-      )
     } else {
-      const items = this.props[this.props.currentList].map((item) => {
+      items = this.props[this.props.currentList].map((item) => {
         const r = this.props.ratings.find(r => item.id === r.item_id) || 0
         return <ListItem item={item} rating={r.rating} key={item.id} />
       })
-
-      return (
-        <div id="list-items-container">
-          {(this.props.currentList === 'recommended') ?
-            <h2 id="recommend-list-title">your friends really liked...</h2>
-            : (<Search />) }
-          <div id="sort-button-container">
-            {(this.props.currentList === 'seen') ?
-            <button className="sort-button" id='rating' onClick={this.handleSort}>rating</button>
-            : null}
-            <button className="sort-button" id='avg-rating' onClick={this.handleSort}>avg rating</button>
-            <button className="sort-button" id='dateAdded' onClick={this.handleSort}>date added</button>
-            <button className="sort-button" id='title' onClick={this.handleSort}>title</button>
-          </div>
-          {items}
-        </div>
-      )
     }
+
+    return (
+      <div id="list-items-container">
+        {(this.props.currentList === 'recommended') ?
+          <h2 id="recommend-list-title">your friends really liked...</h2>
+          : (<Search />) }
+        <div id="sort-button-container">
+          {(this.props.currentList === 'seen') ?
+          <button className="sort-button" id='rating' onClick={this.handleSort}>
+            rating  <i className="far fa-sort-numeric-up fa-lg" color='black'></i>
+          </button>
+          : null}
+          <button className="sort-button" id='avg-rating' onClick={this.handleSort}>
+            avg rating  <i className="far fa-sort-numeric-up fa-lg" color='black'></i>
+            </button>
+          <button className="sort-button" id='dateAdded' onClick={this.handleSort}>
+            date added <i className="far fa-sort-numeric-up fa-lg" color='black'></i>
+          </button>
+          <button className="sort-button" id='title' onClick={this.handleSort}>
+            title  <i className="far fa-sort-alpha-down fa-lg" color='black'></i>
+            </button>
+        </div>
+        {items}
+      </div>
+    )
   }
 }
 

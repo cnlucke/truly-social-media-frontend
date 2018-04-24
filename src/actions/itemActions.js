@@ -23,7 +23,6 @@ export const friendsWithItem = (item_id) => {
     .then(handleErrors)
     .then(response => {
       const { friendsNext, friendsWatching, friendsSeen, item_id } = response
-      console.log("friendsWithItem response:", response)
         dispatch({
           type: 'FRIENDS_WITH_ITEM',
           payload: { item_id, friendsNext, friendsWatching, friendsSeen }
