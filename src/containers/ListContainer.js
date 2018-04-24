@@ -21,7 +21,8 @@ class ListContainer extends React.Component {
       return (
       <div id="modal-container">
         <ItemModal />
-        <CommentContainer />
+        {(this.props.showComments) ?
+        (<CommentContainer />) : null}
         </div>
       )
     } else {

@@ -38,6 +38,8 @@ class ProfileForm extends React.Component {
   }
 
   render() {
+    console.log("profile form state:", this.state)
+    console.log("profile form props:", this.props)
     const path = this.props.location.pathname.slice(1)
     return (
       <div id="signup-form">
@@ -85,14 +87,14 @@ class ProfileForm extends React.Component {
                   autoComplete='off'
                   onChange={this.handleOnChange}
                   value={this.state.password}
-                  placeholder="enter password" required/>
+                  placeholder="enter password" />
           <input  name='passwordConfirmation'
                   type="password"
                   className="login-input"
                   autoComplete='off'
                   value={this.state.passwordConfirmation}
                   onChange={this.handleOnChange}
-                  placeholder="confirm password" required/>
+                  placeholder="confirm password" />
                 <p style={{color: 'red', margin: 0}}>{(this.state.showError) ? this.state.error : null}</p>
           <input  className="form-submit" type="submit" value={(path === 'profile') ? 'update' : "sign up"} />
         </form>
@@ -101,4 +103,10 @@ class ProfileForm extends React.Component {
   }
 }
 
-export default connect((state) => ({currentUser: state.users.isLoggedIn}), { signUp, updateProfile })(withRouter(ProfileForm))
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.users.currentUser,
+    isLoggedIn: state.users.isLoggedIn,
+  }
+}
+export default connect(mapStateToProps, { signUp, updateProfile })(withRouter(ProfileForm))
