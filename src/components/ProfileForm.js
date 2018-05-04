@@ -38,8 +38,6 @@ class ProfileForm extends React.Component {
   }
 
   render() {
-    console.log("profile form state:", this.state)
-    console.log("profile form props:", this.props)
     const path = this.props.location.pathname.slice(1)
     return (
       <div id="signup-form">

@@ -30,7 +30,7 @@ export const fetchComments = () => {
   }
 }
 
-export const sendComment = (item_id, content, user_id, username) => {
+export const sendComment = (item, content, user_id, username) => {
   return function(dispatch){
     if (content.length > 0) {
       fetch("http://localhost:3000/comments", {
@@ -40,7 +40,7 @@ export const sendComment = (item_id, content, user_id, username) => {
           "Accept": "application/json",
           Authorization: localStorage.getItem('token')
         },
-        body: JSON.stringify({ comment: { item_id, content, user_id, username }})
+        body: JSON.stringify({ comment: { content, user_id, username, items_attributes: item }})
       })
       .then(handleErrors)
       .then(console.log)

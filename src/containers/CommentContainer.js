@@ -13,14 +13,14 @@ const CommentContainer = (props) => {
        		props.addComment(data.payload)
        		break;
       default:
-        console.log(data);
+        console.log("default switch case handling socket response:", data);
     }
   };
 
   return (
     <div id="comment-modal" className="comment-modal">
       <ActionCable
-        channel={{ channel: 'CommentsChannel', item_id: props.itemChoice.id}}
+        channel={{ channel: 'CommentsChannel', api_id: props.itemChoice.api_id}}
         onReceived={handleSocketResponse}
         />
       <button id="close" onClick={props.hideCommentContainer}>x</button>

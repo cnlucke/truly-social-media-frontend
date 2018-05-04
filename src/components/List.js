@@ -7,31 +7,48 @@ import { sortList } from '../actions/listActions'
 
 class List extends React.Component {
   handleSort = (e) => {
+    const sortType = e.target.id
+    let list, ratings, listType, friend;
+
     if (this.props.currentList === 'friends') {
       const listName = 'friend' + this.props.currentFriendList[0].toUpperCase() + this.props.currentFriendList.slice(1)
-      if (e.target.id === 'rating') {
-        const sortedList = this.props[listName].map(item => {
-          const match = this.props.friendRatings.find(r => r.item_id === item.id)
-          if (match) {
-            return {item: item, rating: match.rating}
-          } else {
-            return {item: item, rating: 0}
-          }
-        })
-        sortedList.sort((a, b) => b.rating - a.rating)
-        const consolidatedList = sortedList.map(i => i.item)
-        this.props.sortList(consolidatedList, e.target.id, this.props.currentFriendList, true)
-      } else {
-        this.props.sortList(this.props[listName], e.target.id, this.props.currentFriendList, true)
-      }
+      list = this.props[listName]
+      ratings = this.props.friendRatings
+      listType = this.props.currentFriendList
+      friend = true
     } else {
-      this.props.sortList(this.props[this.props.currentList], e.target.id, this.props.currentList, false)
+      list = this.props[this.props.currentList]
+      ratings = this.props.ratings
+      listType = this.props.currentList
+      friend = false
     }
+
+    if (sortType === 'rating') {
+      this.sortRatedList(list, ratings, friend, listType)
+    } else {
+      this.props.sortList(list, sortType, listType, friend)
+    }
+  }
+
+  sortRatedList = (list, ratings, friend, listType) => {
+    const sortedList = list.map(item => {
+      const match = ratings.find(r => r.item_id === item.id)
+      if (match) {
+        return {item: item, rating: match.rating}
+      } else {
+        return {item: item, rating: 0}
+      }
+    })
+    sortedList.sort((a, b) => b.rating - a.rating)
+    const consolidatedList = sortedList.map(i => i.item)
+    this.props.sortList(consolidatedList, 'rating', listType, friend)
   }
 
   render() {
     let items;
+    let friendListTitle;
     if (this.props.seeFriend) {
+      friendListTitle = `${this.props.friendProfile.first_name.toLowerCase()}'s ${this.props.currentFriendList} list`
       const listName = 'friend' + this.props.currentFriendList[0].toUpperCase() + this.props.currentFriendList.slice(1)
       items = this.props[listName].map((item) => {
         const r = this.props.ratings.find(r => item.id === r.item_id) || 0
@@ -44,11 +61,13 @@ class List extends React.Component {
       })
     }
 
+
     return (
       <div id="list-items-container">
         {(this.props.currentList === 'recommended') ?
           <h2 id="recommend-list-title">your friends really liked...</h2>
-          : (<Search />) }
+          : (this.props.currentList === 'friends' && friendListTitle) ?
+          (<h2 id='friend-list-title'>{friendListTitle}</h2>) : (<Search />) }
         <div id="sort-button-container">
           {(this.props.currentList === 'seen') ?
           <button className="sort-button" id='rating' onClick={this.handleSort}>
